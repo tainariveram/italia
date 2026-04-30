@@ -3,965 +3,1058 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Italy & Wales 2026 — Plan 2</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Italia · Wales 2026</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍊</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --cream: #F8F5EF;
-  --white: #FFFFFF;
-  --ink: #1A1A1A;
-  --ink2: #3D3D3D;
-  --muted: #8C8478;
-  --border: #E8E2D8;
-  --gold: #C9920A;
-  --gold-light: #FEF5D9;
-  --gold-border: #E8D48A;
-  --green: #2E7D4F;
-  --green-light: #E8F5EE;
-  --green-border: #B8DEC8;
-  --orange: #B85C00;
-  --orange-light: #FEF0E0;
-  --purple: #6B4FA0;
-  --purple-light: #F2EEFA;
-  --purple-border: #C8B8E8;
-  --blue: #1E5FA0;
-  --blue-light: #EAF2FC;
-  --blue-border: #A8C8EC;
-  --red: #C0392B;
+  --aqua:    #22C4BB;
+  --aqua-lt: #E4F9F8;
+  --aqua-md: #9FEAE7;
+  --green:   #4BAB72;
+  --green-lt:#E6F6ED;
+  --green-md:#A8DBBF;
+  --orange:  #F97340;
+  --orange-lt:#FFF0E9;
+  --orange-md:#FAB897;
+  --pink:    #F45C82;
+  --pink-lt: #FEF0F4;
+  --pink-md: #F8B4C8;
+  --lemon:   #F5CC2A;
+  --lemon-lt:#FEFBE6;
+  --lemon-md:#F9E58A;
+  --blue:    #3EA0E0;
+  --blue-lt: #EAF5FC;
+  --blue-md: #A8D4F0;
+
+  --white:  #FFFFFF;
+  --bg:     #F9FAFB;
+  --surface:#FFFFFF;
+  --ink:    #111827;
+  --ink2:   #374151;
+  --muted:  #9CA3AF;
+  --border: #E5E7EB;
+  --rule:   #F3F4F6;
 }
 
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-html { scroll-behavior: smooth; }
-body { background:var(--cream); font-family:'DM Sans',sans-serif; color:var(--ink); max-width:430px; margin:0 auto; }
+html { scroll-behavior:smooth; }
+body {
+  background:var(--bg);
+  font-family:'DM Sans', -apple-system, sans-serif;
+  color:var(--ink);
+  max-width:430px;
+  margin:0 auto;
+}
 
-/* ── STICKY HEADER ── */
-.sticky-header {
+/* ── TOP BAR ── */
+.topbar {
   position:sticky; top:0; z-index:100;
-  background:rgba(248,245,239,0.95);
-  backdrop-filter:blur(8px);
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
-  padding:10px 16px;
+  padding:12px 20px;
   display:flex; align-items:center; justify-content:space-between;
 }
-.sticky-header h1 { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:var(--ink); }
-.sticky-header span { font-size:10px; color:var(--muted); letter-spacing:.5px; text-transform:uppercase; }
+.topbar-title {
+  font-size:17px; font-weight:600; color:var(--ink); letter-spacing:-.3px;
+}
+.topbar-badge {
+  font-size:12px; font-weight:500;
+  background:var(--aqua); color:#fff;
+  padding:3px 10px; border-radius:20px;
+}
+
+/* ── FILTER BAR ── */
+.filterbar {
+  position:sticky; top:49px; z-index:99;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:10px 16px;
+  display:flex; gap:7px; overflow-x:auto; scrollbar-width:none;
+}
+.filterbar::-webkit-scrollbar { display:none; }
+.fb {
+  flex-shrink:0;
+  font-size:13px; font-weight:500;
+  padding:7px 16px; border-radius:22px;
+  border:1.5px solid var(--border);
+  background:var(--white); color:var(--muted);
+  cursor:pointer; transition:all .15s; user-select:none; white-space:nowrap;
+}
+.fb.active-all  { background:var(--aqua);   color:#fff; border-color:var(--aqua); }
+.fb.active-1    { background:var(--orange);  color:#fff; border-color:var(--orange); }
+.fb.active-2    { background:var(--green);   color:#fff; border-color:var(--green); }
+.fb.active-3    { background:var(--pink);    color:#fff; border-color:var(--pink); }
+.day-entry.hidden { display:none; }
 
 /* ── HERO ── */
 .hero {
-  padding:40px 20px 28px;
   background:var(--white);
+  padding:36px 20px 28px;
   border-bottom:1px solid var(--border);
-  position:relative;
-  overflow:hidden;
 }
-.hero::before {
-  content:'';
-  position:absolute; top:0; right:0;
-  width:120px; height:120px;
-  background:radial-gradient(circle at top right, rgba(201,146,10,.12), transparent 70%);
+.hero-eyebrow {
+  font-size:13px; font-weight:500;
+  color:var(--aqua); letter-spacing:.3px; margin-bottom:8px;
+  text-transform:uppercase;
 }
-.plan-chip {
-  display:inline-block;
-  background:var(--ink); color:var(--white);
-  font-size:8.5px; font-weight:500; letter-spacing:2px; text-transform:uppercase;
-  padding:3px 10px; border-radius:20px; margin-bottom:12px;
+.hero-title {
+  font-family:'Playfair Display', serif;
+  font-size:52px; font-weight:900; line-height:.95;
+  color:var(--ink); margin-bottom:4px; letter-spacing:-1px;
 }
-.hero h1 { font-family:'Playfair Display',serif; font-size:40px; font-weight:900; line-height:1.0; margin-bottom:6px; }
-.hero-sub { font-size:11px; color:var(--muted); letter-spacing:.5px; margin-bottom:18px; }
+.hero-title em { color:var(--orange); font-style:italic; }
+.hero-sub {
+  font-size:15px; color:var(--muted);
+  font-weight:400; margin-bottom:24px;
+}
+.hero-alerts { display:flex; flex-direction:column; gap:8px; }
+.alert {
+  display:flex; align-items:center; gap:10px;
+  padding:12px 14px; border-radius:14px;
+  font-size:13px; font-weight:500;
+}
+.al-orange { background:var(--orange-lt); color:#C24A10; }
+.al-pink   { background:var(--pink-lt);   color:#C02060; }
+.al-green  { background:var(--green-lt);  color:#2A7A4E; }
+.al-aqua   { background:var(--aqua-lt);   color:#1A9990; }
+.alert-icon { font-size:16px; flex-shrink:0; }
 
-.alert-pills { display:flex; flex-direction:column; gap:6px; }
-.alert-pill {
+/* ── WHO'S TRAVELING ── */
+.who {
+  background:var(--white); padding:20px;
+  border-bottom:1px solid var(--border);
+}
+.who-title {
+  font-size:13px; font-weight:600; color:var(--muted);
+  text-transform:uppercase; letter-spacing:.5px; margin-bottom:14px;
+}
+.who-rows { display:flex; flex-direction:column; gap:10px; }
+.who-row { display:flex; align-items:center; gap:10px; }
+.who-chip {
+  font-size:12px; font-weight:600;
+  padding:4px 12px; border-radius:20px; flex-shrink:0;
+}
+.wc1 { background:var(--orange); color:#fff; }
+.wc2 { background:var(--green);  color:#fff; }
+.wc3 { background:var(--pink);   color:#fff; }
+.who-names { font-size:13px; color:var(--ink2); }
+
+/* ── TIMELINE ── */
+.timeline { padding-bottom:40px; }
+.day-entry { background:var(--white); border-bottom:8px solid var(--bg); }
+
+/* Date header */
+.date-hd {
+  display:flex; align-items:stretch;
+  cursor:pointer; user-select:none;
+  transition:background .1s;
+  padding:0;
+}
+.date-hd:active { background:var(--rule); }
+
+/* The big date block */
+.dcol {
+  width:80px; flex-shrink:0;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  padding:18px 0; border-radius:0;
+}
+.d-num {
+  font-family:'Playfair Display', serif;
+  font-size:36px; font-weight:900; line-height:1;
+  color:var(--white);
+}
+.d-mon {
+  font-size:11px; font-weight:600;
+  letter-spacing:1.5px; text-transform:uppercase;
+  color:rgba(255,255,255,.75); margin-top:2px;
+}
+.d-dow {
+  font-size:10px; color:rgba(255,255,255,.5);
+  margin-top:1px; font-weight:400;
+}
+
+/* Date block colors */
+.dc-aqua   { background:var(--aqua); }
+.dc-green  { background:var(--green); }
+.dc-orange { background:var(--orange); }
+.dc-pink   { background:var(--pink); }
+.dc-lemon  { background:var(--lemon); }
+.dc-lemon .d-num { color:var(--ink); }
+.dc-lemon .d-mon { color:rgba(0,0,0,.5); }
+.dc-lemon .d-dow { color:rgba(0,0,0,.3); }
+.dc-blue   { background:var(--blue); }
+
+.dinfo {
+  flex:1; padding:16px 14px;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.d-city {
+  font-size:20px; font-weight:700;
+  color:var(--ink); line-height:1.15; letter-spacing:-.3px;
+}
+.d-desc {
+  font-size:13px; color:var(--muted);
+  margin-top:3px; line-height:1.4;
+}
+.dtog {
+  display:flex; align-items:center;
+  padding:0 16px 0 0; flex-shrink:0;
+  font-size:20px; color:var(--border);
+  transition:transform .2s;
+}
+.dtog.open { transform:rotate(90deg); }
+
+/* Body */
+.day-body { background:var(--bg); display:none; padding:16px; }
+.day-body.open { display:block; }
+
+/* Section label */
+.slabel {
+  font-size:12px; font-weight:600; color:var(--muted);
+  text-transform:uppercase; letter-spacing:.7px;
+  margin-bottom:10px; margin-top:16px;
   display:flex; align-items:center; gap:8px;
-  padding:8px 12px; border-radius:10px;
-  font-size:11px; font-weight:500;
-  text-decoration:none;
 }
-.pill-birthday { background:var(--gold-light); border:1px solid var(--gold-border); color:var(--gold); }
-.pill-concert  { background:var(--purple-light); border:1px solid var(--purple-border); color:var(--purple); }
-.pill-flight   { background:var(--blue-light); border:1px solid var(--blue-border); color:var(--blue); }
+.slabel:first-child { margin-top:0; }
+.slabel::after { content:''; flex:1; height:1px; background:var(--border); }
 
-/* ── SECTION HEADERS ── */
-.section-head {
-  padding:20px 16px 8px;
-  display:flex; align-items:center; gap:10px;
-}
-.section-num {
-  width:26px; height:26px; border-radius:50%;
-  background:var(--ink); color:var(--white);
-  font-size:11px; font-weight:500;
-  display:flex; align-items:center; justify-content:center;
-  flex-shrink:0;
-}
-.section-title { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; }
-.section-sub { font-size:10px; color:var(--muted); margin-left:auto; letter-spacing:.3px; }
-
-/* ── CARDS ── */
-.card-wrap { padding:0 12px; }
-.card {
-  background:var(--white);
+/* Inner card */
+.ic {
+  background:var(--white); border-radius:14px;
   border:1px solid var(--border);
-  border-radius:14px;
-  margin-bottom:8px;
-  overflow:hidden;
-  transition:transform .15s, box-shadow .15s;
+  overflow:hidden; margin-bottom:10px;
 }
-.card:active { transform:scale(.98); }
+.ic-stripe { height:4px; }
+.ic-s-aqua   { background:var(--aqua); }
+.ic-s-green  { background:var(--green); }
+.ic-s-orange { background:var(--orange); }
+.ic-s-pink   { background:var(--pink); }
+.ic-s-lemon  { background:var(--lemon); }
+.ic-s-blue   { background:var(--blue); }
+.ic-s-muted  { background:var(--border); }
 
-/* status bar */
-.card-bar { height:3px; }
-.bar-gold   { background:var(--gold); }
-.bar-green  { background:var(--green); }
-.bar-blue   { background:var(--blue); }
-.bar-purple { background:var(--purple); }
-.bar-orange { background:var(--orange); }
-.bar-muted  { background:var(--border); }
-
-.card-inner { padding:13px 14px; }
-.card-row { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:5px; }
-
-.card-title {
-  font-family:'Playfair Display',serif;
+.ic-body { padding:14px 16px; }
+.ic-row {
+  display:flex; justify-content:space-between;
+  align-items:flex-start; margin-bottom:6px;
+}
+.ic-title {
   font-size:16px; font-weight:700; color:var(--ink);
-  line-height:1.2; flex:1; padding-right:8px;
+  flex:1; padding-right:10px; line-height:1.25; letter-spacing:-.2px;
 }
-.card-title.muted { color:rgba(0,0,0,.3); }
+.ic-title.dim { color:var(--muted); font-weight:400; font-style:italic; }
 
-.badge {
-  font-size:8px; font-weight:500; letter-spacing:.7px; text-transform:uppercase;
-  padding:3px 8px; border-radius:5px; flex-shrink:0; white-space:nowrap;
+/* Badges */
+.bdg {
+  font-size:11px; font-weight:600; padding:4px 10px;
+  border-radius:20px; flex-shrink:0; white-space:nowrap;
 }
-.badge-green  { background:var(--green-light); color:var(--green); }
-.badge-gold   { background:var(--gold-light); color:var(--gold); }
-.badge-orange { background:var(--orange-light); color:var(--orange); }
-.badge-blue   { background:var(--blue-light); color:var(--blue); }
-.badge-purple { background:var(--purple-light); color:var(--purple); }
-.badge-muted  { background:#F0EEE9; color:var(--muted); }
+.b-green  { background:var(--green-lt);  color:var(--green); }
+.b-orange { background:var(--orange-lt); color:var(--orange); }
+.b-aqua   { background:var(--aqua-lt);   color:var(--aqua); }
+.b-pink   { background:var(--pink-lt);   color:var(--pink); }
+.b-lemon  { background:var(--lemon-lt);  color:#8A7000; }
+.b-muted  { background:var(--rule);      color:var(--muted); }
 
-.card-meta { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:6px; }
-.card-date { font-size:10px; color:var(--muted); }
-.dot-sep { width:3px; height:3px; border-radius:50%; background:var(--border); flex-shrink:0; }
+/* Group tags */
+.tags { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:7px; }
+.tag {
+  font-size:11px; font-weight:600;
+  padding:3px 9px; border-radius:20px;
+}
+.t1   { background:var(--orange-lt); color:var(--orange); }
+.t2   { background:var(--green-lt);  color:var(--green); }
+.t3   { background:var(--pink-lt);   color:var(--pink); }
+.tall { background:var(--rule);      color:var(--muted); }
 
-.tags { display:flex; gap:4px; flex-wrap:wrap; }
-.tag { font-size:8.5px; font-weight:500; padding:2px 7px; border-radius:4px; }
-.tag-crew { background:#EAF2FC; color:var(--blue); }
-.tag-abuelos { background:var(--gold-light); color:var(--gold); }
-.tag-otto { background:var(--purple-light); color:var(--purple); }
-.tag-all { background:#F0EEE9; color:var(--muted); }
+/* Notes */
+.ic-note { font-size:13px; color:var(--muted); line-height:1.6; }
+.ic-note.aqua   { color:var(--aqua);   font-weight:500; }
+.ic-note.green  { color:var(--green);  font-weight:500; }
+.ic-note.orange { color:var(--orange); font-weight:500; }
 
-.card-note { font-size:10px; color:var(--muted); font-style:italic; margin-top:5px; line-height:1.55; }
-.card-note.green { color:var(--green); font-style:normal; }
-.card-note.gold  { color:var(--gold); font-style:normal; }
-.card-note.blue  { color:var(--blue); font-style:normal; }
-
-/* ── LINK BUTTONS ── */
-.link-list { border-top:1px solid var(--border); margin-top:8px; }
-.link-btn {
+/* Link list */
+.ll { border-top:1px solid var(--border); }
+.lb {
   display:flex; align-items:center; justify-content:space-between;
-  padding:10px 14px;
-  text-decoration:none; color:var(--ink2);
-  border-bottom:1px solid var(--border);
-  font-size:12px; font-weight:400;
-  transition:background .12s;
+  padding:12px 16px; text-decoration:none; color:var(--ink2);
+  border-bottom:1px solid var(--border); transition:background .1s;
+  font-size:14px;
 }
-.link-btn:last-child { border-bottom:none; }
-.link-btn:active { background:var(--cream); }
-.link-btn-left { display:flex; align-items:center; gap:8px; }
-.link-icon { font-size:14px; flex-shrink:0; }
-.link-label { font-size:11.5px; }
-.link-sub { font-size:9.5px; color:var(--muted); margin-top:1px; }
-.link-arrow { font-size:12px; color:var(--border); }
+.lb:last-child { border-bottom:none; }
+.lb:active { background:var(--rule); }
+.lb-l { display:flex; align-items:center; gap:10px; }
+.lb-icon { font-size:16px; flex-shrink:0; }
+.lb-lbl { font-size:14px; font-weight:500; }
+.lb-sub { font-size:12px; color:var(--muted); margin-top:1px; }
+.lb-arr { font-size:16px; color:var(--border); }
 
-/* ── FLIGHT CARD ── */
-.flight-card {
-  background:var(--white); border:1px solid var(--blue-border);
-  border-radius:14px; overflow:hidden; margin-bottom:8px;
+/* Flight card */
+.fc {
+  background:var(--white); border-radius:14px;
+  border:1px solid var(--aqua-md); overflow:hidden; margin-bottom:10px;
 }
-.flight-header { background:var(--blue); padding:10px 14px; display:flex; justify-content:space-between; align-items:center; }
-.flight-header span { font-size:10px; color:rgba(255,255,255,.7); letter-spacing:.5px; }
-.flight-header strong { font-size:12px; color:#fff; }
-.flight-body { padding:12px 14px; }
-.flight-route { display:flex; align-items:center; gap:0; margin-bottom:10px; }
-.flight-airport { text-align:center; }
-.flight-code { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--ink); }
-.flight-city { font-size:9px; color:var(--muted); }
-.flight-time { font-size:11px; font-weight:500; color:var(--ink2); margin-top:2px; }
-.flight-line { flex:1; display:flex; flex-direction:column; align-items:center; padding:0 8px; }
-.flight-line-bar { width:100%; height:1px; background:var(--border); position:relative; }
-.flight-line-bar::after { content:'✈'; position:absolute; top:-8px; left:50%; transform:translateX(-50%); font-size:12px; color:var(--muted); }
-.flight-duration { font-size:9px; color:var(--muted); margin-top:4px; }
-.flight-details { display:flex; gap:12px; flex-wrap:wrap; }
-.flight-detail { font-size:10px; color:var(--muted); }
-.flight-detail strong { color:var(--ink2); }
-.flight-seats { background:var(--blue-light); border-radius:8px; padding:6px 10px; margin-top:8px; font-size:10px; color:var(--blue); }
-
-/* ── BIRTHDAY SPECIAL ── */
-.birthday-section {
-  margin:0 12px 8px;
-  background:linear-gradient(135deg, #FFFDF0 0%, #FEF9E0 100%);
-  border:1px solid var(--gold-border);
-  border-radius:14px; padding:14px;
+.fc-head {
+  background:var(--aqua); padding:10px 16px;
+  display:flex; justify-content:space-between; align-items:center;
 }
-.birthday-title { font-family:'Playfair Display',serif; font-size:15px; font-weight:700; color:var(--gold); margin-bottom:4px; }
-.birthday-sub { font-size:10.5px; color:var(--muted); margin-bottom:12px; }
-
-/* ── DIVIDER ── */
-.divider { margin:4px 0; border:none; border-top:1px solid var(--border); }
-
-/* ── DEPART ROW ── */
-.depart-row {
-  display:flex; align-items:center; gap:10px;
-  padding:8px 12px; margin-bottom:8px;
+.fc-head span { font-size:11px; color:rgba(255,255,255,.7); font-weight:500; letter-spacing:.3px; }
+.fc-head strong { font-size:13px; color:#fff; font-weight:600; }
+.fc-body { padding:16px; }
+.fr { display:flex; align-items:center; margin-bottom:12px; }
+.fa { flex-shrink:0; }
+.fcode {
+  font-family:'Playfair Display', serif;
+  font-size:28px; font-weight:900; color:var(--ink); line-height:1;
 }
-.depart-inner {
-  flex:1; display:flex; align-items:center; gap:8px;
-  background:var(--purple-light); border:1px solid var(--purple-border);
-  border-radius:10px; padding:8px 12px;
-  font-size:11px; color:var(--purple);
+.fcity { font-size:11px; color:var(--muted); font-weight:500; margin-top:2px; }
+.ftime { font-size:14px; font-weight:600; color:var(--aqua); margin-top:4px; }
+.fmid {
+  flex:1; display:flex; flex-direction:column;
+  align-items:center; padding:0 12px;
+}
+.fline { width:100%; height:1px; background:var(--border); position:relative; }
+.fline::after {
+  content:'✈'; position:absolute; top:-11px; left:50%;
+  transform:translateX(-50%); font-size:16px; color:var(--aqua);
+}
+.fdur { font-size:11px; color:var(--muted); margin-top:6px; }
+.fmeta { display:flex; gap:16px; flex-wrap:wrap; }
+.fdet { font-size:12px; color:var(--muted); }
+.fdet strong { color:var(--ink2); font-weight:600; }
+.fseats {
+  background:var(--aqua-lt); border-radius:10px;
+  padding:8px 12px; margin-top:10px;
+  font-size:12px; color:var(--aqua); font-weight:500;
 }
 
-/* ── CALLOUT ── */
-.callout {
-  margin:0 12px 8px;
+/* Callouts */
+.co {
   border-radius:12px; padding:12px 14px;
   display:flex; gap:10px; align-items:flex-start;
+  margin-bottom:10px;
 }
-.callout-koc  { background:var(--purple-light); border:1px solid var(--purple-border); }
-.callout-wine { background:var(--gold-light); border:1px solid var(--gold-border); }
-.callout-tip  { background:var(--blue-light); border:1px solid var(--blue-border); }
-.callout-icon { font-size:18px; flex-shrink:0; }
-.callout-title { font-size:11.5px; font-weight:500; margin-bottom:3px; }
-.callout-sub { font-size:10px; color:var(--muted); line-height:1.55; }
-.koc-t  { color:var(--purple); }
-.wine-t { color:var(--gold); }
-.tip-t  { color:var(--blue); }
-
-/* ── FOOTER ── */
-.footer { padding:24px 20px; text-align:center; border-top:1px solid var(--border); margin-top:8px; }
-.footer h3 { font-family:'Playfair Display',serif; font-size:15px; margin-bottom:4px; }
-.footer p { font-size:10px; color:var(--muted); letter-spacing:.5px; text-transform:uppercase; }
-
-/* ── GROUP KEY ── */
-.group-key { margin:0 12px 12px; background:var(--white); border:1px solid var(--border); border-radius:12px; padding:12px 14px; }
-.group-key-title { font-size:8.5px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
-.group-row { display:flex; align-items:center; gap:8px; margin-bottom:5px; }
-.group-row:last-child { margin-bottom:0; }
-.g-badge { font-size:9px; font-weight:500; padding:2px 8px; border-radius:4px; flex-shrink:0; }
-.g1 { background:#EAF2FC; color:var(--blue); }
-.g2 { background:var(--gold-light); color:var(--gold); }
-.g3 { background:var(--purple-light); color:var(--purple); }
-.g-members { font-size:10px; color:var(--muted); }
-
-/* ── COLLAPSIBLE ── */
-details summary { list-style:none; cursor:pointer; }
-details summary::-webkit-details-marker { display:none; }
-.collapse-btn {
-  display:flex; justify-content:space-between; align-items:center;
-  padding:10px 14px; font-size:11.5px; font-weight:500; color:var(--ink2);
-  border-top:1px solid var(--border);
+.co-aqua   { background:var(--aqua-lt);  }
+.co-green  { background:var(--green-lt); }
+.co-orange { background:var(--orange-lt);}
+.co-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+.co-title {
+  font-size:14px; font-weight:700; margin-bottom:3px; letter-spacing:-.2px;
 }
-.collapse-icon { font-size:10px; color:var(--muted); transition:transform .2s; }
-details[open] .collapse-icon { transform:rotate(180deg); }
-.collapse-content { padding:0 14px 12px; }
-.collapse-item { font-size:11px; color:var(--ink2); padding:4px 0; border-bottom:1px solid var(--border); display:flex; gap:6px; }
-.collapse-item:last-child { border-bottom:none; }
-.collapse-item-icon { flex-shrink:0; }
+.co-t-aqua   { color:var(--aqua); }
+.co-t-green  { color:var(--green); }
+.co-t-orange { color:var(--orange); }
+.co-sub { font-size:12px; color:var(--muted); line-height:1.55; }
+
+/* Toggle row */
+.toggle-row {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 16px; background:var(--white);
+  border-top:1px solid var(--border); cursor:pointer;
+}
+.tr-label { font-size:13px; font-weight:500; color:var(--aqua); }
+.tr-arrow { font-size:16px; color:var(--aqua); transition:transform .2s; }
+.tr-arrow.open { transform:rotate(90deg); }
+
+/* Range divider */
+.rdiv {
+  background:var(--aqua-lt); padding:8px 20px;
+  display:flex; align-items:center; gap:10px;
+  border-bottom:1px solid var(--aqua-md);
+}
+.rdiv-line { flex:1; height:1px; background:var(--aqua-md); }
+.rdiv-text {
+  font-size:11px; color:var(--aqua); font-weight:600;
+  letter-spacing:.5px; text-transform:uppercase; white-space:nowrap;
+}
+
+/* Footer */
+.footer {
+  background:var(--white); padding:36px 20px;
+  text-align:center; border-top:1px solid var(--border);
+}
+.footer-title {
+  font-family:'Playfair Display', serif;
+  font-size:28px; font-weight:900; color:var(--ink);
+  margin-bottom:6px; letter-spacing:-.5px;
+}
+.footer-sub { font-size:13px; color:var(--muted); font-weight:400; }
+.footer-dots {
+  display:flex; justify-content:center; gap:8px; margin:16px 0;
+}
+.footer-dot { width:8px; height:8px; border-radius:50%; }
+
+/* ── SPLIT DAY (Jul 2) ── */
+.split-day {
+  display:flex; border-bottom:8px solid var(--bg);
+}
+.split-card {
+  flex:1; display:flex; flex-direction:column;
+  cursor:pointer; user-select:none; position:relative;
+  transition:background .1s;
+}
+.split-card:first-child { border-right:3px solid var(--bg); }
+.split-card:active { opacity:.9; }
+.split-dcol {
+  padding:16px 12px 10px;
+  display:flex; flex-direction:column; align-items:center;
+}
+.split-num {
+  font-family:'Playfair Display',serif;
+  font-size:32px; font-weight:900; line-height:1; color:#fff;
+}
+.split-mon {
+  font-size:10px; font-weight:600; letter-spacing:1.5px;
+  text-transform:uppercase; color:rgba(255,255,255,.75); margin-top:2px;
+}
+.split-body {
+  padding:10px 12px 14px; background:var(--white); flex:1;
+  display:flex; flex-direction:column; gap:6px;
+}
+.split-dest {
+  font-size:15px; font-weight:700; color:var(--ink);
+  letter-spacing:-.2px; line-height:1.2;
+}
+.split-desc {
+  font-size:11px; color:var(--muted); line-height:1.4;
+}
+.split-tags { display:flex; gap:4px; flex-wrap:wrap; margin-top:2px; }
+
+.split-expand {
+  background:var(--bg);
+  display:none; padding:14px;
+  border-bottom:1px solid var(--border);
+}
+.split-expand.open { display:block; }
+
+/* ── GROUP TAGS IN HEADER ── */
+.hd-tags {
+  display:flex; gap:4px; flex-wrap:wrap; margin-top:5px;
+}
+.hd-tag {
+  font-size:10px; font-weight:600;
+  padding:2px 8px; border-radius:20px;
+}
+.ht1  { background:var(--orange-lt); color:var(--orange); }
+.ht2  { background:var(--green-lt);  color:var(--green); }
+.ht3  { background:var(--pink-lt);   color:var(--pink); }
+.htall{ background:var(--rule);      color:var(--muted); }
 </style>
 </head>
 <body>
 
-<!-- STICKY HEADER -->
-<div class="sticky-header">
-  <div>
-    <h1>Italy &amp; Wales 2026</h1>
-  </div>
-  <span>Plan 2</span>
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-title">Italia · Wales 2026</div>
+  <div class="topbar-badge">Plan 2</div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filterbar">
+  <div class="fb active-all" onclick="filter('all')">🌍 All</div>
+  <div class="fb" onclick="filter('g1')">✈️ Mano+Taina</div>
+  <div class="fb" onclick="filter('g2')">🌿 Abuelos</div>
+  <div class="fb" onclick="filter('g3')">🎵 Otto+Juli</div>
 </div>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="plan-chip">Plan 2 · Jun 27 – Aug 4</div>
-  <h1>Italy<br>&amp; Wales</h1>
-  <div class="hero-sub">8 travelers · 3 families · 40 days</div>
-  <div class="alert-pills">
-    <div class="alert-pill pill-birthday">🎂 Isabel turns 73 — July 1, Milan</div>
-    <div class="alert-pill pill-concert">🎵 Kings of Convenience — July 29, Gardone Riviera</div>
-    <div class="alert-pill pill-flight">✈️ AA 206 · MIA→MXP · Jun 26, 8:00 PM · Conf: SMZYCK</div>
+  <div class="hero-eyebrow">Summer 2026</div>
+  <div class="hero-title">Italia<br><em>&amp; Wales</em></div>
+  <div class="hero-sub">Jun 27 — Aug 4 · 40 days · 8 travelers</div>
+  <div class="hero-alerts">
+    <div class="alert al-orange"><span class="alert-icon">🎂</span>Isabel turns 73 — July 1, Milan · Ratanà dinner</div>
+    <div class="alert al-pink"><span class="alert-icon">🎵</span>Kings of Convenience — July 29, Lake Garda</div>
+    <div class="alert al-green"><span class="alert-icon">🎸</span>Two Door Cinema Club — Aug 2, Cardiff · Tickets booked ✓</div>
+    <div class="alert al-aqua"><span class="alert-icon">✈️</span>AA 206 · MIA → MXP · Jun 26, 8:00 PM · SMZYCK</div>
   </div>
 </div>
 
-<!-- GROUP KEY -->
-<div class="section-head">
-  <div class="section-title" style="font-size:13px;font-family:'DM Sans',sans-serif;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;">Who's traveling</div>
-</div>
-<div class="group-key">
-  <div class="group-key-title">Groups</div>
-  <div class="group-row"><span class="g-badge g1">Mano+Taina Crew</span><span class="g-members">Taina, Manolo, son (10), daughter (6)</span></div>
-  <div class="group-row"><span class="g-badge g2">Abuelos</span><span class="g-members">Isabel (turning 73), Ivan</span></div>
-  <div class="group-row"><span class="g-badge g3">Otto+Juli</span><span class="g-members">Otto, Julieta (14) — depart Aug 1 to London</span></div>
+<!-- WHO'S TRAVELING -->
+<div class="who">
+  <div class="who-title">Who's traveling</div>
+  <div class="who-rows">
+    <div class="who-row"><span class="who-chip wc1">Mano+Taina Crew</span><span class="who-names">Taina, Manolo, Ian (10), Sophie (6) · full trip</span></div>
+    <div class="who-row"><span class="who-chip wc2">Abuelos</span><span class="who-names">Isabel (turning 73), Ivan · full trip</span></div>
+    <div class="who-row"><span class="who-chip wc3">Otto+Juli</span><span class="who-names">Otto, Julieta (14) · departs Aug 1 to London</span></div>
+  </div>
 </div>
 
-<!-- FLIGHTS -->
-<div class="section-head">
-  <div class="section-num">✈</div>
-  <div class="section-title">Flights</div>
-</div>
-<div class="card-wrap">
+<!-- TIMELINE -->
+<div class="timeline">
 
-  <!-- Outbound -->
-  <div class="flight-card">
-    <div class="flight-header">
-      <span>OUTBOUND · AA 206 · Conf: SMZYCK</span>
-      <strong>Jun 26–27</strong>
-    </div>
-    <div class="flight-body">
-      <div class="flight-route">
-        <div class="flight-airport">
-          <div class="flight-code">MIA</div>
-          <div class="flight-city">Miami</div>
-          <div class="flight-time">8:00 PM</div>
+<!-- JUN 26 -->
+<div class="day-entry" data-groups="g1 g2 g3">
+  <div class="date-hd" onclick="tog(this)">
+    <div class="dcol dc-aqua"><div class="d-num">26</div><div class="d-mon">Jun</div><div class="d-dow">Friday</div></div>
+    <div class="dinfo"><div class="d-city">Departure ✈️</div><div class="d-desc">Miami → Milan · AA 206 · 8:00 PM</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
+    <div class="dtog">›</div>
+  </div>
+  <div class="day-body">
+    <div class="fc">
+      <div class="fc-head"><span>AA 206 · SMZYCK</span><strong>Jun 26 → 27</strong></div>
+      <div class="fc-body">
+        <div class="fr">
+          <div class="fa"><div class="fcode">MIA</div><div class="fcity">Miami</div><div class="ftime">20:00</div></div>
+          <div class="fmid"><div class="fline"></div><div class="fdur">~9h 30m overnight</div></div>
+          <div class="fa" style="text-align:right"><div class="fcode">MXP</div><div class="fcity">Milan Malpensa</div><div class="ftime">11:30 +1</div></div>
         </div>
-        <div class="flight-line">
-          <div class="flight-line-bar"></div>
-          <div class="flight-duration">~9h 30m · overnight</div>
+        <div class="fmeta"><div class="fdet"><strong>Class</strong> Economy (O)</div><div class="fdet"><strong>Meals</strong> Dinner · Breakfast</div></div>
+        <div class="fseats">🪑 Seats: 11L · 11D · 11E · 11H · 11J · 11K</div>
+      </div>
+    </div>
+  </div>
+  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
+    <span class="tr-label">Flight details</span><span class="tr-arrow">›</span>
+  </div>
+</div>
+
+<!-- JUN 27 -->
+<div class="day-entry" data-groups="g1 g2 g3">
+  <div class="date-hd" onclick="tog(this)">
+    <div class="dcol dc-orange"><div class="d-num">27</div><div class="d-mon">Jun</div><div class="d-dow">Saturday</div></div>
+    <div class="dinfo"><div class="d-city">Milan — Arrival</div><div class="d-desc">Land 11:30 AM · Hotel check-in · 5 nights</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
+    <div class="dtog">›</div>
+  </div>
+  <div class="day-body">
+    <div class="slabel">Hotel</div>
+    <div class="ic"><div class="ic-stripe ic-s-orange"></div><div class="ic-body">
+      <div class="ic-row"><div class="ic-title">Room Mate Giulia</div><div class="bdg b-orange">Book now</div></div>
+      <div class="tags"><span class="tag tall">All groups · 8</span></div>
+      <div class="ic-note">Steps from Galleria Vittorio Emanuele · family rooms · interconnecting doubles · ~€280–340/night</div>
+    </div>
+    <div class="ll"><a href="https://en.room-matehotels.com/giulia/" target="_blank" class="lb">
+      <div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">Book Room Mate Giulia</div><div class="lb-sub">room-matehotels.com</div></div></div><span class="lb-arr">›</span>
+    </a></div></div>
+    <div class="slabel">Milan Activities</div>
+    <div class="ic"><div class="ic-stripe ic-s-muted"></div><div class="ic-body">
+      <div class="ic-note">Duomo + rooftop · Galleria walk · Castello Sforzesco · Aperitivo Navigli · Lake Como day trip (45 min) · Last Supper</div>
+    </div>
+    <div class="ll"><a href="https://www.vivaticket.com" target="_blank" class="lb">
+      <div class="lb-l"><span class="lb-icon">🎟️</span><div><div class="lb-lbl">Last Supper tickets</div><div class="lb-sub">vivaticket.com · book exactly 60 days ahead</div></div></div><span class="lb-arr">›</span>
+    </a></div></div>
+  </div>
+  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
+    <span class="tr-label">Hotel &amp; activities</span><span class="tr-arrow">›</span>
+  </div>
+</div>
+
+<!-- JUL 1 — BIRTHDAY -->
+<div class="day-entry" data-groups="g1 g2 g3">
+  <div class="date-hd" onclick="tog(this)">
+    <div class="dcol dc-pink"><div class="d-num">1</div><div class="d-mon">Jul</div><div class="d-dow">Wednesday</div></div>
+    <div class="dinfo"><div class="d-city">Isabel's 73rd 🎂</div><div class="d-desc">Birthday dinner · Ratanà · Milan</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
+    <div class="dtog">›</div>
+  </div>
+  <div class="day-body">
+    <div class="slabel">Birthday Dinner</div>
+    <div class="ic"><div class="ic-stripe ic-s-pink"></div><div class="ic-body">
+      <div class="ic-row"><div class="ic-title">Ratanà</div><div class="bdg b-pink">Book now</div></div>
+      <div class="ic-note orange">Farm-to-table Milanese · garden courtyard · seasonal local produce · warm and unpretentious. Perfect for Isabel — healthy, organic, homey.</div>
+    </div>
+    <div class="ll">
+      <a href="mailto:reservations@ratana.it" class="lb"><div class="lb-l"><span class="lb-icon">📧</span><div><div class="lb-lbl">Reserve by email</div><div class="lb-sub">reservations@ratana.it · request Jul 1</div></div></div><span class="lb-arr">›</span></a>
+      <a href="https://www.ratana.it" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🌐</span><div><div class="lb-lbl">View restaurant</div><div class="lb-sub">ratana.it · Milan</div></div></div><span class="lb-arr">›</span></a>
+    </div></div>
+  </div>
+  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
+    <span class="tr-label">Birthday booking</span><span class="tr-arrow">›</span>
+  </div>
+</div>
+
+<!-- JUL 2 SPLIT — TWO SQUARES -->
+<div class="split-day" data-groups="g1 g2 g3">
+
+  <!-- LEFT: Mano+Taina → Lucca -->
+  <div class="split-card" onclick="togSplit('lucca')">
+    <div class="split-dcol" style="background:var(--orange)">
+      <div class="split-num">2</div>
+      <div class="split-mon">Jul</div>
+    </div>
+    <div class="split-body">
+      <div class="split-dest">→ Lucca</div>
+      <div class="split-desc">Train from Milan</div>
+      <div class="split-tags">
+        <span class="hd-tag ht1">Mano+Taina Crew</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Abuelos + Otto+Juli → China -->
+  <div class="split-card" onclick="togSplit('china')">
+    <div class="split-dcol" style="background:var(--green)">
+      <div class="split-num">2</div>
+      <div class="split-mon">Jul</div>
+    </div>
+    <div class="split-body">
+      <div class="split-dest">→ China</div>
+      <div class="split-desc">Separate trip · Jul 2–11</div>
+      <div class="split-tags">
+        <span class="hd-tag ht2">Abuelos</span>
+        <span class="hd-tag ht3">Otto+Juli</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- LUCCA EXPAND -->
+<div class="split-expand" id="expand-lucca">
+  <div class="slabel">Train — Mano+Taina Crew</div>
+  <div class="ic"><div class="ic-stripe ic-s-aqua"></div><div class="ic-body">
+    <div class="ic-row"><div class="ic-title">Milan → Lucca</div><div class="bdg b-aqua">Book early</div></div>
+    <div class="tags"><span class="tag t1">Mano+Taina Crew</span></div>
+    <div class="ic-note">Milan Centrale → Verona → Florence → Lucca · ~5 hrs · Frecciarossa from €19 · Ian + Sophie 50% off</div>
+  </div>
+  <div class="ll">
+    <a href="https://www.trenitalia.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🚄</span><div><div class="lb-lbl">Trenitalia</div><div class="lb-sub">trenitalia.com · Jul 2</div></div></div><span class="lb-arr">›</span></a>
+    <a href="https://www.italotreno.it" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🚄</span><div><div class="lb-lbl">Italo (alternative)</div><div class="lb-sub">italotreno.it</div></div></div><span class="lb-arr">›</span></a>
+  </div></div>
+</div>
+
+<!-- CHINA EXPAND -->
+<div class="split-expand" id="expand-china">
+  <div class="ic"><div class="ic-stripe ic-s-muted"></div><div class="ic-body">
+    <div class="ic-row"><div class="ic-title dim">China — Separate trip</div><div class="bdg b-muted">Jul 2–11</div></div>
+    <div class="tags"><span class="tag t2">Abuelos</span><span class="tag t3">Otto+Juli</span></div>
+    <div class="ic-note">Not part of this plan. Return Jul 11, rest 1 night in Milan, join everyone in Montalcino Jul 12.</div>
+  </div></div>
+</div>
+
+<div class="rdiv"><div class="rdiv-line"></div><div class="rdiv-text">Jul 2–12 · Lucca · Mano+Taina Crew</div><div class="rdiv-line"></div></div>
+
+<!-- JUL 2 LUCCA CHECK IN -->
+<div class="day-entry" data-groups="g1">
+  <div class="date-hd" onclick="tog(this)">
+    <div class="dcol dc-green"><div class="d-num">2</div><div class="d-mon">Jul</div><div class="d-dow">Thursday</div></div>
+    <div class="dinfo"><div class="d-city">Lucca ✓</div><div class="d-desc">Vissi D'Arte · 10 nights</div><div class="hd-tags"><span class="hd-tag ht1">Mano+Taina Crew</span></div></div>
+    <div class="dtog">›</div>
+  </div>
+  <div class="day-body">
+    <div class="slabel">Airbnb — Booked</div>
+    <div class="ic"><div class="ic-stripe ic-s-green"></div><div class="ic-body">
+      <div class="ic-row"><div class="ic-title">Vissi D'Arte</div><div class="bdg b-green">Booked ✓</div></div>
+      <div class="tags"><span class="tag t1">Mano+Taina Crew · 4</span></div>
+      <div class="ic-note green">Piazza San Giovanni 6 · Ground floor · Private courtyard · 2 bed / 3 bath · Superhost · Jul 2–12 · $3,770 · HMS3ZCP3M2</div>
+    </div>
+    <div class="ll">
+      <a href="https://www.airbnb.com/rooms/1641340760929853694" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🏠</span><div><div class="lb-lbl">View Airbnb listing</div><div class="lb-sub">Conf: HMS3ZCP3M2</div></div></div><span class="lb-arr">›</span></a>
+      <a href="tel:+393317457039" class="lb"><div class="lb-l"><span class="lb-icon">📞</span><div><div class="lb-lbl">Call host</div><div class="lb-sub">+39 331 745 7039</div></div></div><span class="lb-arr">›</span></a>
+    </div></div>
+    <div class="slabel">Day Trips</div>
+    <div class="ic"><div class="ic-stripe ic-s-muted"></div><div class="ic-body">
+      <div class="ic-note">🏛 Pisa (Jul 4) — 30 min · €3.60 · Tower + Baptistery<br>🌊 Cinque Terre overnight (Jul 5–6) — Monterosso al Mare<br>🚤 La Spezia · 🏖️ Viareggio beach — easy with Ian &amp; Sophie</div>
+    </div>
+    <div class="ll"><a href="https://www.cinqueterre.eu.com/en/cinque-terre-card" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🎟️</span><div><div class="lb-lbl">Cinque Terre Card</div><div class="lb-sub">€18.50/adult · trains + trails</div></div></div><span class="lb-arr">›</span></a></div></div>
+  </div>
+  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
+    <span class="tr-label">Airbnb &amp; day trips</span><span class="tr-arrow">›</span>
+  </div>
+</div>
+
+<!-- JUL 11 — MILAN REST -->
+<div class="day-entry" data-groups="g2 g3">
+  <div class="date-hd" onclick="tog(this)">
+    <div class="dcol dc-aqua"><div class="d-num">11</div><div class="d-mon">Jul</div><div class="d-dow">Saturday</div></div>
+    <div class="dinfo"><div class="d-city">Milan — Rest Night</div><div class="d-desc">Return from China · 1 night</div><div class="hd-tags"><span class="hd-tag ht2">Abuelos</span><span class="hd-tag ht3">Otto+Juli</span></div></div>
+    <div class="dtog">›</div>
+  </div>
+  <div class="day-body">
+    <div class="slabel">Hotel — Near Centrale</div>
+    <div class="ic"><div class="ic-stripe ic-s-aqua"></div><div class="ic-body">
+      <div class="ic-row"><div class="ic-title">Nhow Milano</div><div class="bdg b-aqua">Book now</div></div>
+      <div class="tags"><span class="tag t2">Abuelos</span><span class="tag t3">Otto+Juli</span></div>
+      <div class="ic-note">5 min from Centrale station · jet-lagged arrival · easy early checkout Jul 12 · ~€180–250/night</div>
+    </div>
+    <div class="ll">
+      <a href="https://www.nhow-hotels.com/milan" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">Nhow Milano</div><div class="lb-sub">nhow-hotels.com · near Centrale</div></div></div><span class="lb-arr">›</span></a>
+      <a href="https://www.marriott.com/en-us/hotels/milmc-milan-marriott-hotel/overview/" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">Milan Marriott (backup)</div><div class="lb-sub">marriott.com</div></div></div><span class="lb-arr">›</span></a>
+    </div></div>
+  </div>
+  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
+    <span class="tr-label">Hotel options</span><span class="tr-arrow">›</span>
+  </div>
+</div>
+
+<!-- JUL 12 — MONTALCINO -->
+<div class="day-entry" data-groups="g1 g2 g3">
+  <div class="date-hd" onclick="tog(this)">
+    <div class="dcol dc-green"><div class="d-num">12</div><div class="d-mon">Jul</div><div class="d-dow">Sunday</div></div>
+    <div class="dinfo"><div class="d-city">Montalcino 🍷</div><div class="d-desc">Wine country · 3 nights · All groups reunite</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
+    <div class="dtog">›</div>
+  </div>
+  <div class="day-body">
+    <div class="slabel">2 Rental Cars</div>
+    <div class="ic"><div class="ic-stripe ic-s-lemon"></div><div class="ic-body">
+      <div class="ic-row"><div class="ic-title">Car 1 — Sedan or SUV</div><div class="bdg b-lemon">Book 2 months out</div></div>
+      <div class="tags"><span class="tag t1">Mano+Taina Crew</span></div>
+      <div class="ic-note">Pick up Lucca Jul 12 · drop Florence Jul 15 · IDP required (AAA Miami, $20)</div>
+    </div>
+    <div class="ll"><a href="https://www.rentalcars.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🚗</span><div><div class="lb-lbl">Book Car 1 — Lucca pickup</div><div class="lb-sub">rentalcars.com · Jul 12</div></div></div><span class="lb-arr">›</span></a></div></div>
+    <div class="ic"><div class="ic-stripe ic-s-lemon"></div><div class="ic-body">
+      <div class="ic-row"><div class="ic-title">Car 2 — 5-seat Sedan</div><div class="bdg b-lemon">Book 2 months out</div></div>
+      <div class="tags"><span class="tag t2">Abuelos</span><span class="tag t3">Otto+Juli</span></div>
+      <div class="ic-note">Pick up Milan Centrale Jul 12 · drop Florence Jul 15</div>
+    </div>
+    <div class="ll"><a href="https://www.rentalcars.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🚗</span><div><div class="lb-lbl">Book Car 2 — Milan pickup</div><div class="lb-sub">rentalcars.com · Jul 12</div></div></div><span class="lb-arr">›</span></a></div></div>
+    <div class="slabel">Hotel</div>
+    <div class="co co-green"><div class="co-icon">🍷</div><div><div class="co-title co-t-green">Why Montalcino</div><div class="co-sub">Walkable hilltop town — 8 people wander to different cafés independently in the morning, reconvene for lunch. Most Brunello enoteche per block in Tuscany.</div></div></div>
+    <div class="ic"><div class="ic-stripe ic-s-green"></div><div class="ic-body">
+      <div class="ic-row"><div class="ic-title">Hotel Dei Capitani</div><div class="bdg b-orange">Book now</div></div>
+      <div class="tags"><span class="tag tall">All groups · 8</span></div>
+      <div class="ic-note">4-star · in town · infinity pool with Val d'Orcia views · ~€250–350/room/night</div>
+    </div>
+    <div class="ll"><a href="https://www.deicapitani.it" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">Hotel Dei Capitani</div><div class="lb-sub">deicapitani.it · Montalcino</div></div></div><span class="lb-arr">›</span></a></div></div>
+    <div class="slabel">Tastings &amp; Day Trips</div>
+    <div class="ic"><div class="ic-stripe ic-s-muted"></div><div class="ic-body">
+      <div class="ic-note">🍷 Brunello at Banfi or Casanova di Neri<br>🧀 Pienza (20 min) — pecorino cheese tasting<br>♨️ Bagno Vignoni (25 min) — thermal pool piazza (kids love it)<br>🍷 Montepulciano (30 min) — Vino Nobile</div>
+    </div></div>
+  </div>
+  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
+    <span class="tr-label">Cars, hotel &amp; tastings</span><span class="tr-arrow">›</span>
+  </div>
+</div>
+
+<!-- JUL 15 — FLORENCE -->
+<div class="day-entry" data-groups="g1 g2 g3">
+  <div class="date-hd" onclick="tog(this)">
+    <div class="dcol dc-orange"><div class="d-num">15</div><div class="d-mon">Jul</div><div class="d-dow">Wednesday</div></div>
+    <div class="dinfo"><div class="d-city">Florence ✓</div><div class="d-desc">Airbnb booked · 11 nights</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
+    <div class="dtog">›</div>
+  </div>
+  <div class="day-body">
+    <div class="slabel">Drive from Montalcino</div>
+    <div class="ic"><div class="ic-stripe ic-s-muted"></div><div class="ic-body">
+      <div class="ic-note">~1:30 drive · return both rental cars at Florence office · check into Airbnb</div>
+    </div></div>
+    <div class="slabel">Airbnb — Booked</div>
+    <div class="ic"><div class="ic-stripe ic-s-green"></div><div class="ic-body">
+      <div class="ic-row"><div class="ic-title">Florence Airbnb</div><div class="bdg b-green">Booked ✓</div></div>
+      <div class="tags"><span class="tag tall">All groups · 8 · Jul 15–26</span></div>
+    </div></div>
+    <div class="slabel">Must-Do</div>
+    <div class="ic"><div class="ic-stripe ic-s-muted"></div><div class="ic-body">
+      <div class="ic-note">🖼️ Uffizi · 🗿 David (Accademia) · ⛪ Duomo dome · 🥩 Buca Lapi bistecca · 🌅 Piazzale Michelangelo<br>Day trips: Siena · Bologna · Chianti driver day · Arezzo</div>
+    </div>
+    <div class="ll">
+      <a href="https://www.uffizi.it/en/tickets" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🎟️</span><div><div class="lb-lbl">Uffizi tickets</div><div class="lb-sub">uffizi.it · book weeks ahead</div></div></div><span class="lb-arr">›</span></a>
+      <a href="https://www.galleriaaccademia.it/en/tickets" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🎟️</span><div><div class="lb-lbl">Accademia — David</div><div class="lb-sub">galleriaaccademia.it</div></div></div><span class="lb-arr">›</span></a>
+      <a href="https://www.trenitalia.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🚄</span><div><div class="lb-lbl">Day trip trains</div><div class="lb-sub">Bologna 35 min · Arezzo 40 min</div></div></div><span class="lb-arr">›</span></a>
+    </div></div>
+  </div>
+  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
+    <span class="tr-label">Florence details</span><span class="tr-arrow">›</span>
+  </div>
+</div>
+
+<!-- JUL 26 — VENICE -->
+<div class="day-entry" data-groups="g1 g2 g3">
+  <div class="date-hd" onclick="tog(this)">
+    <div class="dcol dc-aqua"><div class="d-num">26</div><div class="d-mon">Jul</div><div class="d-dow">Sunday</div></div>
+    <div class="dinfo"><div class="d-city">Venice 🚤</div><div class="d-desc">Checkout Florence · Train · 2 nights</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
+    <div class="dtog">›</div>
+  </div>
+  <div class="day-body">
+    <div class="slabel">Transport</div>
+    <div class="ic"><div class="ic-stripe ic-s-aqua"></div><div class="ic-body">
+      <div class="ic-row"><div class="ic-title">Train: Florence → Venice</div><div class="bdg b-aqua">Book early</div></div>
+      <div class="tags"><span class="tag tall">All groups · 8</span></div>
+      <div class="ic-note">Frecciarossa · ~2:05 hrs · ~€45–95/person · book 8 seats together</div>
+    </div>
+    <div class="ll"><a href="https://www.trenitalia.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🚄</span><div><div class="lb-lbl">Book Florence → Venice</div><div class="lb-sub">trenitalia.com · Jul 26</div></div></div><span class="lb-arr">›</span></a></div></div>
+    <div class="slabel">Hotel</div>
+    <div class="ic"><div class="ic-stripe ic-s-orange"></div><div class="ic-body">
+      <div class="ic-row"><div class="ic-title">Venice Hotel</div><div class="bdg b-orange">Book now</div></div>
+      <div class="tags"><span class="tag tall">All groups · 8 · Jul 26–29</span></div>
+      <div class="ic-note">Best with kids in July: Hotel Cipriani (Giudecca — pool). Mid-range: Hotel Ai Reali (Castello) or Ca' Pisani (Dorsoduro). Avoid San Marco.</div>
+    </div>
+    <div class="ll">
+      <a href="https://www.hotelcipriani.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">Hotel Cipriani (pool)</div><div class="lb-sub">hotelcipriani.com · Giudecca</div></div></div><span class="lb-arr">›</span></a>
+      <a href="https://www.hotelaireali.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">Hotel Ai Reali (mid-range)</div><div class="lb-sub">hotelaireali.com · Castello</div></div></div><span class="lb-arr">›</span></a>
+    </div></div>
+    <div class="slabel">Venice Plan</div>
+    <div class="ic"><div class="ic-stripe ic-s-muted"></div><div class="ic-body">
+      <div class="ic-note">Jul 26: Vaporetto #1 down Grand Canal · cicchetti dinner Cannaregio<br>Jul 27: San Marco before 9am · Doge's Palace · Gondola · Burano<br>Jul 28: Valdobbiadene prosecco day trip (→ Treviso → ~1.5 hr)<br>Jul 29 morning: checkout → Lake Garda</div>
+    </div></div>
+  </div>
+  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
+    <span class="tr-label">Train, hotel &amp; Venice plan</span><span class="tr-arrow">›</span>
+  </div>
+</div>
+
+<!-- JUL 29 — CONCERT LAKE GARDA -->
+<div class="day-entry" data-groups="g1 g2 g3">
+  <div class="date-hd" onclick="tog(this)">
+    <div class="dcol dc-pink"><div class="d-num">29</div><div class="d-mon">Jul</div><div class="d-dow">Wednesday</div></div>
+    <div class="dinfo"><div class="d-city">Lake Garda 🎵</div><div class="d-desc">Gardone Riviera · KoC concert tonight · 3 nights</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
+    <div class="dtog">›</div>
+  </div>
+  <div class="day-body">
+    <div class="slabel">Transfer from Venice</div>
+    <div class="ic"><div class="ic-stripe ic-s-aqua"></div><div class="ic-body">
+      <div class="ic-row"><div class="ic-title">Private Transfer: Venice → Gardone</div><div class="bdg b-aqua">Pre-book</div></div>
+      <div class="tags"><span class="tag tall">All groups · 8</span></div>
+      <div class="ic-note">8-seat minivan · ~2 hrs · ~€350 · arrive early afternoon, rest before the concert</div>
+    </div>
+    <div class="ll"><a href="https://www.rome2rio.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🚐</span><div><div class="lb-lbl">Compare transfers</div><div class="lb-sub">rome2rio.com</div></div></div><span class="lb-arr">›</span></a></div></div>
+    <div class="slabel">Concert Tonight 🎵</div>
+    <div class="co co-aqua"><div class="co-icon">🎵</div><div><div class="co-title co-t-aqua">Kings of Convenience — Jul 29</div><div class="co-sub">Anfiteatro del Vittoriale · Gardone Riviera · 5-min walk from Grand Hotel Fasano · ~1,500 seats · sells out early.</div></div></div>
+    <div class="ic"><div class="ic-stripe ic-s-pink"></div><div class="ic-body">
+      <div class="ic-row"><div class="ic-title">KoC Tickets</div><div class="bdg b-pink">Book now</div></div>
+      <div class="tags"><span class="tag tall">All groups · 8</span></div>
+    </div>
+    <div class="ll"><a href="https://www.anfiteatrodelvittoriale.it/event/concerto-kings-of-convenience-italia-2026/" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🎟️</span><div><div class="lb-lbl">Buy concert tickets</div><div class="lb-sub">anfiteatrodelvittoriale.it · Jul 29</div></div></div><span class="lb-arr">›</span></a></div></div>
+    <div class="slabel">Hotel</div>
+    <div class="ic"><div class="ic-stripe ic-s-orange"></div><div class="ic-body">
+      <div class="ic-row"><div class="ic-title">Grand Hotel Fasano</div><div class="bdg b-orange">Book immediately</div></div>
+      <div class="tags"><span class="tag tall">All groups · 8 · Jul 29–Aug 1</span></div>
+      <div class="ic-note">5-star lakefront · elevators throughout · two pools · 5-min walk to concert venue · ~€450–650/room · Concert weekend — very limited rooms.</div>
+    </div>
+    <div class="ll">
+      <a href="https://www.grandhotelfasano.it" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">Grand Hotel Fasano</div><div class="lb-sub">grandhotelfasano.it · Gardone Riviera</div></div></div><span class="lb-arr">›</span></a>
+      <a href="https://www.bellevue-sanlorenzo.it" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">Bellevue San Lorenzo (backup)</div><div class="lb-sub">4-star · adjacent · ~€300/room</div></div></div><span class="lb-arr">›</span></a>
+    </div></div>
+  </div>
+  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
+    <span class="tr-label">Transfer, concert &amp; hotel</span><span class="tr-arrow">›</span>
+  </div>
+</div>
+
+<!-- JUL 30 — LIDO 84 -->
+<div class="day-entry" data-groups="g1 g2 g3">
+  <div class="date-hd" onclick="tog(this)">
+    <div class="dcol dc-orange"><div class="d-num">30</div><div class="d-mon">Jul</div><div class="d-dow">Thursday</div></div>
+    <div class="dinfo"><div class="d-city">Birthday Dinner 🎂</div><div class="d-desc">Lido 84 · Belated celebration · Lake Garda</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
+    <div class="dtog">›</div>
+  </div>
+  <div class="day-body">
+    <div class="slabel">Dinner — Book Now</div>
+    <div class="ic"><div class="ic-stripe ic-s-pink"></div><div class="ic-body">
+      <div class="ic-row"><div class="ic-title">Lido 84</div><div class="bdg b-pink">Book for Jul 30</div></div>
+      <div class="tags"><span class="tag tall">All groups · celebration</span></div>
+      <div class="ic-note orange">1 Michelin star · lakefront · 5 min from hotel · Isabel's belated 73rd — the night after the KoC concert. Books out months ahead in summer.</div>
+    </div>
+    <div class="ll">
+      <a href="mailto:info@lido84.com" class="lb"><div class="lb-l"><span class="lb-icon">📧</span><div><div class="lb-lbl">Email reservation</div><div class="lb-sub">info@lido84.com · request Jul 30</div></div></div><span class="lb-arr">›</span></a>
+      <a href="https://www.lido84.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🌐</span><div><div class="lb-lbl">View restaurant</div><div class="lb-sub">lido84.com · Gardone Riviera</div></div></div><span class="lb-arr">›</span></a>
+    </div></div>
+  </div>
+  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
+    <span class="tr-label">Lido 84 booking</span><span class="tr-arrow">›</span>
+  </div>
+</div>
+
+<!-- AUG 1 SPLIT — TWO SQUARES -->
+<div class="split-day" data-groups="g1 g2 g3">
+
+  <!-- LEFT: Mano+Taina + Abuelos → Cardiff -->
+  <div class="split-card" onclick="togSplit('cardiff')">
+    <div class="split-dcol" style="background:var(--aqua)">
+      <div class="split-num">1</div>
+      <div class="split-mon">Aug</div>
+    </div>
+    <div class="split-body">
+      <div class="split-dest">→ Cardiff 🎸</div>
+      <div class="split-desc">Verona → Bristol → Cardiff</div>
+      <div class="split-tags">
+        <span class="hd-tag ht1">Mano+Taina</span>
+        <span class="hd-tag ht2">Abuelos</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Otto+Juli → London -->
+  <div class="split-card" onclick="togSplit('london')">
+    <div class="split-dcol" style="background:var(--pink)">
+      <div class="split-num">1</div>
+      <div class="split-mon">Aug</div>
+    </div>
+    <div class="split-body">
+      <div class="split-dest">→ London ✈️</div>
+      <div class="split-desc">Few days, then Miami</div>
+      <div class="split-tags">
+        <span class="hd-tag ht3">Otto+Juli</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CARDIFF EXPAND -->
+<div class="split-expand" id="expand-cardiff">
+  <div class="slabel">Garda → Cardiff</div>
+  <div class="ic"><div class="ic-stripe ic-s-blue"></div><div class="ic-body">
+    <div class="ic-row"><div class="ic-title">Verona → Bristol → Cardiff</div><div class="bdg b-aqua">Best option</div></div>
+    <div class="tags"><span class="tag t1">Mano+Taina</span><span class="tag t2">Abuelos</span></div>
+    <div class="ic-note">Transfer Gardone → Verona (~45 min) · fly VRN → Bristol BRS (Ryanair/easyJet) · taxi Bristol → Cardiff (~30 min · ~£35). ~4 hrs total. No Eurostar needed.</div>
+  </div>
+  <div class="ll">
+    <a href="https://www.skyscanner.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">✈️</span><div><div class="lb-lbl">Verona → Bristol flights</div><div class="lb-sub">Skyscanner · VRN → BRS · Aug 1</div></div></div><span class="lb-arr">›</span></a>
+    <a href="https://www.rome2rio.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🚕</span><div><div class="lb-lbl">Bristol Airport → Cardiff</div><div class="lb-sub">~30 min taxi · ~£35</div></div></div><span class="lb-arr">›</span></a>
+  </div></div>
+  <div class="slabel">Cardiff Hotel — Booked</div>
+  <div class="ic"><div class="ic-stripe ic-s-green"></div><div class="ic-body">
+    <div class="ic-row"><div class="ic-title">Cardiff Hotel</div><div class="bdg b-green">Booked ✓</div></div>
+    <div class="tags"><span class="tag t1">Mano+Taina</span><span class="tag t2">Abuelos · 6 total</span></div>
+    <div class="ic-note green">Aug 1–4 · 3 nights</div>
+  </div></div>
+</div>
+
+<!-- LONDON EXPAND -->
+<div class="split-expand" id="expand-london">
+  <div class="ic"><div class="ic-stripe ic-s-pink"></div><div class="ic-body">
+    <div class="ic-row"><div class="ic-title">Otto+Juli → London</div><div class="bdg b-muted">Flights TBD</div></div>
+    <div class="tags"><span class="tag t3">Otto+Juli</span></div>
+    <div class="ic-note">Few days in London, then Miami. Fly from Verona or Milan on Aug 1. Book once London plans are confirmed.</div>
+  </div>
+  <div class="ll">
+    <a href="https://www.skyscanner.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">✈️</span><div><div class="lb-lbl">Verona → London flights</div><div class="lb-sub">Skyscanner · VRN → LHR/LGW · Aug 1</div></div></div><span class="lb-arr">›</span></a>
+  </div></div>
+</div>
+
+<!-- AUG 2 — TDCC -->
+<div class="day-entry" data-groups="g1 g2">
+  <div class="date-hd" onclick="tog(this)">
+    <div class="dcol dc-green"><div class="d-num">2</div><div class="d-mon">Aug</div><div class="d-dow">Sunday</div></div>
+    <div class="dinfo"><div class="d-city">Concert Night 🎸</div><div class="d-desc">Two Door Cinema Club · Cardiff · Tickets booked ✓</div><div class="hd-tags"><span class="hd-tag ht1">Mano+Taina</span><span class="hd-tag ht2">Abuelos</span></div></div>
+    <div class="dtog">›</div>
+  </div>
+  <div class="day-body">
+    <div class="ic"><div class="ic-stripe ic-s-muted"></div><div class="ic-body">
+      <div class="ic-note">🏰 Cardiff Castle morning (Ian + Sophie will love it)<br>🏛️ National Museum Cardiff afternoon (free, excellent)<br>🍽️ Pre-concert dinner<br>🎸 Two Door Cinema Club — tickets booked ✓</div>
+    </div></div>
+  </div>
+  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
+    <span class="tr-label">Day plan</span><span class="tr-arrow">›</span>
+  </div>
+</div>
+
+<!-- AUG 4 — RETURN -->
+<div class="day-entry" data-groups="g1 g2">
+  <div class="date-hd" onclick="tog(this)">
+    <div class="dcol dc-aqua"><div class="d-num">4</div><div class="d-mon">Aug</div><div class="d-dow">Tuesday</div></div>
+    <div class="dinfo"><div class="d-city">Home ✈️</div><div class="d-desc">London Heathrow → Miami · AA 39 · 12:15 PM</div><div class="hd-tags"><span class="hd-tag ht1">Mano+Taina</span><span class="hd-tag ht2">Abuelos</span></div></div>
+    <div class="dtog">›</div>
+  </div>
+  <div class="day-body">
+    <div class="slabel">Cardiff → Heathrow</div>
+    <div class="ic"><div class="ic-stripe ic-s-muted"></div><div class="ic-body">
+      <div class="ic-note aqua">Cardiff Central → London Paddington (~2 hr GWR) → Heathrow Express (~15 min). Allow 4+ hrs from Cardiff departure to flight gate.</div>
+    </div>
+    <div class="ll"><a href="https://www.gwr.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🚄</span><div><div class="lb-lbl">GWR: Cardiff → Paddington</div><div class="lb-sub">gwr.com · ~2 hrs</div></div></div><span class="lb-arr">›</span></a></div></div>
+    <div class="slabel">Return Flight</div>
+    <div class="fc">
+      <div class="fc-head"><span>AA 39 · Conf: SMZYCK</span><strong>Aug 4</strong></div>
+      <div class="fc-body">
+        <div class="fr">
+          <div class="fa"><div class="fcode">LHR</div><div class="fcity">London Heathrow</div><div class="ftime">12:15</div></div>
+          <div class="fmid"><div class="fline"></div><div class="fdur">~10h 30m</div></div>
+          <div class="fa" style="text-align:right"><div class="fcode">MIA</div><div class="fcity">Miami</div><div class="ftime">16:45</div></div>
         </div>
-        <div class="flight-airport" style="text-align:right">
-          <div class="flight-code">MXP</div>
-          <div class="flight-city">Milan Malpensa</div>
-          <div class="flight-time">11:30 AM +1</div>
-        </div>
+        <div class="fmeta"><div class="fdet"><strong>Class</strong> Economy (V)</div><div class="fdet"><strong>Meals</strong> Lunch · Snack</div></div>
+        <div class="fseats">🪑 Seats: 20J · 20L · 35D · 35E · 35G · 35H</div>
       </div>
-      <div class="flight-details">
-        <div class="flight-detail"><strong>Class:</strong> Economy (O)</div>
-        <div class="flight-detail"><strong>Meals:</strong> Dinner, Breakfast</div>
-      </div>
-      <div class="flight-seats">🪑 Seats: 11L · 11D · 11E · 11H · 11J · 11K</div>
     </div>
   </div>
-
-  <!-- Return -->
-  <div class="flight-card">
-    <div class="flight-header">
-      <span>RETURN · AA 39 · Conf: SMZYCK</span>
-      <strong>Aug 4</strong>
-    </div>
-    <div class="flight-body">
-      <div class="flight-route">
-        <div class="flight-airport">
-          <div class="flight-code">LHR</div>
-          <div class="flight-city">London Heathrow</div>
-          <div class="flight-time">12:15 PM</div>
-        </div>
-        <div class="flight-line">
-          <div class="flight-line-bar"></div>
-          <div class="flight-duration">~10h 30m</div>
-        </div>
-        <div class="flight-airport" style="text-align:right">
-          <div class="flight-code">MIA</div>
-          <div class="flight-city">Miami</div>
-          <div class="flight-time">4:45 PM</div>
-        </div>
-      </div>
-      <div class="flight-details">
-        <div class="flight-detail"><strong>Class:</strong> Economy (V)</div>
-        <div class="flight-detail"><strong>Meals:</strong> Lunch, Snack</div>
-      </div>
-      <div class="flight-seats">🪑 Seats: 20J · 20L · 35D · 35E · 35G · 35H</div>
-    </div>
+  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
+    <span class="tr-label">Return flight details</span><span class="tr-arrow">›</span>
   </div>
 </div>
 
-<!-- ── 1. MILAN ── -->
-<div class="section-head">
-  <div class="section-num">1</div>
-  <div class="section-title">Milan</div>
-  <div class="section-sub">Jun 27–Jul 2 · 5 nts</div>
+</div><!-- /timeline -->
+
+<!-- BEFORE YOU GO -->
+<div style="background:var(--white);border-top:1px solid var(--border);padding:20px 20px 0;">
+  <div style="font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;">Before you go</div>
 </div>
-
-<!-- Birthday Special -->
-<div class="birthday-section">
-  <div class="birthday-title">🎂 Isabel's 73rd Birthday — July 1</div>
-  <div class="birthday-sub">She likes healthy, seasonal, organic food. Small and homey over fancy.</div>
-  <div class="card" style="margin-bottom:0;">
-    <div class="card-bar bar-gold"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <div class="card-title">Ratanà</div>
-        <div class="badge badge-gold">Book now</div>
-      </div>
-      <div class="card-note" style="margin-bottom:4px;">Farm-to-table Milanese · beautiful garden courtyard · seasonal local produce · warm and unpretentious. Perfect match for Isabel's style.</div>
-    </div>
-    <div class="link-list">
-      <a href="mailto:reservations@ratana.it" class="link-btn">
-        <div class="link-btn-left">
-          <span class="link-icon">📧</span>
-          <div><div class="link-label">Book by email</div><div class="link-sub">reservations@ratana.it</div></div>
-        </div>
-        <span class="link-arrow">›</span>
-      </a>
-      <a href="https://www.ratana.it" target="_blank" class="link-btn">
-        <div class="link-btn-left">
-          <span class="link-icon">🌐</span>
-          <div><div class="link-label">View restaurant</div><div class="link-sub">ratana.it</div></div>
-        </div>
-        <span class="link-arrow">›</span>
-      </a>
-    </div>
-  </div>
-</div>
-
-<div class="card-wrap">
-  <!-- Milan Hotel -->
-  <div class="card">
-    <div class="card-bar bar-orange"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <div class="card-title">Room Mate Giulia</div>
-        <div class="badge badge-orange">Book now</div>
-      </div>
-      <div class="card-meta">
-        <span class="card-date">Jun 27–Jul 2 · 5 nights</span>
-        <div class="dot-sep"></div>
-        <div class="tags"><span class="tag tag-all">All groups · 8</span></div>
-      </div>
-      <div class="card-note">Steps from Galleria Vittorio Emanuele. Modern family rooms, interconnecting doubles. Mid-range. ~€280–340/night.</div>
-    </div>
-    <div class="link-list">
-      <a href="https://en.room-matehotels.com/giulia/" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🏨</span><div><div class="link-label">View hotel</div><div class="link-sub">Room Mate Giulia · Milan</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-    </div>
-    <details>
-      <summary><div class="collapse-btn">What to do in Milan <span class="collapse-icon">▼</span></div></summary>
-      <div class="collapse-content">
-        <div class="collapse-item"><span class="collapse-item-icon">🏰</span>Duomo rooftop + Galleria Vittorio Emanuele</div>
-        <div class="collapse-item"><span class="collapse-item-icon">🎨</span>Castello Sforzesco + Michelangelo's Pietà Rondanini</div>
-        <div class="collapse-item"><span class="collapse-item-icon">🖼️</span>Last Supper — book 2 months out at vivaticket.com</div>
-        <div class="collapse-item"><span class="collapse-item-icon">🚤</span>Day trip: Lake Como (45 min by train — Bellagio, Varenna)</div>
-        <div class="collapse-item"><span class="collapse-item-icon">🍹</span>Aperitivo in Navigli canal district</div>
-        <div class="collapse-item"><span class="collapse-item-icon">🌳</span>Jul 1 birthday: Parco Sempione + Ratanà dinner</div>
-      </div>
-    </details>
-  </div>
-
-  <!-- Last Supper -->
-  <div class="card">
-    <div class="card-bar bar-gold"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <div class="card-title">Last Supper — da Vinci</div>
-        <div class="badge badge-gold">Book 2 months out</div>
-      </div>
-      <div class="card-note gold">Sells out in minutes when slots open. Set a reminder — book exactly ~60 days before your visit date.</div>
-    </div>
-    <div class="link-list">
-      <a href="https://www.vivaticket.com" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🎟️</span><div><div class="link-label">Book tickets</div><div class="link-sub">vivaticket.com</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- ── 2. LUCCA ── -->
-<div class="section-head">
-  <div class="section-num">2</div>
-  <div class="section-title">Lucca</div>
-  <div class="section-sub">Jul 2–12 · 10 nts</div>
-</div>
-<div class="card-wrap">
-  <div class="card">
-    <div class="card-bar bar-green"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <div class="card-title">Vissi D'Arte</div>
-        <div class="badge badge-green">Booked ✓</div>
-      </div>
-      <div class="card-meta">
-        <span class="card-date">Jul 2–12 · 10 nights · $3,770</span>
-      </div>
-      <div class="tags" style="margin-bottom:5px;"><span class="tag tag-crew">Mano+Taina Crew · 4</span></div>
-      <div class="card-note green">Piazza San Giovanni 6 · Ground floor · Private courtyard · 2 bed / 3 bath · Superhost · Conf: HMS3ZCP3M2</div>
-    </div>
-    <div class="link-list">
-      <a href="https://www.airbnb.com/rooms/1641340760929853694" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🏠</span><div><div class="link-label">View Airbnb listing</div><div class="link-sub">Vissi D'Arte · Lucca · Conf: HMS3ZCP3M2</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-      <a href="tel:+393317457039" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">📞</span><div><div class="link-label">Call host</div><div class="link-sub">+39 331 745 7039</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-    </div>
-    <details>
-      <summary><div class="collapse-btn">Day trips from Lucca <span class="collapse-icon">▼</span></div></summary>
-      <div class="collapse-content">
-        <div class="collapse-item"><span>🏛️</span> Pisa — 30 min train · €3.60 · Tower + Baptistery</div>
-        <div class="collapse-item"><span>🌊</span> Cinque Terre overnight — Jul 5–6 · Monterosso al Mare</div>
-        <div class="collapse-item"><span>🚤</span> La Spezia — 1:30 via Pisa · ~€12</div>
-        <div class="collapse-item"><span>🏖️</span> Viareggio beach — 30 min · €3 · easy with kids</div>
-      </div>
-    </details>
-  </div>
-
-  <!-- Train Lucca -->
-  <div class="card">
-    <div class="card-bar bar-blue"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <div class="card-title">Train: Milan → Lucca</div>
-        <div class="badge badge-blue">Book early</div>
-      </div>
-      <div class="card-note blue">Jul 2 · MXP → Milan Centrale → Verona → Florence → Lucca · ~5 hrs total. Book Frecciarossa Verona→Florence early for €19 Super Economy.</div>
-    </div>
-    <div class="link-list">
-      <a href="https://www.trenitalia.com" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🚄</span><div><div class="link-label">Trenitalia</div><div class="link-sub">trenitalia.com</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-      <a href="https://www.italotreno.it" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🚄</span><div><div class="link-label">Italo (alternative)</div><div class="link-sub">italotreno.it</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- CHINA NOTE -->
-<div class="card-wrap">
-  <div class="card" style="opacity:.7;">
-    <div class="card-bar bar-muted"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <div class="card-title muted">China — Separate Trip</div>
-        <div class="badge badge-muted">Not in plan</div>
-      </div>
-      <div class="card-meta"><span class="card-date">Jul 2–11</span><div class="dot-sep"></div><div class="tags"><span class="tag tag-abuelos">Abuelos</span><span class="tag tag-otto">Otto+Juli</span></div></div>
-      <div class="card-note">Abuelos + Otto+Juli return Jul 11 → 1 night rest in Milan → join everyone in Montalcino Jul 12.</div>
-    </div>
-  </div>
-</div>
-
-<!-- ── 3. MONTALCINO ── -->
-<div class="section-head">
-  <div class="section-num">3</div>
-  <div class="section-title">Montalcino</div>
-  <div class="section-sub">Jul 12–15 · 3 nts</div>
-</div>
-
-<div class="callout callout-wine">
-  <div class="callout-icon">🍷</div>
-  <div>
-    <div class="callout-title wine-t">Why Montalcino</div>
-    <div class="callout-sub">Compact walkable hilltop town — everyone wanders independently to different cafés in the morning, reconvenes for lunch. Most Brunello enoteche per block in Tuscany.</div>
-  </div>
-</div>
-
-<div class="card-wrap">
-  <div class="card">
-    <div class="card-bar bar-orange"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <div class="card-title">Hotel Dei Capitani</div>
-        <div class="badge badge-orange">Book now</div>
-      </div>
-      <div class="card-meta"><span class="card-date">Jul 12–15 · 3 nights</span><div class="dot-sep"></div><div class="tags"><span class="tag tag-all">All groups · 8</span></div></div>
-      <div class="card-note">4-star · in town · infinity pool with Val d'Orcia views · walking distance to everything. ~€250–350/room/night.</div>
-    </div>
-    <div class="link-list">
-      <a href="https://www.deicapitani.it" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🏨</span><div><div class="link-label">Book Hotel Dei Capitani</div><div class="link-sub">deicapitani.it · Montalcino</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-    </div>
-    <details>
-      <summary><div class="collapse-btn">What to do in Montalcino <span class="collapse-icon">▼</span></div></summary>
-      <div class="collapse-content">
-        <div class="collapse-item"><span>🏰</span> Fortezza di Montalcino — aperitivo with Brunello on the ramparts</div>
-        <div class="collapse-item"><span>🍷</span> Brunello tasting at Banfi or Casanova di Neri (book ahead)</div>
-        <div class="collapse-item"><span>🧀</span> Pienza day trip (20 min) — pecorino cheese tasting</div>
-        <div class="collapse-item"><span>♨️</span> Bagno Vignoni (25 min) — thermal pool piazza, kids love it</div>
-        <div class="collapse-item"><span>🍷</span> Montepulciano (30 min) — Vino Nobile tasting at Avignonesi</div>
-      </div>
-    </details>
-  </div>
-
-  <!-- Car rental -->
-  <div class="card">
-    <div class="card-bar bar-blue"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <div class="card-title">2 Rental Cars</div>
-        <div class="badge badge-blue">Book ~2 months out</div>
-      </div>
-      <div class="card-note blue">Pick up Lucca Jul 12 · drop Florence Jul 15. 7-seat SUV + 5-seat sedan. All drivers need International Driving Permits (AAA Miami, $20).</div>
-    </div>
-    <div class="link-list">
-      <a href="https://www.rentalcars.com" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🚗</span><div><div class="link-label">Compare rental cars</div><div class="link-sub">rentalcars.com</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- ── 4. FLORENCE ── -->
-<div class="section-head">
-  <div class="section-num">4</div>
-  <div class="section-title">Florence</div>
-  <div class="section-sub">Jul 15–27 · 12 nts</div>
-</div>
-<div class="card-wrap">
-  <div class="card">
-    <div class="card-bar bar-green"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <div class="card-title">Florence Airbnb</div>
-        <div class="badge badge-green">Booked ✓</div>
-      </div>
-      <div class="card-meta"><span class="card-date">Jul 15–27 · 12 nights</span><div class="dot-sep"></div><div class="tags"><span class="tag tag-all">All groups · 8</span></div></div>
-    </div>
-    <details>
-      <summary><div class="collapse-btn">Must-dos in Florence <span class="collapse-icon">▼</span></div></summary>
-      <div class="collapse-content">
-        <div class="collapse-item"><span>🖼️</span> Uffizi Gallery — book timed entry weeks ahead</div>
-        <div class="collapse-item"><span>🗿</span> Accademia — Michelangelo's David</div>
-        <div class="collapse-item"><span>⛪</span> Duomo dome climb — 463 stairs (10yo loves it)</div>
-        <div class="collapse-item"><span>🥩</span> Bistecca at Buca Lapi — book ahead</div>
-        <div class="collapse-item"><span>🌅</span> Sunset at Piazzale Michelangelo</div>
-        <div class="collapse-item"><span>🛍️</span> Oltrarno artisan workshops</div>
-      </div>
-    </details>
-  </div>
-
-  <!-- Uffizi -->
-  <div class="card">
-    <div class="card-bar bar-gold"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <div class="card-title">Uffizi Gallery</div>
-        <div class="badge badge-gold">Pre-book</div>
-      </div>
-      <div class="card-note">Book timed entry weeks ahead — sells out in July.</div>
-    </div>
-    <div class="link-list">
-      <a href="https://www.uffizi.it/en/tickets" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🎟️</span><div><div class="link-label">Buy Uffizi tickets</div><div class="link-sub">uffizi.it</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-      <a href="https://www.galleriaaccademia.it/en/tickets" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🎟️</span><div><div class="link-label">Buy Accademia tickets (David)</div><div class="link-sub">galleriaaccademia.it</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- Day trips from Florence -->
-  <div class="card">
-    <div class="card-bar bar-blue"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <div class="card-title">Day Trips</div>
-        <div class="badge badge-blue">Trains</div>
-      </div>
-    </div>
-    <div class="link-list">
-      <a href="https://www.trenitalia.com" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🚄</span><div><div class="link-label">Florence → Bologna (35 min)</div><div class="link-sub">Frecciarossa · Trenitalia</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-      <a href="https://www.trenitalia.com" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🚌</span><div><div class="link-label">Florence → Siena (90 min)</div><div class="link-sub">SITA Bus · more direct than train</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-      <a href="https://www.trenitalia.com" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🚄</span><div><div class="link-label">Florence → Arezzo (40 min)</div><div class="link-sub">Regional · Trenitalia</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- ── 5. VENICE ── -->
-<div class="section-head">
-  <div class="section-num">5</div>
-  <div class="section-title">Venice</div>
-  <div class="section-sub">Jul 26–29 · 3 days</div>
-</div>
-
-<div class="callout callout-tip">
-  <div class="callout-icon">🥂</div>
-  <div>
-    <div class="callout-title tip-t">Valdobbiadene Day Trip — Jul 28</div>
-    <div class="callout-sub">Train Venice → Treviso (30 min) → regional to Valdobbiadene (~45 min). Tastings at Bisol or Le Colture. Back by evening. No extra hotel needed.</div>
-  </div>
-</div>
-
-<div class="card-wrap">
-  <div class="card">
-    <div class="card-bar bar-orange"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <div class="card-title">Venice Hotel</div>
-        <div class="badge badge-orange">Book now</div>
-      </div>
-      <div class="card-meta"><span class="card-date">Jul 26–29 · 2 nights</span><div class="dot-sep"></div><div class="tags"><span class="tag tag-all">All groups · 8</span></div></div>
-      <div class="card-note">Best in July heat with kids: Hotel Cipriani (Giudecca — has a pool). Mid-range: Hotel Ai Reali (Castello) or Ca' Pisani (Dorsoduro). Avoid San Marco — overpriced.</div>
-    </div>
-    <div class="link-list">
-      <a href="https://www.hotelcipriani.com" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🏨</span><div><div class="link-label">Hotel Cipriani (pool)</div><div class="link-sub">hotelcipriani.com · Giudecca Island</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-      <a href="https://www.hotelaireali.com" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🏨</span><div><div class="link-label">Hotel Ai Reali</div><div class="link-sub">hotelaireali.com · Castello · mid-range</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-    </div>
-    <details>
-      <summary><div class="collapse-btn">What to do in Venice <span class="collapse-icon">▼</span></div></summary>
-      <div class="collapse-content">
-        <div class="collapse-item"><span>🚤</span> Vaporetto #1 down Grand Canal (best cheap tour in the world)</div>
-        <div class="collapse-item"><span>🏛️</span> Doge's Palace — book tickets ahead</div>
-        <div class="collapse-item"><span>🚣</span> Gondola ride (~€90 · max 6 per gondola)</div>
-        <div class="collapse-item"><span>🏠</span> Burano island (colored houses · kids adore it)</div>
-        <div class="collapse-item"><span>🥂</span> Jul 28: Valdobbiadene prosecco day trip</div>
-        <div class="collapse-item"><span>🌅</span> Cicchetti dinner in Cannaregio bacaro</div>
-      </div>
-    </details>
-  </div>
-
-  <!-- Florence to Venice train -->
-  <div class="card">
-    <div class="card-bar bar-blue"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <div class="card-title">Train: Florence → Venice</div>
-        <div class="badge badge-blue">Book early</div>
-      </div>
-      <div class="card-note blue">Jul 26 · Frecciarossa ~2:05 hrs · ~€45–95/person · 8 people. Book together for adjacent seats.</div>
-    </div>
-    <div class="link-list">
-      <a href="https://www.trenitalia.com" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🚄</span><div><div class="link-label">Book on Trenitalia</div><div class="link-sub">Florence SMN → Venezia S. Lucia · Jul 26</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- ── 6. LAKE GARDA ── -->
-<div class="section-head">
-  <div class="section-num">6</div>
-  <div class="section-title">Lake Garda 🎸</div>
-  <div class="section-sub">Jul 29–Aug 1 · 3 nts</div>
-</div>
-
-<div class="callout callout-koc">
-  <div class="callout-icon">🎵</div>
-  <div>
-    <div class="callout-title koc-t">Kings of Convenience — July 29</div>
-    <div class="callout-sub">Anfiteatro del Vittoriale · Gardone Riviera. 5-min walk from Grand Hotel Fasano. Sells out early — book tickets now. Lido 84 dinner booked for Jul 30 as the belated birthday celebration.</div>
-  </div>
-</div>
-
-<div class="card-wrap">
-
-  <!-- KoC Tickets -->
-  <div class="card">
-    <div class="card-bar bar-purple"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <div class="card-title">Kings of Convenience</div>
-        <div class="badge badge-purple">Book tickets now</div>
-      </div>
-      <div class="card-meta"><span class="card-date">Jul 29 · Anfiteatro del Vittoriale</span></div>
-      <div class="tags" style="margin-bottom:5px;"><span class="tag tag-all">All groups · 8</span></div>
-      <div class="card-note">~1,500 seat outdoor amphitheater · sells out. Gardone Riviera, Lake Garda.</div>
-    </div>
-    <div class="link-list">
-      <a href="https://www.anfiteatrodelvittoriale.it/event/concerto-kings-of-convenience-italia-2026/" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🎟️</span><div><div class="link-label">Buy concert tickets</div><div class="link-sub">anfiteatrodelvittoriale.it</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- Grand Hotel Fasano -->
-  <div class="card">
-    <div class="card-bar bar-orange"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <div class="card-title">Grand Hotel Fasano</div>
-        <div class="badge badge-orange">Book immediately</div>
-      </div>
-      <div class="card-meta"><span class="card-date">Jul 29–Aug 1 · 3 nights</span><div class="dot-sep"></div><div class="tags"><span class="tag tag-all">All groups · 8</span></div></div>
-      <div class="card-note">5-star lakefront · flat access + elevators (great for Abuelos) · two pools · 5-min walk to concert venue · ~€450–650/room/night. Concert weekend — very limited availability.</div>
-    </div>
-    <div class="link-list">
-      <a href="https://www.grandhotelfasano.it" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🏨</span><div><div class="link-label">Grand Hotel Fasano</div><div class="link-sub">grandhotelfasano.it · Gardone Riviera</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-      <a href="https://www.bellevue-sanlorenzo.it" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🏨</span><div><div class="link-label">Bellevue San Lorenzo (backup)</div><div class="link-sub">4-star · adjacent · ~€300/room</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- Lido 84 -->
-  <div class="card">
-    <div class="card-bar bar-gold"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <div class="card-title">Lido 84 — Birthday Dinner</div>
-        <div class="badge badge-gold">Book now for Jul 30</div>
-      </div>
-      <div class="card-note gold">1 Michelin star · lakefront · 5 min from hotel. Isabel's belated 73rd birthday celebration — the night after the KoC concert. Books out months ahead in summer.</div>
-    </div>
-    <div class="link-list">
-      <a href="mailto:info@lido84.com" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">📧</span><div><div class="link-label">Email reservation</div><div class="link-sub">info@lido84.com · request Jul 30</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-      <a href="https://www.lido84.com" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🌐</span><div><div class="link-label">View restaurant</div><div class="link-sub">lido84.com · Gardone Riviera</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- Transfer Venice to Garda -->
-  <div class="card">
-    <div class="card-bar bar-blue"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <div class="card-title">Transfer: Venice → Garda</div>
-        <div class="badge badge-blue">Pre-book</div>
-      </div>
-      <div class="card-note blue">Jul 29 morning · Private 8-seat minivan · ~2 hrs · ~€350. Check out Venice, drive to Gardone Riviera for check-in + concert evening.</div>
-    </div>
-    <div class="link-list">
-      <a href="https://www.rome2rio.com" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🚐</span><div><div class="link-label">Compare transfer options</div><div class="link-sub">rome2rio.com</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- Otto+Juli departure -->
-<div class="depart-row">
-  <div class="depart-inner">✈️ &nbsp;<strong>Otto+Juli depart to London — Aug 1</strong> &nbsp;(few days, then Miami)</div>
-</div>
-
-<!-- ── 7. CARDIFF ── -->
-<div class="section-head">
-  <div class="section-num">7</div>
-  <div class="section-title">Cardiff, Wales</div>
-  <div class="section-sub">Aug 1–4 · 3 nts</div>
-</div>
-<div class="card-wrap">
-
-  <!-- Cardiff Hotel -->
-  <div class="card">
-    <div class="card-bar bar-green"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <div class="card-title">Cardiff Hotel</div>
-        <div class="badge badge-green">Booked ✓</div>
-      </div>
-      <div class="card-meta"><span class="card-date">Aug 1–4 · 3 nights</span><div class="dot-sep"></div><div class="tags"><span class="tag tag-crew">Mano+Taina</span><span class="tag tag-abuelos">Abuelos · 6 total</span></div></div>
-    </div>
-  </div>
-
-  <!-- TDCC Concert -->
-  <div class="card">
-    <div class="card-bar bar-purple"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <div class="card-title">Two Door Cinema Club</div>
-        <div class="badge badge-purple">Aug 2 · Cardiff</div>
-      </div>
-      <div class="card-note">Confirm you have tickets. Cardiff venue.</div>
-    </div>
-    <div class="link-list">
-      <a href="https://www.twodoorcinemaclub.com" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🎟️</span><div><div class="link-label">Two Door Cinema Club</div><div class="link-sub">twodoorcinemaclub.com</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-    </div>
-    <details>
-      <summary><div class="collapse-btn">Cardiff plan <span class="collapse-icon">▼</span></div></summary>
-      <div class="collapse-content">
-        <div class="collapse-item"><span>🏰</span> Aug 2 morning: Cardiff Castle (kids)</div>
-        <div class="collapse-item"><span>🏛️</span> Aug 2 afternoon: National Museum Cardiff (free)</div>
-        <div class="collapse-item"><span>🎸</span> Aug 2 evening: Two Door Cinema Club</div>
-        <div class="collapse-item"><span>🏰</span> Aug 3: Caerphilly Castle (25 min by train)</div>
-        <div class="collapse-item"><span>🏖️</span> Aug 3 alt: Gower Peninsula — Rhossili Bay</div>
-        <div class="collapse-item"><span>✈️</span> Aug 4: Cardiff → Paddington → Heathrow → MIA (AA 39, 12:15 PM)</div>
-      </div>
-    </details>
-  </div>
-
-  <!-- Garda to Cardiff travel -->
-  <div class="card">
-    <div class="card-bar bar-blue"></div>
-    <div class="card-inner">
-      <div class="card-row">
-        <div class="card-title">Garda → Cardiff</div>
-        <div class="badge badge-blue">Plan route</div>
-      </div>
-      <div class="card-note blue">Aug 1 · Recommended: transfer Gardone → Verona (45 min), fly Verona VRN → London (check Ryanair/easyJet), then train/taxi Cardiff. ~5–6 hrs total. No Eurostar needed in Plan 2.</div>
-    </div>
-    <div class="link-list">
-      <a href="https://www.skyscanner.com" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">✈️</span><div><div class="link-label">Verona → London flights</div><div class="link-sub">Skyscanner · VRN → LGW/STN · Aug 1</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-      <a href="https://www.gwr.com" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🚄</span><div><div class="link-label">London → Cardiff train</div><div class="link-sub">GWR · Paddington → Cardiff Central · ~2 hrs</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- ── CHECKLIST ── -->
-<div class="section-head">
-  <div class="section-num">!</div>
-  <div class="section-title">Before You Go</div>
-</div>
-<div class="card-wrap">
-  <div class="card">
-    <div class="card-bar bar-gold"></div>
-    <div class="link-list" style="border-top:none;">
-      <a href="https://www.aaa.com/vacation/idpf.html" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">📄</span><div><div class="link-label">International Driving Permit</div><div class="link-sub">AAA Miami · $20 · required in Italy</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-      <a href="https://www.etias.eu" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🇪🇺</span><div><div class="link-label">ETIAS — EU Travel Authorization</div><div class="link-sub">€7/person · required for US citizens</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-      <a href="https://www.gov.uk/guidance/apply-for-an-electronic-travel-authorisation-eta" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">🇬🇧</span><div><div class="link-label">UK ETA</div><div class="link-sub">£10–16/person · gov.uk app</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-      <a href="https://www.airalo.com" target="_blank" class="link-btn">
-        <div class="link-btn-left"><span class="link-icon">📱</span><div><div class="link-label">eSIM — Airalo</div><div class="link-sub">EU+UK plan · covers Italy, UK, France</div></div></div>
-        <span class="link-arrow">›</span>
-      </a>
-    </div>
-  </div>
+<div style="background:var(--white);padding:0 0 8px;">
+  <a href="https://www.aaa.com/vacation/idpf.html" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">📄</span><div><div class="lb-lbl">International Driving Permit</div><div class="lb-sub">AAA Miami · $20 · required in Italy</div></div></div><span class="lb-arr">›</span></a>
+  <a href="https://www.etias.eu" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🇪🇺</span><div><div class="lb-lbl">ETIAS — EU Travel Authorization</div><div class="lb-sub">€7/person · etias.eu</div></div></div><span class="lb-arr">›</span></a>
+  <a href="https://www.gov.uk/guidance/apply-for-an-electronic-travel-authorisation-eta" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🇬🇧</span><div><div class="lb-lbl">UK ETA</div><div class="lb-sub">£10–16/person · gov.uk</div></div></div><span class="lb-arr">›</span></a>
+  <a href="https://www.airalo.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">📱</span><div><div class="lb-lbl">eSIM — Airalo</div><div class="lb-sub">EU + UK plan covers Italy, France &amp; UK</div></div></div><span class="lb-arr">›</span></a>
 </div>
 
 <!-- FOOTER -->
 <div class="footer">
-  <h3>Italy &amp; Wales 2026</h3>
-  <p>Plan 2 · 40 days · 3 countries · 8 travelers</p>
+  <div class="footer-dots">
+    <div class="footer-dot" style="background:var(--aqua)"></div>
+    <div class="footer-dot" style="background:var(--green)"></div>
+    <div class="footer-dot" style="background:var(--orange)"></div>
+    <div class="footer-dot" style="background:var(--pink)"></div>
+    <div class="footer-dot" style="background:var(--lemon)"></div>
+  </div>
+  <div class="footer-title">Buon Viaggio</div>
+  <div class="footer-sub">40 days · 3 countries · 8 travelers · Plan 2</div>
 </div>
 
+<script>
+function togSplit(id){
+  const el = document.getElementById('expand-' + id);
+  el.classList.toggle('open');
+}
+
+function tog(header){
+  const body = header.nextElementSibling;
+  const tr = body.nextElementSibling;
+  const icon = header.querySelector('.dtog');
+  const trArrow = tr ? tr.querySelector('.tr-arrow') : null;
+  const open = body.classList.contains('open');
+  body.classList.toggle('open', !open);
+  if(icon) icon.classList.toggle('open', !open);
+  if(trArrow) trArrow.classList.toggle('open', !open);
+}
+
+function filter(group){
+  document.querySelectorAll('.fb').forEach(b => b.className = 'fb');
+  const btn = document.querySelector(`.fb[onclick="filter('${group}')"]`);
+  if(group==='all')  btn.classList.add('active-all');
+  else if(group==='g1') btn.classList.add('active-1');
+  else if(group==='g2') btn.classList.add('active-2');
+  else if(group==='g3') btn.classList.add('active-3');
+
+  document.querySelectorAll('.day-entry').forEach(e => {
+    const groups = e.dataset.groups || '';
+    e.classList.toggle('hidden', group !== 'all' && !groups.includes(group));
+  });
+  // Handle split-days
+  document.querySelectorAll('.split-day').forEach((splitDay, idx) => {
+    const cards = splitDay.querySelectorAll('.split-card');
+    if(group === 'all') {
+      splitDay.style.display = 'flex';
+      cards.forEach(c => c.style.display = 'flex');
+    } else if(idx === 0) {
+      // Jul 2: left=g1(Lucca), right=g2+g3(China)
+      if(group === 'g1') {
+        splitDay.style.display = 'flex';
+        cards[0].style.display = 'flex';
+        cards[1].style.display = 'none';
+      } else {
+        splitDay.style.display = 'flex';
+        cards[0].style.display = 'none';
+        cards[1].style.display = 'flex';
+      }
+    } else {
+      // Aug 1: left=g1+g2(Cardiff), right=g3(London)
+      if(group === 'g3') {
+        splitDay.style.display = 'flex';
+        cards[0].style.display = 'none';
+        cards[1].style.display = 'flex';
+      } else {
+        splitDay.style.display = 'flex';
+        cards[0].style.display = 'flex';
+        cards[1].style.display = 'none';
+      }
+    }
+  });
+  document.querySelectorAll('.rdiv').forEach(r => {
+    r.style.display = (group === 'all' || group === 'g1') ? 'flex' : 'none';
+  });
+}
+</script>
 </body>
 </html>
