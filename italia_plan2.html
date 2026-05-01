@@ -85,9 +85,9 @@ body {
   cursor:pointer; transition:all .15s; user-select:none; white-space:nowrap;
 }
 .fb.active-all  { background:var(--aqua);   color:#fff; border-color:var(--aqua); }
-.fb.active-1    { background:var(--orange);  color:#fff; border-color:var(--orange); }
+.fb.active-1    { background:var(--pink);  color:#fff; border-color:var(--pink); }
 .fb.active-2    { background:var(--green);   color:#fff; border-color:var(--green); }
-.fb.active-3    { background:var(--pink);    color:#fff; border-color:var(--pink); }
+.fb.active-3    { background:var(--orange); color:#fff; border-color:var(--orange); }
 .day-entry.hidden { display:none; }
 
 /* ── HERO ── */
@@ -138,9 +138,9 @@ body {
   font-size:12px; font-weight:600;
   padding:4px 12px; border-radius:20px; flex-shrink:0;
 }
-.wc1 { background:var(--orange); color:#fff; }
+.wc1 { background:var(--pink); color:#fff; }
 .wc2 { background:var(--green);  color:#fff; }
-.wc3 { background:var(--pink);   color:#fff; }
+.wc3 { background:var(--orange); color:#fff; }
 .who-names { font-size:13px; color:var(--ink2); }
 
 /* ── TIMELINE ── */
@@ -267,9 +267,9 @@ body {
   font-size:11px; font-weight:600;
   padding:3px 9px; border-radius:20px;
 }
-.t1   { background:var(--orange-lt); color:var(--orange); }
+.t1   { background:var(--pink-lt); color:var(--pink); }
 .t2   { background:var(--green-lt);  color:var(--green); }
-.t3   { background:var(--pink-lt);   color:var(--pink); }
+.t3   { background:var(--orange-lt);   color:var(--orange); }
 .tall { background:var(--rule);      color:var(--muted); }
 
 /* Notes */
@@ -440,10 +440,146 @@ body {
   font-size:10px; font-weight:600;
   padding:2px 8px; border-radius:20px;
 }
-.ht1  { background:var(--orange-lt); color:var(--orange); }
+.ht1  { background:var(--pink-lt); color:var(--pink); }
 .ht2  { background:var(--green-lt);  color:var(--green); }
-.ht3  { background:var(--pink-lt);   color:var(--pink); }
+.ht3  { background:var(--orange-lt); color:var(--orange); }
 .htall{ background:var(--rule);      color:var(--muted); }
+
+/* ── VOTE SECTION ── */
+.vote-header {
+  font-size:13px; font-weight:600; color:var(--muted);
+  text-transform:uppercase; letter-spacing:.5px;
+  margin-bottom:6px; padding:4px 0;
+}
+.vote-subtitle {
+  font-size:12px; color:var(--muted); margin-bottom:14px;
+}
+.vote-card {
+  background:var(--white); border:2px solid var(--border);
+  border-radius:16px; overflow:hidden; margin-bottom:10px;
+  transition:border-color .2s, box-shadow .2s;
+}
+.vote-card.voted {
+  border-color:var(--aqua);
+  box-shadow:0 0 0 3px rgba(34,196,187,.12);
+}
+.vote-card.winner {
+  border-color:var(--orange);
+  box-shadow:0 0 0 3px rgba(249,115,64,.12);
+}
+.vote-top {
+  padding:14px 16px 10px;
+}
+.vote-name {
+  font-size:16px; font-weight:700; color:var(--ink);
+  letter-spacing:-.2px; margin-bottom:3px;
+}
+.vote-price {
+  font-size:13px; font-weight:600; color:var(--aqua);
+  margin-bottom:6px;
+}
+.vote-pros { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:10px; }
+.vpro {
+  font-size:11px; font-weight:500; padding:3px 9px;
+  border-radius:20px; background:var(--green-lt); color:var(--green);
+}
+.vcon {
+  font-size:11px; font-weight:500; padding:3px 9px;
+  border-radius:20px; background:var(--orange-lt); color:var(--orange);
+}
+.vote-btn {
+  display:flex; align-items:center; justify-content:center;
+  gap:8px; width:100%; padding:11px 16px;
+  background:var(--bg); border:none; border-top:1px solid var(--border);
+  font-size:14px; font-weight:600; color:var(--muted);
+  cursor:pointer; transition:all .15s;
+  font-family:'DM Sans',sans-serif;
+}
+.vote-btn:active { opacity:.8; }
+.vote-btn.voted-btn {
+  background:var(--aqua); color:#fff; border-top-color:var(--aqua);
+}
+.vote-link {
+  display:flex; align-items:center; justify-content:center;
+  padding:10px 16px; text-decoration:none;
+  border-top:1px solid var(--border);
+  font-size:12px; font-weight:500; color:var(--aqua);
+  gap:6px; transition:background .1s;
+}
+.vote-link:active { background:var(--aqua-lt); }
+.vote-count {
+  font-size:11px; color:var(--muted); text-align:center;
+  padding:8px; border-top:1px solid var(--border);
+  font-weight:500;
+}
+.vote-bar-wrap {
+  height:4px; background:var(--border); margin:0;
+}
+.vote-bar {
+  height:4px; background:var(--aqua);
+  transition:width .4s ease;
+}
+.vote-tally {
+  background:var(--rule); border-radius:10px;
+  padding:12px 14px; margin-top:4px;
+  font-size:12px; color:var(--muted);
+}
+.vote-tally-row {
+  display:flex; align-items:center; gap:8px; margin-bottom:6px;
+}
+.vote-tally-row:last-child { margin-bottom:0; }
+.vt-name { font-weight:600; color:var(--ink); width:120px; flex-shrink:0; font-size:11px; }
+.vt-bar-wrap { flex:1; height:6px; background:var(--border); border-radius:3px; overflow:hidden; }
+.vt-bar { height:6px; border-radius:3px; transition:width .4s; }
+.vt-count { font-size:11px; font-weight:600; color:var(--ink); width:20px; text-align:right; flex-shrink:0; }
+
+/* ── KoC POLL ── */
+.koc-poll-intro {
+  font-size:13px; color:var(--muted); margin-bottom:10px; font-style:italic;
+}
+.koc-spotify-btn {
+  display:flex; align-items:center; gap:12px;
+  padding:12px 14px; background:#1DB954; border-radius:12px;
+  text-decoration:none; margin-bottom:12px; transition:opacity .15s;
+}
+.koc-spotify-btn:active { opacity:.85; }
+.koc-spotify-icon { font-size:22px; color:#fff; flex-shrink:0; }
+.koc-spotify-title { font-size:13px; font-weight:700; color:#fff; }
+.koc-spotify-sub { font-size:10px; color:rgba(255,255,255,.75); margin-top:2px; }
+.koc-spotify-btn .lb-arr { color:rgba(255,255,255,.5); margin-left:auto; }
+
+.koc-names { background:var(--white); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:8px; }
+.koc-name-row {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:11px 14px; border-bottom:1px solid var(--border);
+  transition:background .15s;
+}
+.koc-name-row:last-child { border-bottom:none; }
+.koc-name-row.voted-yes { background:rgba(75,171,114,.06); }
+.koc-name-row.voted-no  { background:rgba(249,115,64,.04); }
+.koc-name-info { display:flex; align-items:center; gap:10px; }
+.koc-avatar {
+  width:32px; height:32px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:700; color:#fff; flex-shrink:0;
+}
+.koc-nm { font-size:14px; font-weight:500; color:var(--ink); }
+.koc-btns { display:flex; gap:6px; }
+.koc-btn {
+  font-size:12px; font-weight:600; padding:6px 12px; border-radius:20px;
+  border:1.5px solid var(--border); background:var(--bg);
+  cursor:pointer; transition:all .15s; font-family:'DM Sans',sans-serif;
+  color:var(--muted);
+}
+.koc-btn:active { opacity:.8; }
+.koc-btn.selected-yes { background:var(--green); color:#fff; border-color:var(--green); }
+.koc-btn.selected-no  { background:var(--orange); color:#fff; border-color:var(--orange); }
+
+.koc-summary {
+  background:var(--rule); border-radius:10px; padding:12px 14px;
+  font-size:12px; color:var(--ink2); line-height:1.7;
+}
+.koc-summary-title { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:var(--muted); margin-bottom:6px; }
 </style>
 </head>
 <body>
@@ -518,18 +654,18 @@ body {
 <div class="day-entry" data-groups="g1 g2 g3">
   <div class="date-hd" onclick="tog(this)">
     <div class="dcol dc-orange"><div class="d-num">27</div><div class="d-mon">Jun</div><div class="d-dow">Saturday</div></div>
-    <div class="dinfo"><div class="d-city">Milan — Arrival</div><div class="d-desc">Land 11:30 AM · Hotel check-in · 5 nights</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
+    <div class="dinfo"><div class="d-city">Milan — Arrival</div><div class="d-desc">Land 11:30 AM · Airbnb check-in · Via Torino 68 · 5 nights</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
     <div class="dtog">›</div>
   </div>
   <div class="day-body">
-    <div class="slabel">Hotel</div>
-    <div class="ic"><div class="ic-stripe ic-s-orange"></div><div class="ic-body">
-      <div class="ic-row"><div class="ic-title">Room Mate Giulia</div><div class="bdg b-orange">Book now</div></div>
+    <div class="slabel">Airbnb — Booked</div>
+    <div class="ic"><div class="ic-stripe ic-s-green"></div><div class="ic-body">
+      <div class="ic-row"><div class="ic-title">Home in Milan</div><div class="bdg b-green">Booked ✓</div></div>
       <div class="tags"><span class="tag tall">All groups · 8</span></div>
-      <div class="ic-note">Steps from Galleria Vittorio Emanuele · family rooms · interconnecting doubles · ~€280–340/night</div>
+      <div class="ic-note green">Via Torino 68, Milan · Hosted by Heart Milan Apartments · Jun 27–Jul 2 · Check-in 3:00 PM · Checkout 11:00 AM</div>
     </div>
-    <div class="ll"><a href="https://en.room-matehotels.com/giulia/" target="_blank" class="lb">
-      <div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">Book Room Mate Giulia</div><div class="lb-sub">room-matehotels.com</div></div></div><span class="lb-arr">›</span>
+    <div class="ll"><a href="https://www.airbnb.com/rooms/1243578720666504746" target="_blank" class="lb">
+      <div class="lb-l"><span class="lb-icon">🏠</span><div><div class="lb-lbl">View Airbnb listing</div><div class="lb-sub">airbnb.com · Via Torino 68</div></div></div><span class="lb-arr">›</span>
     </a></div></div>
     <div class="slabel">Milan Activities</div>
     <div class="ic"><div class="ic-stripe ic-s-muted"></div><div class="ic-body">
@@ -572,7 +708,7 @@ body {
 
   <!-- LEFT: Mano+Taina → Lucca -->
   <div class="split-card" onclick="togSplit('lucca')">
-    <div class="split-dcol" style="background:var(--orange)">
+    <div class="split-dcol" style="background:var(--pink)">
       <div class="split-num">2</div>
       <div class="split-mon">Jul</div>
     </div>
@@ -702,14 +838,72 @@ body {
       <div class="ic-note">Pick up Milan Centrale Jul 12 · drop Florence Jul 15</div>
     </div>
     <div class="ll"><a href="https://www.rentalcars.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🚗</span><div><div class="lb-lbl">Book Car 2 — Milan pickup</div><div class="lb-sub">rentalcars.com · Jul 12</div></div></div><span class="lb-arr">›</span></a></div></div>
-    <div class="slabel">Hotel</div>
-    <div class="co co-green"><div class="co-icon">🍷</div><div><div class="co-title co-t-green">Why Montalcino</div><div class="co-sub">Walkable hilltop town — 8 people wander to different cafés independently in the morning, reconvene for lunch. Most Brunello enoteche per block in Tuscany.</div></div></div>
-    <div class="ic"><div class="ic-stripe ic-s-green"></div><div class="ic-body">
-      <div class="ic-row"><div class="ic-title">Hotel Dei Capitani</div><div class="bdg b-orange">Book now</div></div>
-      <div class="tags"><span class="tag tall">All groups · 8</span></div>
-      <div class="ic-note">4-star · in town · infinity pool with Val d'Orcia views · ~€250–350/room/night</div>
+    <div class="slabel">Where to Stay — Vote!</div>
+    <div class="co co-green"><div class="co-icon">🍷</div><div><div class="co-title co-t-green">Why Montalcino</div><div class="co-sub">Walkable hilltop town — everyone wanders to different cafés independently in the morning, reconvenes for lunch. Most Brunello enoteche per block in Tuscany.</div></div></div>
+
+    <div class="vote-subtitle">3 nights · Jul 12–15 · 4 families · pick your favorite 👇</div>
+
+    <!-- OPTION A: Airbnb -->
+    <div class="vote-card" id="vc-airbnb">
+      <div class="vote-top">
+        <div class="vote-name">🏡 Airbnb Montalcino</div>
+        <div class="vote-price">$1,215 / family</div>
+        <div class="vote-pros">
+          <span class="vpro">No stairs</span>
+          <span class="vpro">Private home feel</span>
+          <span class="vcon">No pool</span>
+        </span>
+        </div>
+      </div>
+      <div class="vote-bar-wrap"><div class="vote-bar" id="bar-airbnb" style="width:0%"></div></div>
+      <a href="https://www.airbnb.com/rooms/1175471222968666335?check_in=2026-07-12&check_out=2026-07-15" target="_blank" class="vote-link">View on Airbnb ›</a>
+      <button class="vote-btn" id="btn-airbnb" onclick="vote('airbnb')">👆 Vote for this</button>
+      <div class="vote-count" id="cnt-airbnb"></div>
     </div>
-    <div class="ll"><a href="https://www.deicapitani.it" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">Hotel Dei Capitani</div><div class="lb-sub">deicapitani.it · Montalcino</div></div></div><span class="lb-arr">›</span></a></div></div>
+
+    <!-- OPTION B: Hotel Dei Capitani -->
+    <div class="vote-card" id="vc-capitani">
+      <div class="vote-top">
+        <div class="vote-name">🏨 Hotel Dei Capitani</div>
+        <div class="vote-price">$783 / family</div>
+        <div class="vote-pros">
+          <span class="vpro">Pool + views</span>
+          <span class="vpro">Right in town</span>
+          <span class="vcon">Stairs in rooms</span>
+          <span class="vcon">Rooms feel dated</span>
+        </div>
+      </div>
+      <div class="vote-bar-wrap"><div class="vote-bar" id="bar-capitani" style="width:0%"></div></div>
+      <a href="https://www.deicapitani.it" target="_blank" class="vote-link">View Hotel Dei Capitani ›</a>
+      <button class="vote-btn" id="btn-capitani" onclick="vote('capitani')">👆 Vote for this</button>
+      <div class="vote-count" id="cnt-capitani"></div>
+    </div>
+
+    <!-- OPTION C: Si Montalcino -->
+    <div class="vote-card" id="vc-si">
+      <div class="vote-top">
+        <div class="vote-name">🌿 Si Montalcino Hotel</div>
+        <div class="vote-price">$801 / family</div>
+        <div class="vote-pros">
+          <span class="vpro">Pool + views</span>
+          <span class="vpro">No stairs</span>
+          <span class="vpro">Modern & clean</span>
+          <span class="vcon">2 min drive to town</span>
+        </div>
+      </div>
+      <div class="vote-bar-wrap"><div class="vote-bar" id="bar-si" style="width:0%"></div></div>
+      <a href="https://www.simontalcino.it" target="_blank" class="vote-link">View Si Montalcino ›</a>
+      <button class="vote-btn" id="btn-si" onclick="vote('si')">👆 Vote for this</button>
+      <div class="vote-count" id="cnt-si"></div>
+    </div>
+
+    <!-- TALLY -->
+    <div class="vote-tally" id="vote-tally" style="display:none">
+      <div style="font-size:11px;font-weight:700;color:var(--ink);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px;">Current votes</div>
+      <div class="vote-tally-row"><span class="vt-name">🏡 Airbnb</span><div class="vt-bar-wrap"><div class="vt-bar" id="tb-airbnb" style="width:0%;background:var(--aqua)"></div></div><span class="vt-count" id="tc-airbnb">0</span></div>
+      <div class="vote-tally-row"><span class="vt-name">🏨 Dei Capitani</span><div class="vt-bar-wrap"><div class="vt-bar" id="tb-capitani" style="width:0%;background:var(--orange)"></div></div><span class="vt-count" id="tc-capitani">0</span></div>
+      <div class="vote-tally-row"><span class="vt-name">🌿 Si Montalcino</span><div class="vt-bar-wrap"><div class="vt-bar" id="tb-si" style="width:0%;background:var(--green)"></div></div><span class="vt-count" id="tc-si">0</span></div>
+    </div>
     <div class="slabel">Tastings &amp; Day Trips</div>
     <div class="ic"><div class="ic-stripe ic-s-muted"></div><div class="ic-body">
       <div class="ic-note">🍷 Brunello at Banfi or Casanova di Neri<br>🧀 Pienza (20 min) — pecorino cheese tasting<br>♨️ Bagno Vignoni (25 min) — thermal pool piazza (kids love it)<br>🍷 Montepulciano (30 min) — Vino Nobile</div>
@@ -767,16 +961,22 @@ body {
       <div class="ic-note">Frecciarossa · ~2:05 hrs · ~€45–95/person · book 8 seats together</div>
     </div>
     <div class="ll"><a href="https://www.trenitalia.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🚄</span><div><div class="lb-lbl">Book Florence → Venice</div><div class="lb-sub">trenitalia.com · Jul 26</div></div></div><span class="lb-arr">›</span></a></div></div>
-    <div class="slabel">Hotel</div>
-    <div class="ic"><div class="ic-stripe ic-s-orange"></div><div class="ic-body">
-      <div class="ic-row"><div class="ic-title">Venice Hotel</div><div class="bdg b-orange">Book now</div></div>
+    <div class="slabel">Hotel — Booked</div>
+    <div class="ic"><div class="ic-stripe ic-s-green"></div><div class="ic-body">
+      <div class="ic-row"><div class="ic-title">Hotel Indigo Venice Sant'Elena</div><div class="bdg b-green">Booked ✓</div></div>
       <div class="tags"><span class="tag tall">All groups · 8 · Jul 26–29</span></div>
-      <div class="ic-note">Best with kids in July: Hotel Cipriani (Giudecca — pool). Mid-range: Hotel Ai Reali (Castello) or Ca' Pisani (Dorsoduro). Avoid San Marco.</div>
+      <div class="ic-note green">3 × Superior Premium Room · Breakfast included · Welcome drink · €20 restaurant credit per room · Check-in 3:00 PM · Ref: SEUK-23227093</div>
     </div>
     <div class="ll">
-      <a href="https://www.hotelcipriani.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">Hotel Cipriani (pool)</div><div class="lb-sub">hotelcipriani.com · Giudecca</div></div></div><span class="lb-arr">›</span></a>
-      <a href="https://www.hotelaireali.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">Hotel Ai Reali (mid-range)</div><div class="lb-sub">hotelaireali.com · Castello</div></div></div><span class="lb-arr">›</span></a>
+      <a href="https://www.ihg.com/hotels/us/en/venice/vcevs/hoteldetail" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">Hotel Indigo Venice Sant'Elena</div><div class="lb-sub">IHG · Secret Escapes ref: SEUK-23227093</div></div></div><span class="lb-arr">›</span></a>
+      <a href="mailto:info@indigovenice.com" class="lb"><div class="lb-l"><span class="lb-icon">📧</span><div><div class="lb-lbl">Contact hotel</div><div class="lb-sub">info@indigovenice.com · +39 041 271 7811</div></div></div><span class="lb-arr">›</span></a>
+      <a href="tel:+390412717811" class="lb"><div class="lb-l"><span class="lb-icon">📞</span><div><div class="lb-lbl">Call hotel</div><div class="lb-sub">+39 041 271 7811</div></div></div><span class="lb-arr">›</span></a>
     </div></div>
+    <div class="slabel">⚠️ Venice Entry Note</div>
+    <div class="ic"><div class="ic-stripe ic-s-lemon"></div><div class="ic-body">
+      <div class="ic-note">Venice requires visitors to register for the tourist tax exemption QR code — free but mandatory. Register before arrival at the link below.</div>
+    </div>
+    <div class="ll"><a href="https://cda.comune.venezia.it/en/richiestaEsenzione" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">📋</span><div><div class="lb-lbl">Venice QR code registration</div><div class="lb-sub">cda.comune.venezia.it · free · required</div></div></div><span class="lb-arr">›</span></a></div></div>
     <div class="slabel">Venice Plan</div>
     <div class="ic"><div class="ic-stripe ic-s-muted"></div><div class="ic-body">
       <div class="ic-note">Jul 26: Vaporetto #1 down Grand Canal · cicchetti dinner Cannaregio<br>Jul 27: San Marco before 9am · Doge's Palace · Gondola · Burano<br>Jul 28: Valdobbiadene prosecco day trip (→ Treviso → ~1.5 hr)<br>Jul 29 morning: checkout → Lake Garda</div>
@@ -791,7 +991,7 @@ body {
 <div class="day-entry" data-groups="g1 g2 g3">
   <div class="date-hd" onclick="tog(this)">
     <div class="dcol dc-pink"><div class="d-num">29</div><div class="d-mon">Jul</div><div class="d-dow">Wednesday</div></div>
-    <div class="dinfo"><div class="d-city">Lake Garda 🎵</div><div class="d-desc">Gardone Riviera · KoC concert tonight · 3 nights</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
+    <div class="dinfo"><div class="d-city">Lake Garda 🎵</div><div class="d-desc">Hotel Villa Florida · Booked ✓ · KoC concert tonight</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
     <div class="dtog">›</div>
   </div>
   <div class="day-body">
@@ -809,15 +1009,73 @@ body {
       <div class="tags"><span class="tag tall">All groups · 8</span></div>
     </div>
     <div class="ll"><a href="https://www.anfiteatrodelvittoriale.it/event/concerto-kings-of-convenience-italia-2026/" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🎟️</span><div><div class="lb-lbl">Buy concert tickets</div><div class="lb-sub">anfiteatrodelvittoriale.it · Jul 29</div></div></div><span class="lb-arr">›</span></a></div></div>
-    <div class="slabel">Hotel</div>
-    <div class="ic"><div class="ic-stripe ic-s-orange"></div><div class="ic-body">
-      <div class="ic-row"><div class="ic-title">Grand Hotel Fasano</div><div class="bdg b-orange">Book immediately</div></div>
-      <div class="tags"><span class="tag tall">All groups · 8 · Jul 29–Aug 1</span></div>
-      <div class="ic-note">5-star lakefront · elevators throughout · two pools · 5-min walk to concert venue · ~€450–650/room · Concert weekend — very limited rooms.</div>
+
+    <div class="slabel">🎵 Who's going to the concert?</div>
+    <div class="koc-poll-intro">First time listening? Check out their music 👇</div>
+
+    <a href="https://www.youtube.com/watch?v=WOxE7IRizjI" target="_blank" class="koc-spotify-btn" style="background:#FF0000;margin-bottom:8px;">
+      <span class="koc-spotify-icon">▶</span>
+      <div><div class="koc-spotify-title">Watch on YouTube</div><div class="koc-spotify-sub">I'd Rather Dance With You · live performance</div></div>
+      <span class="lb-arr">›</span>
+    </a>
+    <a href="https://open.spotify.com/artist/4mKcOdDl7OD1TLhWGz9Ubd" target="_blank" class="koc-spotify-btn">
+      <span class="koc-spotify-icon">♫</span>
+      <div><div class="koc-spotify-title">Kings of Convenience on Spotify</div><div class="koc-spotify-sub">Quiet is the New Loud · Riot on an Empty Street</div></div>
+      <span class="lb-arr">›</span>
+    </a>
+
+    <div class="koc-names" id="koc-poll-rows">
+      <div class="koc-name-row" id="kocr-taina">
+        <div class="koc-name-info"><span class="koc-avatar" style="background:var(--pink)">T</span><span class="koc-nm">Taina</span></div>
+        <div class="koc-btns"><button class="koc-btn koc-yes" onclick="kocVote('taina','yes')">👍 Yes</button><button class="koc-btn koc-no" onclick="kocVote('taina','no')">👎 No</button></div>
+      </div>
+      <div class="koc-name-row" id="kocr-manolo">
+        <div class="koc-name-info"><span class="koc-avatar" style="background:var(--pink)">M</span><span class="koc-nm">Manolo</span></div>
+        <div class="koc-btns"><button class="koc-btn koc-yes" onclick="kocVote('manolo','yes')">👍 Yes</button><button class="koc-btn koc-no" onclick="kocVote('manolo','no')">👎 No</button></div>
+      </div>
+      <div class="koc-name-row" id="kocr-ian">
+        <div class="koc-name-info"><span class="koc-avatar" style="background:var(--pink)">I</span><span class="koc-nm">Ian</span></div>
+        <div class="koc-btns"><button class="koc-btn koc-yes" onclick="kocVote('ian','yes')">👍 Yes</button><button class="koc-btn koc-no" onclick="kocVote('ian','no')">👎 No</button></div>
+      </div>
+      <div class="koc-name-row" id="kocr-sophie">
+        <div class="koc-name-info"><span class="koc-avatar" style="background:var(--pink)">S</span><span class="koc-nm">Sophie</span></div>
+        <div class="koc-btns"><button class="koc-btn koc-yes" onclick="kocVote('sophie','yes')">👍 Yes</button><button class="koc-btn koc-no" onclick="kocVote('sophie','no')">👎 No</button></div>
+      </div>
+      <div class="koc-name-row" id="kocr-isabel">
+        <div class="koc-name-info"><span class="koc-avatar" style="background:var(--green)">I</span><span class="koc-nm">Isabel</span></div>
+        <div class="koc-btns"><button class="koc-btn koc-yes" onclick="kocVote('isabel','yes')">👍 Yes</button><button class="koc-btn koc-no" onclick="kocVote('isabel','no')">👎 No</button></div>
+      </div>
+      <div class="koc-name-row" id="kocr-ivan">
+        <div class="koc-name-info"><span class="koc-avatar" style="background:var(--green)">I</span><span class="koc-nm">Ivan</span></div>
+        <div class="koc-btns"><button class="koc-btn koc-yes" onclick="kocVote('ivan','yes')">👍 Yes</button><button class="koc-btn koc-no" onclick="kocVote('ivan','no')">👎 No</button></div>
+      </div>
+      <div class="koc-name-row" id="kocr-otto">
+        <div class="koc-name-info"><span class="koc-avatar" style="background:var(--orange)">O</span><span class="koc-nm">Otto</span></div>
+        <div class="koc-btns"><button class="koc-btn koc-yes" onclick="kocVote('otto','yes')">👍 Yes</button><button class="koc-btn koc-no" onclick="kocVote('otto','no')">👎 No</button></div>
+      </div>
+      <div class="koc-name-row" id="kocr-juli">
+        <div class="koc-name-info"><span class="koc-avatar" style="background:var(--orange)">J</span><span class="koc-nm">Julieta</span></div>
+        <div class="koc-btns"><button class="koc-btn koc-yes" onclick="kocVote('juli','yes')">👍 Yes</button><button class="koc-btn koc-no" onclick="kocVote('juli','no')">👎 No</button></div>
+      </div>
+    </div>
+    <div class="koc-summary" id="koc-summary" style="display:none"></div>
+
+    <div class="slabel">Hotel — Booked ✓</div>
+    <div class="ic"><div class="ic-stripe ic-s-green"></div><div class="ic-body">
+      <div class="ic-row"><div class="ic-title">Hotel Villa Florida</div><div class="bdg b-green">Booked ✓</div></div>
+      <div class="tags"><span class="tag tall">All groups · 8 · Jul 29–Aug 1 · 3 nights</span></div>
+      <div class="ic-note green">Corso Zanardelli 113, Gardone Riviera · 3 rooms · Conf: 6617.218.620 · PIN: 5262 · Check-in 15:00–23:00 · Checkout 07:00–11:00 · Free parking · Free WiFi · ⚠️ Free cancellation until Jul 25</div>
     </div>
     <div class="ll">
-      <a href="https://www.grandhotelfasano.it" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">Grand Hotel Fasano</div><div class="lb-sub">grandhotelfasano.it · Gardone Riviera</div></div></div><span class="lb-arr">›</span></a>
-      <a href="https://www.bellevue-sanlorenzo.it" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">Bellevue San Lorenzo (backup)</div><div class="lb-sub">4-star · adjacent · ~€300/room</div></div></div><span class="lb-arr">›</span></a>
+      <a href="https://www.hotelvillaflorida.it" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">Hotel Villa Florida</div><div class="lb-sub">hotelvillaflorida.it · Conf: 6617.218.620</div></div></div><span class="lb-arr">›</span></a>
+      <a href="tel:+390365 21836" class="lb"><div class="lb-l"><span class="lb-icon">📞</span><div><div class="lb-lbl">Call hotel</div><div class="lb-sub">+39 0365 21836</div></div></div><span class="lb-arr">›</span></a>
+    </div></div>
+    <div class="slabel">Room breakdown</div>
+    <div class="ic"><div class="ic-stripe ic-s-aqua"></div><div class="ic-body">
+      <div class="ic-note">🛏 <strong>Room 1</strong> — One-Bedroom Apt · Lake View + Balcony · Taina, Manolo + Sophie (6) · $1,823 · No breakfast<br>
+      🛏 <strong>Room 2</strong> — Suite with Terrace · Lake View · Isabel + Julieta (14) · $1,471 · Breakfast included<br>
+      🛏 <strong>Room 3</strong> — Suite with Balcony · Lake View · Otto + Ian (10) · $1,640 · Breakfast included<br>
+      💰 <strong>Total: ~$4,990</strong> (incl. VAT + city tax)</div>
     </div></div>
   </div>
   <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
@@ -870,7 +1128,7 @@ body {
 
   <!-- RIGHT: Otto+Juli → London -->
   <div class="split-card" onclick="togSplit('london')">
-    <div class="split-dcol" style="background:var(--pink)">
+    <div class="split-dcol" style="background:var(--orange)">
       <div class="split-num">1</div>
       <div class="split-mon">Aug</div>
     </div>
@@ -1008,6 +1266,154 @@ function tog(header){
   if(icon) icon.classList.toggle('open', !open);
   if(trArrow) trArrow.classList.toggle('open', !open);
 }
+
+
+// ── KoC CONCERT POLL ──
+const KOC_KEY = 'koc_votes_v2';
+const kocPeople = ['taina','manolo','ian','sophie','isabel','ivan','otto','juli'];
+
+function getKocVotes() {
+  try { return JSON.parse(localStorage.getItem(KOC_KEY)) || {}; }
+  catch(e) { return {}; }
+}
+function saveKocVotes(v) {
+  try { localStorage.setItem(KOC_KEY, JSON.stringify(v)); } catch(e){}
+}
+
+function kocVote(name, choice) {
+  const votes = getKocVotes();
+  // toggle off if same
+  if(votes[name] === choice) {
+    delete votes[name];
+  } else {
+    votes[name] = choice;
+  }
+  saveKocVotes(votes);
+  renderKoc();
+}
+
+function renderKoc() {
+  const votes = getKocVotes();
+  kocPeople.forEach(name => {
+    const row = document.getElementById('kocr-' + name);
+    if(!row) return;
+    const yesBtn = row.querySelectorAll('.koc-btn')[0];
+    const noBtn  = row.querySelectorAll('.koc-btn')[1];
+    const vote = votes[name];
+    yesBtn.className = 'koc-btn koc-yes' + (vote==='yes' ? ' selected-yes' : '');
+    noBtn.className  = 'koc-btn koc-no'  + (vote==='no'  ? ' selected-no'  : '');
+    row.className = 'koc-name-row' + (vote==='yes' ? ' voted-yes' : vote==='no' ? ' voted-no' : '');
+    yesBtn.textContent = vote==='yes' ? '✓ Going!' : '👍 Yes';
+    noBtn.textContent  = vote==='no'  ? '✗ Nope'   : '👎 No';
+  });
+
+  // summary
+  const summary = document.getElementById('koc-summary');
+  const voted = kocPeople.filter(n => votes[n]);
+  if(voted.length === 0) { summary.style.display='none'; return; }
+
+  const going = kocPeople.filter(n => votes[n]==='yes');
+  const notGoing = kocPeople.filter(n => votes[n]==='no');
+  const nameMap = {taina:'Taina',manolo:'Manolo',ian:'Ian',sophie:'Sophie',isabel:'Isabel',ivan:'Ivan',otto:'Otto',juli:'Julieta'};
+
+  let html = '<div class="koc-summary-title">Concert headcount</div>';
+  if(going.length) html += '🎵 <strong>Going (' + going.length + '):</strong> ' + going.map(n=>nameMap[n]).join(', ') + '<br>';
+  if(notGoing.length) html += '🏠 <strong>Sitting out (' + notGoing.length + '):</strong> ' + notGoing.map(n=>nameMap[n]).join(', ');
+  if(going.length) html += '<br><br>💡 Book <strong>' + going.length + ' ticket' + (going.length>1?'s':'') + '</strong> at anfiteatrodelvittoriale.it';
+  summary.innerHTML = html;
+  summary.style.display = 'block';
+}
+
+document.addEventListener('DOMContentLoaded', renderKoc);
+
+// ── VOTING ──
+const VOTE_KEY = 'montalcino_votes';
+const MY_VOTE_KEY = 'montalcino_my_vote';
+
+function getVotes() {
+  try { return JSON.parse(localStorage.getItem(VOTE_KEY)) || {airbnb:0,capitani:0,si:0}; }
+  catch(e) { return {airbnb:0,capitani:0,si:0}; }
+}
+function saveVotes(v) {
+  try { localStorage.setItem(VOTE_KEY, JSON.stringify(v)); } catch(e){}
+}
+function getMyVote() {
+  try { return localStorage.getItem(MY_VOTE_KEY) || null; }
+  catch(e) { return null; }
+}
+
+function vote(option) {
+  const myVote = getMyVote();
+  const votes = getVotes();
+
+  // toggle off if same
+  if(myVote === option) {
+    votes[option] = Math.max(0, votes[option] - 1);
+    localStorage.removeItem(MY_VOTE_KEY);
+    saveVotes(votes);
+    renderVotes(null);
+    return;
+  }
+  // remove old vote
+  if(myVote && votes[myVote] > 0) votes[myVote]--;
+  // add new vote
+  votes[option]++;
+  try { localStorage.setItem(MY_VOTE_KEY, option); } catch(e){}
+  saveVotes(votes);
+  renderVotes(option);
+}
+
+function renderVotes(myVote) {
+  const votes = getVotes();
+  const total = votes.airbnb + votes.capitani + votes.si;
+  const options = ['airbnb','capitani','si'];
+  const labels = {airbnb:'🏡 Airbnb', capitani:'🏨 Dei Capitani', si:'🌿 Si Montalcino'};
+
+  options.forEach(opt => {
+    const pct = total > 0 ? Math.round((votes[opt]/total)*100) : 0;
+    const bar = document.getElementById('bar-'+opt);
+    const btn = document.getElementById('btn-'+opt);
+    const cnt = document.getElementById('cnt-'+opt);
+    const card = document.getElementById('vc-'+opt);
+    const tb = document.getElementById('tb-'+opt);
+    const tc = document.getElementById('tc-'+opt);
+
+    if(bar) bar.style.width = pct+'%';
+    if(tb) tb.style.width = pct+'%';
+    if(tc) tc.textContent = votes[opt];
+
+    if(myVote === opt) {
+      btn.textContent = '✓ Your vote';
+      btn.classList.add('voted-btn');
+      card.classList.add('voted');
+    } else {
+      btn.textContent = '👆 Vote for this';
+      btn.classList.remove('voted-btn');
+      card.classList.remove('voted');
+    }
+
+    if(total > 0) {
+      cnt.textContent = votes[opt] + (votes[opt]===1?' vote':' votes') + ' (' + pct + '%)';
+    } else {
+      cnt.textContent = '';
+    }
+  });
+
+  // show tally if any votes
+  const tally = document.getElementById('vote-tally');
+  if(tally) tally.style.display = total > 0 ? 'block' : 'none';
+
+  // highlight winner
+  if(total > 0) {
+    const maxOpt = options.reduce((a,b) => votes[a] >= votes[b] ? a : b);
+    options.forEach(opt => {
+      document.getElementById('vc-'+opt).classList.toggle('winner', opt === maxOpt && votes[opt] > 0);
+    });
+  }
+}
+
+// init on load
+document.addEventListener('DOMContentLoaded', () => renderVotes(getMyVote()));
 
 function filter(group){
   document.querySelectorAll('.fb').forEach(b => b.className = 'fb');
