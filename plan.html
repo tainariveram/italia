@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Italia · Wales 2026</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍊</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -59,7 +59,7 @@ body {
   display:flex; align-items:center; justify-content:space-between;
 }
 .topbar-title {
-  font-size:17px; font-weight:600; color:var(--ink); letter-spacing:-.3px;
+  font-size:18px; font-weight:600; color:var(--ink); letter-spacing:-.3px;
 }
 .topbar-badge {
   font-size:12px; font-weight:500;
@@ -72,24 +72,25 @@ body {
   position:sticky; top:54px; z-index:99;
   background:rgba(255,255,255,0.95);
   backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
   border-bottom:1px solid var(--border);
-  padding:10px 16px;
-  display:flex; gap:7px; overflow-x:auto; scrollbar-width:none;
+  padding:10px 12px;
+  display:flex; gap:6px;
 }
-.filterbar::-webkit-scrollbar { display:none; }
 .fb {
-  flex-shrink:0;
-  font-size:13px; font-weight:500;
-  padding:7px 16px; border-radius:22px;
+  flex:1;
+  font-size:12px; font-weight:600;
+  padding:8px 6px; border-radius:22px;
   border:1.5px solid var(--border);
   background:var(--white); color:var(--muted);
-  cursor:pointer; transition:all .15s; user-select:none; white-space:nowrap;
+  cursor:pointer; transition:all .15s; user-select:none;
+  white-space:nowrap; text-align:center;
 }
 .fb.active-all  { background:var(--aqua);   color:#fff; border-color:var(--aqua); }
 .fb.active-1    { background:var(--pink);  color:#fff; border-color:var(--pink); }
-.fb.active-2    { background:var(--aqua);   color:#fff; border-color:var(--aqua); }
+.fb.active-2    { background:var(--green);  color:#fff; border-color:var(--green); }
 .fb.active-3    { background:var(--orange); color:#fff; border-color:var(--orange); }
-.day-entry.hidden { display:none; }
+
 
 /* ── HERO ── */
 .hero {
@@ -104,19 +105,19 @@ body {
 }
 .hero-title {
   font-family:'Playfair Display', serif;
-  font-size:52px; font-weight:900; line-height:.95;
-  color:var(--aqua); margin-bottom:4px; letter-spacing:-1px;
+  font-size:60px; font-weight:900; line-height:.95;
+  color:var(--aqua); margin-bottom:6px; letter-spacing:-1px;
 }
 .hero-title em { color:var(--orange); font-style:italic; }
 .hero-sub {
-  font-size:15px; color:var(--muted);
-  font-weight:400; margin-bottom:24px;
+  font-size:17px; color:var(--muted);
+  font-weight:400; margin-bottom:28px; line-height:1.5;
 }
 .hero-alerts { display:flex; flex-direction:column; gap:8px; }
 .alert {
   display:flex; align-items:center; gap:10px;
-  padding:12px 14px; border-radius:14px;
-  font-size:13px; font-weight:500;
+  padding:14px 16px; border-radius:14px;
+  font-size:15px; font-weight:500; line-height:1.5;
 }
 .al-orange { background:var(--orange-lt); color:#C24A10; }
 .al-pink   { background:var(--pink-lt);   color:#C02060; }
@@ -126,27 +127,27 @@ body {
 
 /* ── WHO'S TRAVELING ── */
 .who {
-  background:var(--white); padding:20px;
-  border-bottom:1px solid var(--border);
+  background:var(--white); padding:20px 20px 20px;
+  border-bottom:none;
 }
 .who-title {
   font-size:13px; font-weight:600; color:var(--muted);
-  text-transform:uppercase; letter-spacing:.5px; margin-bottom:14px;
+  text-transform:uppercase; letter-spacing:.5px; margin-bottom:16px;
 }
-.who-rows { display:flex; flex-direction:column; gap:10px; }
+.who-rows { display:flex; flex-direction:column; gap:12px; }
 .who-row { display:flex; align-items:center; gap:10px; }
 .who-chip {
   font-size:12px; font-weight:600;
   padding:4px 12px; border-radius:20px; flex-shrink:0;
 }
 .wc1 { background:var(--pink); color:#fff; }
-.wc2 { background:var(--aqua);  color:#fff; }
+.wc2 { background:var(--green);  color:#fff; }
 .wc3 { background:var(--orange); color:#fff; }
-.who-names { font-size:13px; color:var(--ink2); }
+.who-names { font-size:15px; color:var(--ink2); line-height:1.5; }
 
 /* ── TIMELINE ── */
-.timeline { padding-bottom:40px; }
-.day-entry { background:var(--white); border-bottom:8px solid var(--bg); }
+.timeline { padding-bottom:40px; padding-top:12px; }
+
 
 /* Date header */
 .date-hd {
@@ -159,24 +160,28 @@ body {
 
 /* The big date block */
 .dcol {
-  width:80px; flex-shrink:0;
+  width:120px;
+  min-height:140px;
+  align-self:stretch;
+  flex-shrink:0;
   display:flex; flex-direction:column;
   align-items:center; justify-content:center;
-  padding:18px 0; border-radius:0;
+  padding:0;
 }
+.date-hd { min-height:140px; align-items:stretch; }
 .d-num {
   font-family:'Playfair Display', serif;
-  font-size:36px; font-weight:900; line-height:1;
+  font-size:52px; font-weight:900; line-height:1;
   color:var(--white);
 }
 .d-mon {
-  font-size:11px; font-weight:600;
+  font-size:14px; font-weight:600;
   letter-spacing:1.5px; text-transform:uppercase;
   color:rgba(255,255,255,.75); margin-top:2px;
 }
 .d-dow {
-  font-size:10px; color:rgba(255,255,255,.5);
-  margin-top:1px; font-weight:400;
+  font-size:13px; color:rgba(255,255,255,.55);
+  margin-top:2px; font-weight:400;
 }
 
 /* Date block colors */
@@ -195,12 +200,16 @@ body {
   display:flex; flex-direction:column; justify-content:center;
 }
 .d-city {
-  font-size:20px; font-weight:700;
-  color:var(--ink); line-height:1.15; letter-spacing:-.3px;
+  font-size:22px; font-weight:700;
+  color:var(--ink); line-height:1.2; letter-spacing:-.3px;
 }
 .d-desc {
   font-size:13px; color:var(--muted);
-  margin-top:3px; line-height:1.4;
+  margin-top:3px; line-height:1.45;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
 }
 .dtog {
   display:flex; align-items:center;
@@ -211,14 +220,15 @@ body {
 .dtog.open { transform:rotate(90deg); }
 
 /* Body */
-.day-body { background:var(--bg); display:none; padding:16px; }
+.day-body { background:var(--bg); display:none; padding:20px 16px; }
 .day-body.open { display:block; }
 
 /* Section label */
 .slabel {
-  font-size:12px; font-weight:600; color:var(--muted);
-  text-transform:uppercase; letter-spacing:.7px;
-  margin-bottom:10px; margin-top:16px;
+  font-size:11px; font-weight:700; color:var(--muted);
+  font-family:"Inter",-apple-system,sans-serif;
+  text-transform:uppercase; letter-spacing:1.5px;
+  margin-bottom:12px; margin-top:22px;
   display:flex; align-items:center; gap:8px;
 }
 .slabel:first-child { margin-top:0; }
@@ -230,7 +240,7 @@ body {
   border:1px solid var(--border);
   overflow:hidden; margin-bottom:10px;
 }
-.ic-stripe { height:4px; }
+.ic-stripe { height:5px; }
 .ic-s-aqua   { background:var(--aqua); }
 .ic-s-green  { background:var(--green); }
 .ic-s-orange { background:var(--orange); }
@@ -239,20 +249,21 @@ body {
 .ic-s-blue   { background:var(--blue); }
 .ic-s-muted  { background:var(--border); }
 
-.ic-body { padding:14px 16px; }
+.ic-body { padding:16px 18px; }
 .ic-row {
   display:flex; justify-content:space-between;
   align-items:flex-start; margin-bottom:6px;
 }
 .ic-title {
-  font-size:16px; font-weight:700; color:var(--ink);
-  flex:1; padding-right:10px; line-height:1.25; letter-spacing:-.2px;
+  font-size:17px; font-weight:700; color:var(--ink);
+  font-family:"Inter",-apple-system,sans-serif;
+  flex:1; padding-right:10px; line-height:1.3; letter-spacing:-.3px;
 }
 .ic-title.dim { color:var(--muted); font-weight:400; font-style:italic; }
 
 /* Badges */
 .bdg {
-  font-size:11px; font-weight:600; padding:4px 10px;
+  font-size:12px; font-weight:600; padding:5px 11px;
   border-radius:20px; flex-shrink:0; white-space:nowrap;
 }
 .b-green  { background:var(--green-lt);  color:var(--green); }
@@ -265,35 +276,35 @@ body {
 /* Group tags */
 .tags { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:7px; }
 .tag {
-  font-size:11px; font-weight:600;
-  padding:3px 9px; border-radius:20px;
+  font-size:12px; font-weight:600;
+  padding:4px 10px; border-radius:20px;
 }
 .t1   { background:var(--pink-lt); color:var(--pink); }
 .t2   { background:var(--green-lt);  color:var(--green); }
 .t3   { background:var(--orange-lt);   color:var(--orange); }
-.tall { background:var(--rule);      color:var(--muted); }
+.tall { background:var(--aqua-lt) !important; color:#1A9990 !important; }
 
 /* Notes */
 .ic-note { font-size:13px; color:var(--muted); line-height:1.6; }
-.ic-note.aqua   { color:var(--aqua);   font-weight:500; }
-.ic-note.green  { color:var(--green);  font-weight:500; }
-.ic-note.orange { color:var(--orange); font-weight:500; }
+.ic-note.aqua   { color:var(--aqua);   font-weight:500; font-size:14px; }
+.ic-note.green  { color:var(--green);  font-weight:500; font-size:14px; }
+.ic-note.orange { color:var(--orange); font-weight:500; font-size:14px; }
 
 /* Link list */
 .ll { border-top:1px solid var(--border); }
 .lb {
   display:flex; align-items:center; justify-content:space-between;
-  padding:12px 16px; text-decoration:none; color:var(--ink2);
+  padding:14px 18px; text-decoration:none; color:var(--ink2);
   border-bottom:1px solid var(--border); transition:background .1s;
-  font-size:14px;
+  font-size:15px;
 }
 .lb:last-child { border-bottom:none; }
 .lb:active { background:var(--rule); }
 .lb-l { display:flex; align-items:center; gap:10px; }
-.lb-icon { font-size:16px; flex-shrink:0; }
-.lb-lbl { font-size:14px; font-weight:500; }
-.lb-sub { font-size:12px; color:var(--muted); margin-top:1px; }
-.lb-arr { font-size:16px; color:var(--border); }
+.lb-icon { font-size:20px; flex-shrink:0; }
+.lb-lbl { font-size:15px; font-weight:500; }
+.lb-sub { font-size:13px; color:var(--muted); margin-top:2px; line-height:1.4; }
+.lb-arr { font-size:18px; color:var(--border); }
 
 /* Flight card */
 .fc {
@@ -313,7 +324,7 @@ body {
   font-family:'Playfair Display', serif;
   font-size:28px; font-weight:900; color:var(--ink); line-height:1;
 }
-.fcity { font-size:11px; color:var(--muted); font-weight:500; margin-top:2px; }
+.fcity { font-size:13px; color:var(--muted); font-weight:500; margin-top:2px; }
 .ftime { font-size:14px; font-weight:600; color:var(--aqua); margin-top:4px; }
 .fmid {
   flex:1; display:flex; flex-direction:column;
@@ -326,12 +337,12 @@ body {
 }
 .fdur { font-size:11px; color:var(--muted); margin-top:6px; }
 .fmeta { display:flex; gap:16px; flex-wrap:wrap; }
-.fdet { font-size:12px; color:var(--muted); }
+.fdet { font-size:14px; color:var(--muted); }
 .fdet strong { color:var(--ink2); font-weight:600; }
 .fseats {
   background:var(--aqua-lt); border-radius:10px;
-  padding:8px 12px; margin-top:10px;
-  font-size:12px; color:var(--aqua); font-weight:500;
+  padding:10px 14px; margin-top:12px;
+  font-size:14px; color:var(--aqua); font-weight:500;
 }
 
 /* Callouts */
@@ -345,28 +356,39 @@ body {
 .co-orange { background:var(--orange-lt);}
 .co-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
 .co-title {
-  font-size:14px; font-weight:700; margin-bottom:3px; letter-spacing:-.2px;
+  font-size:16px; font-weight:700; margin-bottom:4px; letter-spacing:-.2px;
 }
 .co-t-aqua   { color:var(--aqua); }
 .co-t-green  { color:var(--green); }
 .co-t-orange { color:var(--orange); }
-.co-sub { font-size:12px; color:var(--muted); line-height:1.55; }
+.co-sub { font-size:14px; color:var(--muted); line-height:1.65; }
 
 /* Toggle row */
 .toggle-row {
   display:flex; align-items:center; justify-content:space-between;
-  padding:12px 16px; background:var(--white);
-  border-top:1px solid var(--border); cursor:pointer;
+  padding:13px 18px; background:var(--white);
+  border-top:1.5px solid var(--border); cursor:pointer;
+  gap:8px;
 }
-.tr-label { font-size:13px; font-weight:500; color:var(--aqua); }
-.tr-arrow { font-size:16px; color:var(--aqua); transition:transform .2s; }
-.tr-arrow.open { transform:rotate(90deg); }
+.tr-label { font-size:14px; font-weight:600; color:#0E8880; font-family:"Inter",-apple-system,sans-serif; letter-spacing:.2px; }
+.tr-arrow {
+  width:36px; height:36px; border-radius:50%;
+  background:var(--aqua);
+  color:#fff;
+  flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  transition:transform .2s;
+  box-shadow:0 1px 4px rgba(34,196,187,.3);
+}
+.tr-arrow.open { transform:rotate(180deg); }
 
 /* Range divider */
 .rdiv {
-  background:var(--aqua-lt); padding:8px 20px;
+  background:var(--aqua-lt); padding:8px 24px;
   display:flex; align-items:center; gap:10px;
-  border-bottom:1px solid var(--aqua-md);
+  margin:0 14px 10px;
+  border-radius:10px;
+  border:1px solid var(--aqua-md);
 }
 .rdiv-line { flex:1; height:1px; background:var(--aqua-md); }
 .rdiv-text {
@@ -392,7 +414,11 @@ body {
 
 /* ── SPLIT DAY (Jul 2) ── */
 .split-day {
-  display:flex; border-bottom:8px solid var(--bg);
+  display:flex;
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 0 14px 10px;
 }
 .split-card {
   flex:1; display:flex; flex-direction:column;
@@ -418,18 +444,21 @@ body {
   display:flex; flex-direction:column; gap:6px;
 }
 .split-dest {
-  font-size:15px; font-weight:700; color:var(--ink);
+  font-size:17px; font-weight:700; color:var(--ink);
   letter-spacing:-.2px; line-height:1.2;
 }
 .split-desc {
-  font-size:11px; color:var(--muted); line-height:1.4;
+  font-size:13px; color:var(--muted); line-height:1.5;
 }
 .split-tags { display:flex; gap:4px; flex-wrap:wrap; margin-top:2px; }
 
 .split-expand {
   background:var(--bg);
   display:none; padding:14px;
-  border-bottom:1px solid var(--border);
+  border: 1.5px solid var(--border);
+  border-top:none;
+  border-radius:0 0 16px 16px;
+  margin: -10px 14px 10px;
 }
 .split-expand.open { display:block; }
 
@@ -444,7 +473,7 @@ body {
 .ht1  { background:var(--pink-lt); color:var(--pink); }
 .ht2  { background:var(--green-lt);  color:var(--green); }
 .ht3  { background:var(--orange-lt); color:var(--orange); }
-.htall{ background:var(--rule);      color:var(--muted); }
+.htall{ background:var(--aqua-lt) !important; color:#1A9990 !important; border:1px solid var(--aqua-md) !important; }
 
 /* ── VOTE SECTION ── */
 .vote-header {
@@ -472,29 +501,29 @@ body {
   padding:14px 16px 10px;
 }
 .vote-name {
-  font-size:16px; font-weight:700; color:var(--ink);
-  letter-spacing:-.2px; margin-bottom:3px;
+  font-size:18px; font-weight:700; color:var(--ink);
+  letter-spacing:-.2px; margin-bottom:4px;
 }
 .vote-price {
-  font-size:13px; font-weight:600; color:var(--aqua);
-  margin-bottom:6px;
+  font-size:15px; font-weight:600; color:var(--aqua);
+  margin-bottom:8px;
 }
 .vote-pros { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:10px; }
 .vpro {
-  font-size:11px; font-weight:500; padding:3px 9px;
+  font-size:12px; font-weight:500; padding:4px 10px;
   border-radius:20px; background:var(--green-lt); color:var(--green);
 }
 .vcon {
-  font-size:11px; font-weight:500; padding:3px 9px;
+  font-size:12px; font-weight:500; padding:4px 10px;
   border-radius:20px; background:var(--orange-lt); color:var(--orange);
 }
 .vote-btn {
   display:flex; align-items:center; justify-content:center;
-  gap:8px; width:100%; padding:11px 16px;
+  gap:8px; width:100%; padding:14px 16px;
   background:var(--bg); border:none; border-top:1px solid var(--border);
-  font-size:14px; font-weight:600; color:var(--muted);
+  font-size:16px; font-weight:600; color:var(--muted);
   cursor:pointer; transition:all .15s;
-  font-family:'DM Sans',sans-serif;
+  font-family:-apple-system,'DM Sans',sans-serif;
 }
 .vote-btn:active { opacity:.8; }
 .vote-btn.voted-btn {
@@ -502,9 +531,9 @@ body {
 }
 .vote-link {
   display:flex; align-items:center; justify-content:center;
-  padding:10px 16px; text-decoration:none;
+  padding:13px 16px; text-decoration:none;
   border-top:1px solid var(--border);
-  font-size:12px; font-weight:500; color:var(--aqua);
+  font-size:14px; font-weight:500; color:var(--aqua);
   gap:6px; transition:background .1s;
 }
 .vote-link:active { background:var(--aqua-lt); }
@@ -545,14 +574,14 @@ body {
 }
 .koc-spotify-btn:active { opacity:.85; }
 .koc-spotify-icon { font-size:22px; color:#fff; flex-shrink:0; }
-.koc-spotify-title { font-size:13px; font-weight:700; color:#fff; }
-.koc-spotify-sub { font-size:10px; color:rgba(255,255,255,.75); margin-top:2px; }
+.koc-spotify-title { font-size:15px; font-weight:700; color:#fff; }
+.koc-spotify-sub { font-size:12px; color:rgba(255,255,255,.75); margin-top:3px; }
 .koc-spotify-btn .lb-arr { color:rgba(255,255,255,.5); margin-left:auto; }
 
 .koc-names { background:var(--white); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:8px; }
 .koc-name-row {
   display:flex; align-items:center; justify-content:space-between;
-  padding:11px 14px; border-bottom:1px solid var(--border);
+  padding:14px 16px; border-bottom:1px solid var(--border);
   transition:background .15s;
 }
 .koc-name-row:last-child { border-bottom:none; }
@@ -564,12 +593,12 @@ body {
   display:flex; align-items:center; justify-content:center;
   font-size:13px; font-weight:700; color:#fff; flex-shrink:0;
 }
-.koc-nm { font-size:14px; font-weight:500; color:var(--ink); }
+.koc-nm { font-size:16px; font-weight:500; color:var(--ink); }
 .koc-btns { display:flex; gap:6px; }
 .koc-btn {
-  font-size:12px; font-weight:600; padding:6px 12px; border-radius:20px;
+  font-size:14px; font-weight:600; padding:8px 14px; border-radius:20px;
   border:1.5px solid var(--border); background:var(--bg);
-  cursor:pointer; transition:all .15s; font-family:'DM Sans',sans-serif;
+  cursor:pointer; transition:all .15s; font-family:-apple-system,'DM Sans',sans-serif;
   color:var(--muted);
 }
 .koc-btn:active { opacity:.8; }
@@ -577,27 +606,28 @@ body {
 .koc-btn.selected-no  { background:var(--orange); color:#fff; border-color:var(--orange); }
 
 .koc-summary {
-  background:var(--rule); border-radius:10px; padding:12px 14px;
-  font-size:12px; color:var(--ink2); line-height:1.7;
+  background:var(--rule); border-radius:10px; padding:14px 16px;
+  font-size:15px; color:var(--ink2); line-height:1.75;
 }
 .koc-summary-title { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:var(--muted); margin-bottom:6px; }
 
 /* ── ACTION BADGE on date squares ── */
 .dcol { position: relative; }
 .action-badge {
-  position:absolute; top:6px; right:6px;
-  width:18px; height:18px; border-radius:50%;
-  background:rgba(255,255,255,0.95);
+  position:absolute; top:5px; right:5px;
+  width:22px; height:22px; border-radius:50%;
   display:flex; align-items:center; justify-content:center;
-  font-size:10px; font-weight:800; line-height:1;
-  box-shadow:0 1px 4px rgba(0,0,0,.15);
+  font-size:13px; font-weight:900; line-height:1;
+  color:#fff;
+  box-shadow:0 2px 8px rgba(0,0,0,.25);
   animation: pulse-badge 2s infinite;
+  border:1.5px solid rgba(255,255,255,0.6);
 }
-.action-badge.orange { color:var(--orange); }
-.action-badge.pink   { color:var(--pink); }
-.action-badge.green  { color:var(--green); }
-.action-badge.aqua   { color:var(--aqua); }
-.action-badge.lemon  { color:#8A7000; }
+.action-badge.orange { background:var(--orange); }
+.action-badge.pink   { background:var(--pink); }
+.action-badge.green  { background:var(--green); }
+.action-badge.aqua   { background:var(--aqua); }
+.action-badge.lemon  { background:var(--lemon); color:#5A3800; }
 
 @keyframes pulse-badge {
   0%, 100% { transform: scale(1); opacity:1; }
@@ -615,17 +645,221 @@ body {
   top:0; right:0;
   background:var(--pink);
   color:#fff;
-  font-size:8px; font-weight:900;
-  letter-spacing:1.5px; text-transform:uppercase;
-  padding:6px 10px 12px;
-  clip-path: polygon(0 0, 100% 0, 100% 75%, 50% 100%, 0 75%);
-  width:48px; text-align:center;
-  line-height:1.4;
+  font-size:11px; font-weight:900;
+  letter-spacing:1px; text-transform:uppercase;
+  padding:10px 14px 18px;
+  clip-path: polygon(0 0, 100% 0, 100% 78%, 50% 100%, 0 78%);
+  width:68px; text-align:center;
+  line-height:1.5;
   pointer-events:none;
   z-index:3;
+  box-shadow:-2px 2px 8px rgba(0,0,0,.15);
 }
 .vote-flag.green  { background:var(--green); }
 .vote-flag.orange { background:var(--orange); }
+
+/* ── APPLE GLASS ── */
+
+.ic {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.6);
+}
+.day-body {
+  background: rgba(242,244,248,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.toggle-row {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.who-block {
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.topbar {
+  background: rgba(255,255,255,0.88) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(0,0,0,0.08) !important;
+}
+/* Glass vote cards */
+.vote-card {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.6) !important;
+}
+/* Glass KoC poll */
+.koc-names {
+  background: rgba(255,255,255,0.85) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── STATUS CIRCLES ── */
+.status-circle {
+  width:22px; height:22px; border-radius:50%; flex-shrink:0;
+  border:2px solid var(--aqua);
+  background:transparent;
+  display:inline-flex; align-items:center; justify-content:center;
+  margin-right:8px; vertical-align:middle;
+  transition:all .3s;
+}
+.status-circle.done {
+  background:var(--aqua);
+  border-color:var(--aqua);
+}
+.status-circle svg { display:none; }
+.status-circle.done svg { display:block; }
+
+/* ── DAY ENTRY CARDS ── */
+
+.day-entry.hidden { display:none; }
+
+/* ── ACTIVITIES FEATURE ── */
+.activity-section {
+  border-top:1px solid var(--border);
+  padding:14px 16px;
+}
+.activity-header {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:10px;
+}
+.activity-title {
+  font-size:11px; font-weight:700; color:var(--muted);
+  text-transform:uppercase; letter-spacing:1.5px;
+  font-family:"Inter",-apple-system,sans-serif;
+}
+.activity-add-btn {
+  width:36px; height:36px; border-radius:50%;
+  background:var(--aqua); color:#fff;
+  border:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  font-size:22px; line-height:1; font-weight:300;
+  box-shadow:0 1px 4px rgba(34,196,187,.25);
+  transition:transform .15s, opacity .15s;
+  flex-shrink:0;
+}
+.activity-add-btn:active { transform:scale(.92); }
+
+.activity-list { display:flex; flex-direction:column; gap:8px; }
+.activity-item {
+  background:rgba(255,255,255,.9);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:10px 13px;
+  display:flex; align-items:flex-start; gap:10px;
+}
+.activity-avatar {
+  width:28px; height:28px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px; font-weight:700; color:#fff;
+  flex-shrink:0;
+}
+.activity-content { flex:1; min-width:0; }
+.activity-text {
+  font-size:14px; color:var(--ink); line-height:1.5;
+  margin-bottom:3px;
+}
+.activity-meta {
+  font-size:11px; color:var(--muted);
+  font-family:"Inter",-apple-system,sans-serif;
+}
+.activity-like {
+  display:flex; align-items:center; gap:4px;
+  background:none; border:1px solid var(--border);
+  border-radius:20px; padding:3px 9px;
+  font-size:12px; color:var(--muted);
+  cursor:pointer; transition:all .15s;
+  flex-shrink:0; margin-top:2px;
+  font-family:-apple-system,sans-serif;
+}
+.activity-like:active { background:var(--pink-lt); border-color:var(--pink); color:var(--pink); }
+.activity-like.liked { background:var(--pink-lt); border-color:var(--pink); color:var(--pink); }
+
+
+/* ── ACTIVITY MODAL (bottom sheet) ── */
+.activity-overlay {
+  position:fixed; inset:0; z-index:1000;
+  background:rgba(0,0,0,.4);
+  display:none; align-items:flex-end;
+  backdrop-filter:blur(4px);
+}
+.activity-overlay.open { display:flex; }
+.activity-sheet {
+  width:100%; max-width:430px; margin:0 auto;
+  background:var(--white);
+  border-radius:20px 20px 0 0;
+  padding:20px 20px 40px;
+  animation:slideUp .3s ease;
+}
+@keyframes slideUp {
+  from { transform:translateY(100%); }
+  to   { transform:translateY(0); }
+}
+.sheet-handle {
+  width:36px; height:4px; border-radius:2px;
+  background:var(--border); margin:0 auto 18px;
+}
+.sheet-title {
+  font-family:'Playfair Display',serif;
+  font-size:20px; font-weight:700; color:var(--ink);
+  margin-bottom:4px;
+}
+.sheet-city {
+  font-size:13px; color:var(--muted); margin-bottom:18px;
+}
+.sheet-input {
+  width:100%; padding:13px 16px;
+  font-size:16px; font-family:-apple-system,'DM Sans',sans-serif;
+  border:1.5px solid var(--border); border-radius:12px;
+  background:var(--bg); color:var(--ink);
+  outline:none; resize:none; margin-bottom:14px;
+  box-sizing:border-box; line-height:1.5;
+  transition:border-color .2s;
+}
+.sheet-input:focus { border-color:var(--aqua); }
+.sheet-label {
+  font-size:12px; font-weight:600; color:var(--muted);
+  text-transform:uppercase; letter-spacing:1px;
+  font-family:"Inter",-apple-system,sans-serif;
+  margin-bottom:8px; display:block;
+}
+.sheet-select {
+  width:100%; padding:13px 16px;
+  font-size:16px; font-family:-apple-system,'DM Sans',sans-serif;
+  border:1.5px solid var(--border); border-radius:12px;
+  background:var(--bg); color:var(--ink);
+  outline:none; margin-bottom:18px;
+  box-sizing:border-box; appearance:none;
+  -webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1L6 7L11 1' stroke='%239CA3AF' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 14px center;
+  cursor:pointer;
+}
+.sheet-select:focus { border-color:var(--aqua); }
+.sheet-submit {
+  width:100%; padding:15px;
+  font-size:16px; font-weight:700;
+  font-family:-apple-system,'DM Sans',sans-serif;
+  background:var(--aqua); color:#fff;
+  border:none; border-radius:12px; cursor:pointer;
+  transition:opacity .15s;
+}
+.sheet-submit:active { opacity:.85; }
+.sheet-cancel {
+  width:100%; padding:12px;
+  font-size:15px; color:var(--muted);
+  background:none; border:none; cursor:pointer;
+  font-family:-apple-system,'DM Sans',sans-serif;
+  margin-top:8px;
+}
 </style>
 </head>
 <body><!-- ── PASSWORD GATE ── -->
@@ -717,7 +951,218 @@ body {
       letter-spacing: 1px;
     }
     #pw-input:focus::placeholder { color: #C8DEDE; }
-  </style>
+  
+/* ── APPLE GLASS ── */
+
+.ic {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.6);
+}
+.day-body {
+  background: rgba(242,244,248,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.toggle-row {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.who-block {
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.topbar {
+  background: rgba(255,255,255,0.88) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(0,0,0,0.08) !important;
+}
+/* Glass vote cards */
+.vote-card {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.6) !important;
+}
+/* Glass KoC poll */
+.koc-names {
+  background: rgba(255,255,255,0.85) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── STATUS CIRCLES ── */
+.status-circle {
+  width:22px; height:22px; border-radius:50%; flex-shrink:0;
+  border:2px solid var(--aqua);
+  background:transparent;
+  display:inline-flex; align-items:center; justify-content:center;
+  margin-right:8px; vertical-align:middle;
+  transition:all .3s;
+}
+.status-circle.done {
+  background:var(--aqua);
+  border-color:var(--aqua);
+}
+.status-circle svg { display:none; }
+.status-circle.done svg { display:block; }
+
+/* ── DAY ENTRY CARDS ── */
+.day-entry {
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1.5px solid rgba(220,225,235,0.9);
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 0 14px 12px;
+}
+.day-entry.hidden { display:none; }
+
+/* ── ACTIVITIES FEATURE ── */
+.activity-section {
+  border-top:1px solid var(--border);
+  padding:14px 16px;
+}
+.activity-header {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:10px;
+}
+.activity-title {
+  font-size:11px; font-weight:700; color:var(--muted);
+  text-transform:uppercase; letter-spacing:1.5px;
+  font-family:"Inter",-apple-system,sans-serif;
+}
+.activity-add-btn {
+  width:36px; height:36px; border-radius:50%;
+  background:var(--aqua); color:#fff;
+  border:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  font-size:22px; line-height:1; font-weight:300;
+  box-shadow:0 1px 4px rgba(34,196,187,.25);
+  transition:transform .15s, opacity .15s;
+  flex-shrink:0;
+}
+.activity-add-btn:active { transform:scale(.92); }
+
+.activity-list { display:flex; flex-direction:column; gap:8px; }
+.activity-item {
+  background:rgba(255,255,255,.9);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:10px 13px;
+  display:flex; align-items:flex-start; gap:10px;
+}
+.activity-avatar {
+  width:28px; height:28px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px; font-weight:700; color:#fff;
+  flex-shrink:0;
+}
+.activity-content { flex:1; min-width:0; }
+.activity-text {
+  font-size:14px; color:var(--ink); line-height:1.5;
+  margin-bottom:3px;
+}
+.activity-meta {
+  font-size:11px; color:var(--muted);
+  font-family:"Inter",-apple-system,sans-serif;
+}
+.activity-like {
+  display:flex; align-items:center; gap:4px;
+  background:none; border:1px solid var(--border);
+  border-radius:20px; padding:3px 9px;
+  font-size:12px; color:var(--muted);
+  cursor:pointer; transition:all .15s;
+  flex-shrink:0; margin-top:2px;
+  font-family:-apple-system,sans-serif;
+}
+.activity-like:active { background:var(--pink-lt); border-color:var(--pink); color:var(--pink); }
+.activity-like.liked { background:var(--pink-lt); border-color:var(--pink); color:var(--pink); }
+
+
+/* ── ACTIVITY MODAL (bottom sheet) ── */
+.activity-overlay {
+  position:fixed; inset:0; z-index:1000;
+  background:rgba(0,0,0,.4);
+  display:none; align-items:flex-end;
+  backdrop-filter:blur(4px);
+}
+.activity-overlay.open { display:flex; }
+.activity-sheet {
+  width:100%; max-width:430px; margin:0 auto;
+  background:var(--white);
+  border-radius:20px 20px 0 0;
+  padding:20px 20px 40px;
+  animation:slideUp .3s ease;
+}
+@keyframes slideUp {
+  from { transform:translateY(100%); }
+  to   { transform:translateY(0); }
+}
+.sheet-handle {
+  width:36px; height:4px; border-radius:2px;
+  background:var(--border); margin:0 auto 18px;
+}
+.sheet-title {
+  font-family:'Playfair Display',serif;
+  font-size:20px; font-weight:700; color:var(--ink);
+  margin-bottom:4px;
+}
+.sheet-city {
+  font-size:13px; color:var(--muted); margin-bottom:18px;
+}
+.sheet-input {
+  width:100%; padding:13px 16px;
+  font-size:16px; font-family:-apple-system,'DM Sans',sans-serif;
+  border:1.5px solid var(--border); border-radius:12px;
+  background:var(--bg); color:var(--ink);
+  outline:none; resize:none; margin-bottom:14px;
+  box-sizing:border-box; line-height:1.5;
+  transition:border-color .2s;
+}
+.sheet-input:focus { border-color:var(--aqua); }
+.sheet-label {
+  font-size:12px; font-weight:600; color:var(--muted);
+  text-transform:uppercase; letter-spacing:1px;
+  font-family:"Inter",-apple-system,sans-serif;
+  margin-bottom:8px; display:block;
+}
+.sheet-select {
+  width:100%; padding:13px 16px;
+  font-size:16px; font-family:-apple-system,'DM Sans',sans-serif;
+  border:1.5px solid var(--border); border-radius:12px;
+  background:var(--bg); color:var(--ink);
+  outline:none; margin-bottom:18px;
+  box-sizing:border-box; appearance:none;
+  -webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1L6 7L11 1' stroke='%239CA3AF' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 14px center;
+  cursor:pointer;
+}
+.sheet-select:focus { border-color:var(--aqua); }
+.sheet-submit {
+  width:100%; padding:15px;
+  font-size:16px; font-weight:700;
+  font-family:-apple-system,'DM Sans',sans-serif;
+  background:var(--aqua); color:#fff;
+  border:none; border-radius:12px; cursor:pointer;
+  transition:opacity .15s;
+}
+.sheet-submit:active { opacity:.85; }
+.sheet-cancel {
+  width:100%; padding:12px;
+  font-size:15px; color:var(--muted);
+  background:none; border:none; cursor:pointer;
+  font-family:-apple-system,'DM Sans',sans-serif;
+  margin-top:8px;
+}
+</style>
 
   <!-- Button — pink -->
   <button onclick="checkPw()" style="
@@ -779,8 +1224,8 @@ if(sessionStorage.getItem('unlocked')==='1'){
 
 <!-- FILTER BAR -->
 <div class="filterbar">
-  <div class="fb active-all" onclick="filter('all')">🗺️ All</div>
-  <div class="fb" onclick="filter('g1')">🍹 Mano+Taina</div>
+  <div class="fb active-all" onclick="filter('all')">🗺 All</div>
+  <div class="fb" onclick="filter('g1')">🍕 Mano+Taina</div>
   <div class="fb" onclick="filter('g2')">🍋 Abuelos</div>
   <div class="fb" onclick="filter('g3')">🎸 Otto+Juli</div>
 </div>
@@ -815,7 +1260,7 @@ if(sessionStorage.getItem('unlocked')==='1'){
 <div class="day-entry" data-groups="g1 g2 g3">
   <div class="date-hd" onclick="tog(this)">
     <div class="dcol dc-aqua"><div class="d-num">26</div><div class="d-mon">Jun</div><div class="d-dow">Friday</div></div>
-    <div class="dinfo"><div class="d-city">Departure ✈️</div><div class="d-desc">Miami → Milan · AA 206 · 8:00 PM</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
+    <div class="dinfo"><div class="d-city" style="display:flex;align-items:center;gap:6px;"><span class="status-circle done"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L3.8 7L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Departure ✈️</div><div class="d-desc">Miami → Milan · AA 206 · 8:00 PM</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
     <div class="dtog">›</div>
   </div>
   <div class="day-body">
@@ -832,8 +1277,8 @@ if(sessionStorage.getItem('unlocked')==='1'){
       </div>
     </div>
   </div>
-  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
-    <span class="tr-label">Flight details</span><span class="tr-arrow">›</span>
+  <div class="toggle-row" onclick="tog(this)">
+    <span class="tr-label">Flight details</span><span class="tr-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   </div>
 </div>
 
@@ -841,13 +1286,13 @@ if(sessionStorage.getItem('unlocked')==='1'){
 <div class="day-entry" data-groups="g1 g2 g3">
   <div class="date-hd" onclick="tog(this)">
     <div class="dcol dc-orange"><div class="d-num">27</div><div class="d-mon">Jun</div><div class="d-dow">Saturday</div></div>
-    <div class="dinfo"><div class="d-city">Milan — Arrival</div><div class="d-desc">Land 11:30 AM · Airbnb check-in · Via Torino 68 · 5 nights</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
+    <div class="dinfo"><div class="d-city" style="display:flex;align-items:center;gap:6px;"><span class="status-circle done"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L3.8 7L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Milan — Arrival</div><div class="d-desc">Land 11:30 AM · Airbnb check-in · Via Torino 68 · 5 nights</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
     <div class="dtog">›</div>
   </div>
   <div class="day-body">
     <div class="slabel">Airbnb — Booked</div>
     <div class="ic"><div class="ic-stripe ic-s-green"></div><div class="ic-body">
-      <div class="ic-row"><div class="ic-title">Home in Milan</div><div class="bdg b-green">Booked ✓</div></div>
+      <div class="ic-row"><div class="ic-title">Home in Milan</div><div class="bdg b-green" style="display:flex;align-items:center;gap:4px;"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#2A7A4B"/><path d="M2.5 5.2L4.2 7L7.5 3.5" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Booked</div></div>
       <div class="tags"><span class="tag tall">All groups · 8</span></div>
       <div class="ic-note green">Via Torino 68, Milan · Hosted by Heart Milan Apartments · Jun 27–Jul 2 · Check-in 3:00 PM · Checkout 11:00 AM</div>
     </div>
@@ -862,8 +1307,18 @@ if(sessionStorage.getItem('unlocked')==='1'){
       <div class="lb-l"><span class="lb-icon">🎟️</span><div><div class="lb-lbl">Last Supper tickets</div><div class="lb-sub">vivaticket.com · book exactly 60 days ahead</div></div></div><span class="lb-arr">›</span>
     </a></div></div>
   </div>
-  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
-    <span class="tr-label">Hotel &amp; activities</span><span class="tr-arrow">›</span>
+  
+    <div class="activity-section">
+      <div class="activity-header">
+        <span class="activity-title">Ideas &amp; Activities</span>
+        <button class="activity-add-btn" onclick="openActivitySheet('milan-arrival','Milan')">+</button>
+      </div>
+      <div class="activity-list" id="acts-milan-arrival">
+
+      </div>
+    </div>
+<div class="toggle-row" onclick="tog(this)">
+    <span class="tr-label">Hotel &amp; activities</span><span class="tr-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   </div>
 </div>
 
@@ -871,7 +1326,7 @@ if(sessionStorage.getItem('unlocked')==='1'){
 <div class="day-entry" data-groups="g1 g2 g3">
   <div class="date-hd" onclick="tog(this)">
     <div class="dcol dc-pink"><div class="action-badge pink">!</div><div class="d-num">1</div><div class="d-mon">Jul</div><div class="d-dow">Wednesday</div></div>
-    <div class="dinfo"><div class="d-city">Isabel's 73rd 🎂</div><div class="d-desc">Birthday dinner · Ratanà · Milan</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
+    <div class="dinfo"><div class="d-city" style="display:flex;align-items:center;gap:6px;"><span class="status-circle"></span>Isabel's 73rd 🎂</div><div class="d-desc">Birthday dinner · Ratanà · Milan</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
     <div class="dtog">›</div>
   </div>
   <div class="day-body">
@@ -885,8 +1340,17 @@ if(sessionStorage.getItem('unlocked')==='1'){
       <a href="https://www.ratana.it" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🌐</span><div><div class="lb-lbl">View restaurant</div><div class="lb-sub">ratana.it · Milan</div></div></div><span class="lb-arr">›</span></a>
     </div></div>
   </div>
-  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
-    <span class="tr-label">Birthday booking</span><span class="tr-arrow">›</span>
+  
+    <div class="activity-section">
+      <div class="activity-header">
+        <span class="activity-title">Ideas &amp; Activities</span>
+        <button class="activity-add-btn" onclick="openActivitySheet('jul1-birthday','Isabel's 73rd')">+</button>
+      </div>
+      <div class="activity-list" id="acts-jul1-birthday">
+      </div>
+    </div>
+<div class="toggle-row" onclick="tog(this)">
+    <span class="tr-label">Birthday booking</span><span class="tr-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   </div>
 </div>
 
@@ -901,7 +1365,7 @@ if(sessionStorage.getItem('unlocked')==='1'){
       <div class="split-mon">Jul</div>
     </div>
     <div class="split-body">
-      <div class="split-dest">→ Lucca</div>
+      <div class="split-dest" style="display:flex;align-items:center;gap:5px;"><span class="status-circle done" style="flex-shrink:0"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L3.8 7L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>→ Lucca</div>
       <div class="split-desc">Train from Milan</div>
       <div class="split-tags">
         <span class="hd-tag ht1">Mano+Taina Crew</span>
@@ -916,7 +1380,7 @@ if(sessionStorage.getItem('unlocked')==='1'){
       <div class="split-mon">Jul</div>
     </div>
     <div class="split-body">
-      <div class="split-dest">→ China</div>
+      <div class="split-dest" style="display:flex;align-items:center;gap:5px;"><span class="status-circle" style="flex-shrink:0"></span>→ China</div>
       <div class="split-desc">Separate trip · Jul 2–11</div>
       <div class="split-tags">
         <span class="hd-tag ht2">Abuelos</span>
@@ -956,13 +1420,13 @@ if(sessionStorage.getItem('unlocked')==='1'){
 <div class="day-entry" data-groups="g1">
   <div class="date-hd" onclick="tog(this)">
     <div class="dcol dc-green"><div class="d-num">2</div><div class="d-mon">Jul</div><div class="d-dow">Thursday</div></div>
-    <div class="dinfo"><div class="d-city">Lucca ✓</div><div class="d-desc">Vissi D'Arte · 10 nights</div><div class="hd-tags"><span class="hd-tag ht1">Mano+Taina Crew</span></div></div>
+    <div class="dinfo"><div class="d-city" style="display:flex;align-items:center;gap:6px;"><span class="status-circle done"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L3.8 7L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Lucca</div><div class="d-desc">Vissi D'Arte · 10 nights</div><div class="hd-tags"><span class="hd-tag ht1">Mano+Taina Crew</span></div></div>
     <div class="dtog">›</div>
   </div>
   <div class="day-body">
     <div class="slabel">Airbnb — Booked</div>
     <div class="ic"><div class="ic-stripe ic-s-green"></div><div class="ic-body">
-      <div class="ic-row"><div class="ic-title">Vissi D'Arte</div><div class="bdg b-green">Booked ✓</div></div>
+      <div class="ic-row"><div class="ic-title">Vissi D'Arte</div><div class="bdg b-green" style="display:flex;align-items:center;gap:4px;"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#2A7A4B"/><path d="M2.5 5.2L4.2 7L7.5 3.5" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Booked</div></div>
       <div class="tags"><span class="tag t1">Mano+Taina Crew · 4</span></div>
       <div class="ic-note green">Piazza San Giovanni 6 · Ground floor · Private courtyard · 2 bed / 3 bath · Superhost · Jul 2–12 · $3,770 · HMS3ZCP3M2</div>
     </div>
@@ -976,8 +1440,17 @@ if(sessionStorage.getItem('unlocked')==='1'){
     </div>
     <div class="ll"><a href="https://www.cinqueterre.eu.com/en/cinque-terre-card" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🎟️</span><div><div class="lb-lbl">Cinque Terre Card</div><div class="lb-sub">€18.50/adult · trains + trails</div></div></div><span class="lb-arr">›</span></a></div></div>
   </div>
-  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
-    <span class="tr-label">Airbnb &amp; day trips</span><span class="tr-arrow">›</span>
+  
+    <div class="activity-section">
+      <div class="activity-header">
+        <span class="activity-title">Ideas &amp; Activities</span>
+        <button class="activity-add-btn" onclick="openActivitySheet('lucca','Lucca')">+</button>
+      </div>
+      <div class="activity-list" id="acts-lucca">
+      </div>
+    </div>
+<div class="toggle-row" onclick="tog(this)">
+    <span class="tr-label">Airbnb &amp; day trips</span><span class="tr-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   </div>
 </div>
 
@@ -985,7 +1458,7 @@ if(sessionStorage.getItem('unlocked')==='1'){
 <div class="day-entry" data-groups="g2 g3">
   <div class="date-hd" onclick="tog(this)">
     <div class="dcol dc-aqua"><div class="action-badge aqua">!</div><div class="d-num">11</div><div class="d-mon">Jul</div><div class="d-dow">Saturday</div></div>
-    <div class="dinfo"><div class="d-city">Milan — Rest Night</div><div class="d-desc">Return from China · 1 night</div><div class="hd-tags"><span class="hd-tag ht2">Abuelos</span><span class="hd-tag ht3">Otto+Juli</span></div></div>
+    <div class="dinfo"><div class="d-city" style="display:flex;align-items:center;gap:6px;"><span class="status-circle"></span>Milan — Rest Night</div><div class="d-desc">Return from China · 1 night</div><div class="hd-tags"><span class="hd-tag ht2">Abuelos</span><span class="hd-tag ht3">Otto+Juli</span></div></div>
     <div class="dtog">›</div>
   </div>
   <div class="day-body">
@@ -1000,8 +1473,8 @@ if(sessionStorage.getItem('unlocked')==='1'){
       <a href="https://www.marriott.com/en-us/hotels/milmc-milan-marriott-hotel/overview/" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">Milan Marriott (backup)</div><div class="lb-sub">marriott.com</div></div></div><span class="lb-arr">›</span></a>
     </div></div>
   </div>
-  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
-    <span class="tr-label">Hotel options</span><span class="tr-arrow">›</span>
+  <div class="toggle-row" onclick="tog(this)">
+    <span class="tr-label">Hotel options</span><span class="tr-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   </div>
 </div>
 
@@ -1009,7 +1482,7 @@ if(sessionStorage.getItem('unlocked')==='1'){
 <div class="day-entry" data-groups="g1 g2 g3">
   <div class="date-hd" onclick="tog(this)">
     <div class="vote-flag green">VOTE<br>HERE</div><div class="dcol dc-green"><div class="action-badge green">!</div><div class="d-num">12</div><div class="d-mon">Jul</div><div class="d-dow">Sunday</div></div>
-    <div class="dinfo"><div class="d-city">Montalcino 🍷</div><div class="d-desc">Wine country · 3 nights · All groups reunite</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
+    <div class="dinfo"><div class="d-city" style="display:flex;align-items:center;gap:6px;"><span class="status-circle"></span>Montalcino 🍷</div><div class="d-desc">Wine country · 3 nights · All groups reunite</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
     <div class="dtog">›</div>
   </div>
   <div class="day-body">
@@ -1097,8 +1570,17 @@ if(sessionStorage.getItem('unlocked')==='1'){
       <div class="ic-note">🍷 Brunello at Banfi or Casanova di Neri<br>🧀 Pienza (20 min) — pecorino cheese tasting<br>♨️ Bagno Vignoni (25 min) — thermal pool piazza (kids love it)<br>🍷 Montepulciano (30 min) — Vino Nobile</div>
     </div></div>
   </div>
-  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
-    <span class="tr-label">Cars, hotel &amp; tastings</span><span class="tr-arrow">›</span>
+  
+    <div class="activity-section">
+      <div class="activity-header">
+        <span class="activity-title">Ideas &amp; Activities</span>
+        <button class="activity-add-btn" onclick="openActivitySheet('montalcino','Montalcino')">+</button>
+      </div>
+      <div class="activity-list" id="acts-montalcino">
+      </div>
+    </div>
+<div class="toggle-row" onclick="tog(this)">
+    <span class="tr-label">Cars, hotel &amp; tastings</span><span class="tr-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   </div>
 </div>
 
@@ -1106,7 +1588,7 @@ if(sessionStorage.getItem('unlocked')==='1'){
 <div class="day-entry" data-groups="g1 g2 g3">
   <div class="date-hd" onclick="tog(this)">
     <div class="dcol dc-orange"><div class="d-num">15</div><div class="d-mon">Jul</div><div class="d-dow">Wednesday</div></div>
-    <div class="dinfo"><div class="d-city">Florence ✓</div><div class="d-desc">Airbnb booked · 11 nights</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
+    <div class="dinfo"><div class="d-city" style="display:flex;align-items:center;gap:6px;"><span class="status-circle done"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L3.8 7L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Florence</div><div class="d-desc">Airbnb booked · 11 nights</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
     <div class="dtog">›</div>
   </div>
   <div class="day-body">
@@ -1116,7 +1598,7 @@ if(sessionStorage.getItem('unlocked')==='1'){
     </div></div>
     <div class="slabel">Airbnb — Booked</div>
     <div class="ic"><div class="ic-stripe ic-s-green"></div><div class="ic-body">
-      <div class="ic-row"><div class="ic-title">Florence Airbnb</div><div class="bdg b-green">Booked ✓</div></div>
+      <div class="ic-row"><div class="ic-title">Florence Airbnb</div><div class="bdg b-green" style="display:flex;align-items:center;gap:4px;"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#2A7A4B"/><path d="M2.5 5.2L4.2 7L7.5 3.5" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Booked</div></div>
       <div class="tags"><span class="tag tall">All groups · 8 · Jul 15–26</span></div>
     </div></div>
     <div class="slabel">🗳 Extra Apartment — Vote!</div>
@@ -1176,8 +1658,17 @@ if(sessionStorage.getItem('unlocked')==='1'){
       <a href="https://www.trenitalia.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🚄</span><div><div class="lb-lbl">Day trip trains</div><div class="lb-sub">Bologna 35 min · Arezzo 40 min</div></div></div><span class="lb-arr">›</span></a>
     </div></div>
   </div>
-  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
-    <span class="tr-label">Florence details</span><span class="tr-arrow">›</span>
+  
+    <div class="activity-section">
+      <div class="activity-header">
+        <span class="activity-title">Ideas &amp; Activities</span>
+        <button class="activity-add-btn" onclick="openActivitySheet('florence','Florence')">+</button>
+      </div>
+      <div class="activity-list" id="acts-florence">
+      </div>
+    </div>
+<div class="toggle-row" onclick="tog(this)">
+    <span class="tr-label">Florence details</span><span class="tr-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   </div>
 </div>
 
@@ -1185,7 +1676,7 @@ if(sessionStorage.getItem('unlocked')==='1'){
 <div class="day-entry" data-groups="g1 g2 g3">
   <div class="date-hd" onclick="tog(this)">
     <div class="dcol dc-aqua"><div class="d-num">26</div><div class="d-mon">Jul</div><div class="d-dow">Sunday</div></div>
-    <div class="dinfo"><div class="d-city">Venice 🚤</div><div class="d-desc">Checkout Florence · Train · 2 nights</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
+    <div class="dinfo"><div class="d-city" style="display:flex;align-items:center;gap:6px;"><span class="status-circle done"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L3.8 7L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Venice 🚤</div><div class="d-desc">Checkout Florence · Train · 2 nights</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
     <div class="dtog">›</div>
   </div>
   <div class="day-body">
@@ -1198,7 +1689,7 @@ if(sessionStorage.getItem('unlocked')==='1'){
     <div class="ll"><a href="https://www.trenitalia.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🚄</span><div><div class="lb-lbl">Book Florence → Venice</div><div class="lb-sub">trenitalia.com · Jul 26</div></div></div><span class="lb-arr">›</span></a></div></div>
     <div class="slabel">Hotel — Booked</div>
     <div class="ic"><div class="ic-stripe ic-s-green"></div><div class="ic-body">
-      <div class="ic-row"><div class="ic-title">Hotel Indigo Venice Sant'Elena</div><div class="bdg b-green">Booked ✓</div></div>
+      <div class="ic-row"><div class="ic-title">Hotel Indigo Venice Sant'Elena</div><div class="bdg b-green" style="display:flex;align-items:center;gap:4px;"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#2A7A4B"/><path d="M2.5 5.2L4.2 7L7.5 3.5" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Booked</div></div>
       <div class="tags"><span class="tag tall">All groups · 8 · Jul 26–29</span></div>
       <div class="ic-note green">3 × Superior Premium Room · Breakfast included · Welcome drink · €20 restaurant credit per room · Check-in 3:00 PM · Ref: SEUK-23227093</div>
     </div>
@@ -1217,8 +1708,17 @@ if(sessionStorage.getItem('unlocked')==='1'){
       <div class="ic-note">Jul 26: Vaporetto #1 down Grand Canal · cicchetti dinner Cannaregio<br>Jul 27: San Marco before 9am · Doge's Palace · Gondola · Burano<br>Jul 28: Valdobbiadene prosecco day trip (→ Treviso → ~1.5 hr)<br>Jul 29 morning: checkout → Lake Garda</div>
     </div></div>
   </div>
-  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
-    <span class="tr-label">Train, hotel &amp; Venice plan</span><span class="tr-arrow">›</span>
+  
+    <div class="activity-section">
+      <div class="activity-header">
+        <span class="activity-title">Ideas &amp; Activities</span>
+        <button class="activity-add-btn" onclick="openActivitySheet('venice','Venice')">+</button>
+      </div>
+      <div class="activity-list" id="acts-venice">
+      </div>
+    </div>
+<div class="toggle-row" onclick="tog(this)">
+    <span class="tr-label">Train, hotel &amp; Venice plan</span><span class="tr-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   </div>
 </div>
 
@@ -1226,7 +1726,7 @@ if(sessionStorage.getItem('unlocked')==='1'){
 <div class="day-entry" data-groups="g1 g2 g3">
   <div class="date-hd" onclick="tog(this)">
     <div class="vote-flag">VOTE<br>HERE</div><div class="dcol dc-pink"><div class="action-badge pink">!</div><div class="d-num">29</div><div class="d-mon">Jul</div><div class="d-dow">Wednesday</div></div>
-    <div class="dinfo"><div class="d-city">Lake Garda 🎵</div><div class="d-desc">Hotel Villa Florida · Booked ✓ · KoC concert tonight</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
+    <div class="dinfo"><div class="d-city" style="display:flex;align-items:center;gap:6px;"><span class="status-circle done"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L3.8 7L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Lake Garda 🎵</div><div class="d-desc">Hotel Villa Florida · Booked ✓ · KoC concert tonight</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
     <div class="dtog">›</div>
   </div>
   <div class="day-body">
@@ -1277,11 +1777,11 @@ if(sessionStorage.getItem('unlocked')==='1'){
         <div class="koc-btns"><button class="koc-btn koc-yes" onclick="kocVote('sophie','yes')">👍 Yes</button><button class="koc-btn koc-no" onclick="kocVote('sophie','no')">👎 No</button></div>
       </div>
       <div class="koc-name-row" id="kocr-isabel">
-        <div class="koc-name-info"><span class="koc-avatar" style="background:var(--aqua)">I</span><span class="koc-nm">Isabel</span></div>
+        <div class="koc-name-info"><span class="koc-avatar" style="background:var(--green)">I</span><span class="koc-nm">Isabel</span></div>
         <div class="koc-btns"><button class="koc-btn koc-yes" onclick="kocVote('isabel','yes')">👍 Yes</button><button class="koc-btn koc-no" onclick="kocVote('isabel','no')">👎 No</button></div>
       </div>
       <div class="koc-name-row" id="kocr-ivan">
-        <div class="koc-name-info"><span class="koc-avatar" style="background:var(--aqua)">I</span><span class="koc-nm">Ivan</span></div>
+        <div class="koc-name-info"><span class="koc-avatar" style="background:var(--green)">I</span><span class="koc-nm">Ivan</span></div>
         <div class="koc-btns"><button class="koc-btn koc-yes" onclick="kocVote('ivan','yes')">👍 Yes</button><button class="koc-btn koc-no" onclick="kocVote('ivan','no')">👎 No</button></div>
       </div>
       <div class="koc-name-row" id="kocr-otto">
@@ -1297,7 +1797,7 @@ if(sessionStorage.getItem('unlocked')==='1'){
 
     <div class="slabel">Hotel — Booked ✓</div>
     <div class="ic"><div class="ic-stripe ic-s-green"></div><div class="ic-body">
-      <div class="ic-row"><div class="ic-title">Hotel Villa Florida</div><div class="bdg b-green">Booked ✓</div></div>
+      <div class="ic-row"><div class="ic-title">Hotel Villa Florida</div><div class="bdg b-green" style="display:flex;align-items:center;gap:4px;"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#2A7A4B"/><path d="M2.5 5.2L4.2 7L7.5 3.5" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Booked</div></div>
       <div class="tags"><span class="tag tall">All groups · 8 · Jul 29–Aug 1 · 3 nights</span></div>
       <div class="ic-note green">Corso Zanardelli 113, Gardone Riviera · 3 rooms · Conf: 6617.218.620 · PIN: 5262 · Check-in 15:00–23:00 · Checkout 07:00–11:00 · Free parking · Free WiFi · ⚠️ Free cancellation until Jul 25</div>
     </div>
@@ -1313,8 +1813,17 @@ if(sessionStorage.getItem('unlocked')==='1'){
       💰 <strong>Total: ~$4,990</strong> (incl. VAT + city tax)</div>
     </div></div>
   </div>
-  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
-    <span class="tr-label">Transfer, concert &amp; hotel</span><span class="tr-arrow">›</span>
+  
+    <div class="activity-section">
+      <div class="activity-header">
+        <span class="activity-title">Ideas &amp; Activities</span>
+        <button class="activity-add-btn" onclick="openActivitySheet('lake-garda','Lake Garda')">+</button>
+      </div>
+      <div class="activity-list" id="acts-lake-garda">
+      </div>
+    </div>
+<div class="toggle-row" onclick="tog(this)">
+    <span class="tr-label">Transfer, concert &amp; hotel</span><span class="tr-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   </div>
 </div>
 
@@ -1322,7 +1831,7 @@ if(sessionStorage.getItem('unlocked')==='1'){
 <div class="day-entry" data-groups="g1 g2 g3">
   <div class="date-hd" onclick="tog(this)">
     <div class="dcol dc-orange"><div class="action-badge orange">!</div><div class="d-num">30</div><div class="d-mon">Jul</div><div class="d-dow">Thursday</div></div>
-    <div class="dinfo"><div class="d-city">Birthday Dinner 🎂</div><div class="d-desc">Lido 84 · Belated celebration · Lake Garda</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
+    <div class="dinfo"><div class="d-city" style="display:flex;align-items:center;gap:6px;"><span class="status-circle"></span>Birthday Dinner 🎂</div><div class="d-desc">Lido 84 · Belated celebration · Lake Garda</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
     <div class="dtog">›</div>
   </div>
   <div class="day-body">
@@ -1337,8 +1846,8 @@ if(sessionStorage.getItem('unlocked')==='1'){
       <a href="https://www.lido84.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🌐</span><div><div class="lb-lbl">View restaurant</div><div class="lb-sub">lido84.com · Gardone Riviera</div></div></div><span class="lb-arr">›</span></a>
     </div></div>
   </div>
-  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
-    <span class="tr-label">Lido 84 booking</span><span class="tr-arrow">›</span>
+  <div class="toggle-row" onclick="tog(this)">
+    <span class="tr-label">Lido 84 booking</span><span class="tr-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   </div>
 </div>
 
@@ -1353,8 +1862,8 @@ if(sessionStorage.getItem('unlocked')==='1'){
       <div class="split-mon">Aug</div>
     </div>
     <div class="split-body">
-      <div class="split-dest">→ Cardiff 🎸</div>
-      <div class="split-desc">Verona → Bristol → Cardiff</div>
+      <div class="split-dest" style="display:flex;align-items:center;gap:5px;"><span class="status-circle" style="flex-shrink:0"></span>✈️ Cardiff Flight</div>
+      <div class="split-desc">Verona → Bristol · not booked</div>
       <div class="split-tags">
         <span class="hd-tag ht1">Mano+Taina</span>
         <span class="hd-tag ht2">Abuelos</span>
@@ -1370,8 +1879,8 @@ if(sessionStorage.getItem('unlocked')==='1'){
       <div class="split-mon">Aug</div>
     </div>
     <div class="split-body">
-      <div class="split-dest">→ London ✈️</div>
-      <div class="split-desc">Few days, then Miami</div>
+      <div class="split-dest" style="display:flex;align-items:center;gap:5px;"><span class="status-circle" style="flex-shrink:0"></span>✈️ London Flight</div>
+      <div class="split-desc">Otto+Juli · flights TBD</div>
       <div class="split-tags">
         <span class="hd-tag ht3">Otto+Juli</span>
       </div>
@@ -1382,21 +1891,15 @@ if(sessionStorage.getItem('unlocked')==='1'){
 
 <!-- CARDIFF EXPAND -->
 <div class="split-expand" id="expand-cardiff">
-  <div class="slabel">Garda → Cardiff</div>
-  <div class="ic"><div class="ic-stripe ic-s-blue"></div><div class="ic-body">
-    <div class="ic-row"><div class="ic-title">Verona → Bristol → Cardiff</div><div class="bdg b-aqua">Best option</div></div>
+  <div class="slabel">Flight — Book Now</div>
+  <div class="ic"><div class="ic-stripe ic-s-orange"></div><div class="ic-body">
+    <div class="ic-row"><div class="ic-title">Verona → Bristol → Cardiff</div><div class="bdg b-orange">Not booked</div></div>
     <div class="tags"><span class="tag t1">Mano+Taina</span><span class="tag t2">Abuelos</span></div>
     <div class="ic-note">Transfer Gardone → Verona (~45 min) · fly VRN → Bristol BRS (Ryanair/easyJet) · taxi Bristol → Cardiff (~30 min · ~£35). ~4 hrs total. No Eurostar needed.</div>
   </div>
   <div class="ll">
     <a href="https://www.skyscanner.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">✈️</span><div><div class="lb-lbl">Verona → Bristol flights</div><div class="lb-sub">Skyscanner · VRN → BRS · Aug 1</div></div></div><span class="lb-arr">›</span></a>
-    <a href="https://www.rome2rio.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🚕</span><div><div class="lb-lbl">Bristol Airport → Cardiff</div><div class="lb-sub">~30 min taxi · ~£35</div></div></div><span class="lb-arr">›</span></a>
-  </div></div>
-  <div class="slabel">Cardiff Hotel — Booked</div>
-  <div class="ic"><div class="ic-stripe ic-s-green"></div><div class="ic-body">
-    <div class="ic-row"><div class="ic-title">Cardiff Hotel</div><div class="bdg b-green">Booked ✓</div></div>
-    <div class="tags"><span class="tag t1">Mano+Taina</span><span class="tag t2">Abuelos · 6 total</span></div>
-    <div class="ic-note green">Aug 1–4 · 3 nights</div>
+    <a href="https://www.rome2rio.com" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🚕</span><div><div class="lb-lbl">Bristol Airport → Cardiff taxi</div><div class="lb-sub">~30 min · ~£35</div></div></div><span class="lb-arr">›</span></a>
   </div></div>
 </div>
 
@@ -1412,11 +1915,42 @@ if(sessionStorage.getItem('unlocked')==='1'){
   </div></div>
 </div>
 
+<!-- CARDIFF HOTEL — separate booked card -->
+<div class="day-entry" data-groups="g1 g2">
+  <div class="date-hd" onclick="tog(this)">
+    <div class="dcol dc-green"><div class="d-num">1</div><div class="d-mon">Aug</div><div class="d-dow">Saturday</div></div>
+    <div class="dinfo">
+      <div class="d-city" style="display:flex;align-items:center;gap:6px;"><span class="status-circle done"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L3.8 7L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Cardiff Hotel</div>
+      <div class="d-desc">Check-in · 3 nights · Booked ✓</div>
+      <div class="hd-tags"><span class="tag t1">Mano+Taina</span><span class="tag t2">Abuelos</span></div>
+    </div>
+    <div class="dtog"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  </div>
+  <div class="day-body">
+    <div class="bs">
+      <div class="slabel">Hotel — Booked</div>
+      <div class="ic"><div class="ic-stripe ic-s-green"></div><div class="ic-body">
+        <div class="ic-row"><div class="ic-title">Hilton Cardiff</div><div class="bdg b-green" style="display:flex;align-items:center;gap:4px;"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#2A7A4B"/><path d="M2.5 5.2L4.2 7L7.5 3.5" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Booked</div></div>
+        <div class="tags"><span class="tag t1">Mano+Taina</span><span class="tag t2">Abuelos · 6 total</span></div>
+        <div class="ic-note green">Kingsway, Cardiff CF10 3HH · Aug 1–4 · 3 nights · 2 rooms · £2,010 · Check-in 4:00 PM · Checkout 12:00 PM</div>
+      </div>
+      <div class="ll">
+        <a href="https://www.hilton.com/en/hotels/cwlhihi-hilton-cardiff/" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">Hilton Cardiff</div><div class="lb-sub">hilton.com · Kingsway, Cardiff CF10 3HH</div></div></div><span class="lb-arr">›</span></a>
+        <a href="tel:+442920646300" class="lb"><div class="lb-l"><span class="lb-icon">📞</span><div><div class="lb-lbl">Call hotel</div><div class="lb-sub">+44 2920 646 300</div></div></div><span class="lb-arr">›</span></a>
+      </div></div>
+    </div>
+  </div>
+  <div class="toggle-row" onclick="tog(this)">
+    <span class="tr-label">Hotel details</span>
+    <span class="tr-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  </div>
+</div>
+
 <!-- AUG 2 — TDCC -->
 <div class="day-entry" data-groups="g1 g2">
   <div class="date-hd" onclick="tog(this)">
     <div class="dcol dc-green"><div class="d-num">2</div><div class="d-mon">Aug</div><div class="d-dow">Sunday</div></div>
-    <div class="dinfo"><div class="d-city">Concert Night 🎸</div><div class="d-desc">Two Door Cinema Club · Cardiff · Tickets booked ✓</div><div class="hd-tags"><span class="hd-tag ht1">Mano+Taina</span><span class="hd-tag ht2">Abuelos</span></div></div>
+    <div class="dinfo"><div class="d-city" style="display:flex;align-items:center;gap:6px;"><span class="status-circle done"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L3.8 7L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Concert Night 🎸</div><div class="d-desc">Two Door Cinema Club · Cardiff · Tickets booked ✓</div><div class="hd-tags"><span class="hd-tag ht1">Mano+Taina</span><span class="hd-tag ht2">Abuelos</span></div></div>
     <div class="dtog">›</div>
   </div>
   <div class="day-body">
@@ -1424,8 +1958,17 @@ if(sessionStorage.getItem('unlocked')==='1'){
       <div class="ic-note">🏰 Cardiff Castle morning (Ian + Sophie will love it)<br>🏛️ National Museum Cardiff afternoon (free, excellent)<br>🍽️ Pre-concert dinner<br>🎸 Two Door Cinema Club — tickets booked ✓</div>
     </div></div>
   </div>
-  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
-    <span class="tr-label">Day plan</span><span class="tr-arrow">›</span>
+  
+    <div class="activity-section">
+      <div class="activity-header">
+        <span class="activity-title">Ideas &amp; Activities</span>
+        <button class="activity-add-btn" onclick="openActivitySheet('cardiff','Cardiff')">+</button>
+      </div>
+      <div class="activity-list" id="acts-cardiff">
+      </div>
+    </div>
+<div class="toggle-row" onclick="tog(this)">
+    <span class="tr-label">Day plan</span><span class="tr-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   </div>
 </div>
 
@@ -1433,7 +1976,7 @@ if(sessionStorage.getItem('unlocked')==='1'){
 <div class="day-entry" data-groups="g1 g2">
   <div class="date-hd" onclick="tog(this)">
     <div class="dcol dc-aqua"><div class="d-num">4</div><div class="d-mon">Aug</div><div class="d-dow">Tuesday</div></div>
-    <div class="dinfo"><div class="d-city">Home ✈️</div><div class="d-desc">London Heathrow → Miami · AA 39 · 12:15 PM</div><div class="hd-tags"><span class="hd-tag ht1">Mano+Taina</span><span class="hd-tag ht2">Abuelos</span></div></div>
+    <div class="dinfo"><div class="d-city" style="display:flex;align-items:center;gap:6px;"><span class="status-circle done"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L3.8 7L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Home ✈️</div><div class="d-desc">London Heathrow → Miami · AA 39 · 12:15 PM</div><div class="hd-tags"><span class="hd-tag ht1">Mano+Taina</span><span class="hd-tag ht2">Abuelos</span></div></div>
     <div class="dtog">›</div>
   </div>
   <div class="day-body">
@@ -1456,8 +1999,8 @@ if(sessionStorage.getItem('unlocked')==='1'){
       </div>
     </div>
   </div>
-  <div class="toggle-row" onclick="tog(this.previousElementSibling.previousElementSibling)">
-    <span class="tr-label">Return flight details</span><span class="tr-arrow">›</span>
+  <div class="toggle-row" onclick="tog(this)">
+    <span class="tr-label">Return flight details</span><span class="tr-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   </div>
 </div>
 
@@ -1493,17 +2036,135 @@ function togSplit(id){
   el.classList.toggle('open');
 }
 
-function tog(header){
-  const body = header.nextElementSibling;
-  const tr = body.nextElementSibling;
-  const icon = header.querySelector('.dtog');
-  const trArrow = tr ? tr.querySelector('.tr-arrow') : null;
+function tog(el){
+  // Works regardless of how many siblings are between elements
+  const entry = el.closest('.day-entry') || el.parentElement;
+  if(!entry) return;
+  const body    = entry.querySelector('.day-body');
+  const icon    = entry.querySelector('.dtog');
+  const trArrow = entry.querySelector('.tr-arrow');
+  if(!body) return;
   const open = body.classList.contains('open');
   body.classList.toggle('open', !open);
-  if(icon) icon.classList.toggle('open', !open);
+  if(icon)    icon.classList.toggle('open', !open);
   if(trArrow) trArrow.classList.toggle('open', !open);
 }
 
+
+
+// ══════════════════════════════════════
+// ACTIVITIES FEATURE
+// ══════════════════════════════════════
+const ACTS_TABLE = 'activities';
+let currentActivityCity = null;
+const PERSON_COLORS = {
+  Taina:'var(--pink)', Manolo:'var(--pink)', Ian:'var(--pink)', Sophie:'var(--pink)',
+  Isabel:'var(--green)', Ivan:'var(--green)',
+  Otto:'var(--orange)', Julieta:'var(--orange)'
+};
+const PERSON_EMOJI = {
+  Taina:'🍕', Manolo:'🍕', Ian:'🍕', Sophie:'🍕',
+  Isabel:'🍋', Ivan:'🍋',
+  Otto:'🎸', Julieta:'🎸'
+};
+
+function openActivitySheet(cityKey, cityName) {
+  currentActivityCity = cityKey;
+  document.getElementById('sheet-city-label').textContent = cityName;
+  document.getElementById('activity-input').value = '';
+  document.getElementById('activity-who').value = '';
+  document.getElementById('activity-overlay').classList.add('open');
+  setTimeout(() => document.getElementById('activity-input').focus(), 300);
+}
+
+function closeActivitySheet(event) {
+  if(event && event.target !== document.getElementById('activity-overlay')) return;
+  document.getElementById('activity-overlay').classList.remove('open');
+  currentActivityCity = null;
+}
+
+async function submitActivity() {
+  const text = document.getElementById('activity-input').value.trim();
+  const who  = document.getElementById('activity-who').value;
+  if(!text) { document.getElementById('activity-input').focus(); return; }
+  if(!who)  { document.getElementById('activity-who').focus(); return; }
+  if(!currentActivityCity) return;
+
+  const btn = document.querySelector('.sheet-submit');
+  btn.textContent = 'Saving...'; btn.disabled = true;
+
+  try {
+    await fetch(SB_URL + '/rest/v1/' + ACTS_TABLE, {
+      method:'POST',
+      headers:{...SB_HEADERS, 'Prefer':'return=minimal'},
+      body: JSON.stringify({ city:currentActivityCity, activity:text, proposed_by:who, likes:0 })
+    });
+    document.getElementById('activity-overlay').classList.remove('open');
+    await loadActivities(currentActivityCity);
+  } catch(e) { console.error(e); }
+
+  btn.textContent = 'Add activity ✓'; btn.disabled = false;
+  currentActivityCity = null;
+}
+
+async function likeActivity(id, cityKey) {
+  // Get current likes
+  const res = await fetch(SB_URL + '/rest/v1/' + ACTS_TABLE + '?id=eq.' + id + '&select=likes', {headers:SB_HEADERS});
+  const rows = await res.json();
+  if(!rows.length) return;
+  const newLikes = (rows[0].likes || 0) + 1;
+  await fetch(SB_URL + '/rest/v1/' + ACTS_TABLE + '?id=eq.' + id, {
+    method:'PATCH',
+    headers:{...SB_HEADERS,'Prefer':'return=minimal'},
+    body: JSON.stringify({likes: newLikes})
+  });
+  await loadActivities(cityKey);
+}
+
+async function loadActivities(cityKey) {
+  const container = document.getElementById('acts-' + cityKey);
+  const emptyEl   = document.getElementById('acts-empty-' + cityKey);
+  if(!container) return;
+
+  try {
+    const res = await fetch(SB_URL + '/rest/v1/' + ACTS_TABLE + '?city=eq.' + cityKey + '&order=created_at.asc', {headers:SB_HEADERS});
+    const acts = await res.json();
+
+    // Remove existing items (keep empty msg)
+    container.querySelectorAll('.activity-item').forEach(el => el.remove());
+
+    if(!acts.length) {
+      if(emptyEl) emptyEl.style.display = 'block';
+      return;
+    }
+    if(emptyEl) emptyEl.style.display = 'none';
+
+    acts.forEach(act => {
+      const emoji = PERSON_EMOJI[act.proposed_by] || '👤';
+      const color = PERSON_COLORS[act.proposed_by] || 'var(--muted)';
+      const item = document.createElement('div');
+      item.className = 'activity-item';
+      item.innerHTML = `
+        <div class="activity-avatar" style="background:${color};font-size:15px;">${emoji}</div>
+        <div class="activity-content">
+          <div class="activity-text">${act.activity}</div>
+          <div class="activity-meta">Proposed by ${act.proposed_by}</div>
+        </div>
+        <button class="activity-like" onclick="likeActivity(${act.id},'${cityKey}')">
+          ❤️ ${act.likes || 0}
+        </button>
+      `;
+      container.appendChild(item);
+    });
+  } catch(e) { console.error('loadActivities error:', e); }
+}
+
+async function loadAllActivities() {
+  const cityKeys = ['milan-arrival','jul1-birthday','lucca','montalcino','florence','venice','lake-garda','cardiff'];
+  await Promise.all(cityKeys.map(k => loadActivities(k)));
+}
+
+// Load activities when page is ready
 
 // ── SUPABASE CONFIG ──
 const SB_URL = 'https://njzjilzdlpljzztrwfqa.supabase.co';
@@ -1686,6 +2347,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   await renderKoc();
   await renderVotes(null);
   await renderFlorenceVotes();
+  await loadAllActivities();
 });
 
 
@@ -1815,5 +2477,37 @@ function filter(group){
   });
 }
 </script>
+
+<!-- ── ACTIVITY MODAL ── -->
+<div class="activity-overlay" id="activity-overlay" onclick="closeActivitySheet(event)">
+  <div class="activity-sheet" id="activity-sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">Suggest an activity</div>
+    <div class="sheet-city" id="sheet-city-label">Milan</div>
+
+    <textarea
+      id="activity-input"
+      class="sheet-input"
+      rows="3"
+      placeholder="What should we do here? 🌍"
+    ></textarea>
+
+    <label class="sheet-label">Who are you?</label>
+    <select id="activity-who" class="sheet-select">
+      <option value="">Select your name...</option>
+      <option value="Taina">🍕 Taina</option>
+      <option value="Manolo">🍕 Manolo</option>
+      <option value="Ian">🍕 Ian</option>
+      <option value="Sophie">🍕 Sophie</option>
+      <option value="Isabel">🍋 Isabel</option>
+      <option value="Ivan">🍋 Ivan</option>
+      <option value="Otto">🎸 Otto</option>
+      <option value="Julieta">🎸 Julieta</option>
+    </select>
+
+    <button class="sheet-submit" onclick="submitActivity()">Add activity ✓</button>
+    <button class="sheet-cancel" onclick="closeActivitySheet(null)">Cancel</button>
+  </div>
+</div>
 </body>
 </html>
