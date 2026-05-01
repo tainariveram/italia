@@ -580,6 +580,50 @@ body {
   font-size:12px; color:var(--ink2); line-height:1.7;
 }
 .koc-summary-title { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:var(--muted); margin-bottom:6px; }
+
+/* ── ACTION BADGE on date squares ── */
+.dcol { position: relative; }
+.action-badge {
+  position:absolute; top:6px; right:6px;
+  width:18px; height:18px; border-radius:50%;
+  background:rgba(255,255,255,0.95);
+  display:flex; align-items:center; justify-content:center;
+  font-size:10px; font-weight:800; line-height:1;
+  box-shadow:0 1px 4px rgba(0,0,0,.15);
+  animation: pulse-badge 2s infinite;
+}
+.action-badge.orange { color:var(--orange); }
+.action-badge.pink   { color:var(--pink); }
+.action-badge.green  { color:var(--green); }
+.action-badge.aqua   { color:var(--aqua); }
+.action-badge.lemon  { color:#8A7000; }
+
+@keyframes pulse-badge {
+  0%, 100% { transform: scale(1); opacity:1; }
+  50%       { transform: scale(1.15); opacity:.85; }
+}
+
+
+
+
+
+/* ── VOTE FLAG ── */
+.date-hd { position:relative; }
+.vote-flag {
+  position:absolute;
+  top:0; right:0;
+  background:var(--pink);
+  color:#fff;
+  font-size:8px; font-weight:900;
+  letter-spacing:1.5px; text-transform:uppercase;
+  padding:6px 10px 12px;
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 50% 100%, 0 75%);
+  width:48px; text-align:center;
+  line-height:1.4;
+  pointer-events:none;
+  z-index:3;
+}
+.vote-flag.green  { background:var(--green); }
 </style>
 </head>
 <body>
@@ -592,10 +636,10 @@ body {
 
 <!-- FILTER BAR -->
 <div class="filterbar">
-  <div class="fb active-all" onclick="filter('all')">🌍 All</div>
-  <div class="fb" onclick="filter('g1')">✈️ Mano+Taina</div>
-  <div class="fb" onclick="filter('g2')">🌿 Abuelos</div>
-  <div class="fb" onclick="filter('g3')">🎵 Otto+Juli</div>
+  <div class="fb active-all" onclick="filter('all')">🗺️ All</div>
+  <div class="fb" onclick="filter('g1')">🍹 Mano+Taina</div>
+  <div class="fb" onclick="filter('g2')">🍋 Abuelos</div>
+  <div class="fb" onclick="filter('g3')">🎸 Otto+Juli</div>
 </div>
 
 <!-- HERO -->
@@ -683,7 +727,7 @@ body {
 <!-- JUL 1 — BIRTHDAY -->
 <div class="day-entry" data-groups="g1 g2 g3">
   <div class="date-hd" onclick="tog(this)">
-    <div class="dcol dc-pink"><div class="d-num">1</div><div class="d-mon">Jul</div><div class="d-dow">Wednesday</div></div>
+    <div class="dcol dc-pink"><div class="action-badge pink">!</div><div class="d-num">1</div><div class="d-mon">Jul</div><div class="d-dow">Wednesday</div></div>
     <div class="dinfo"><div class="d-city">Isabel's 73rd 🎂</div><div class="d-desc">Birthday dinner · Ratanà · Milan</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
     <div class="dtog">›</div>
   </div>
@@ -708,7 +752,8 @@ body {
 
   <!-- LEFT: Mano+Taina → Lucca -->
   <div class="split-card" onclick="togSplit('lucca')">
-    <div class="split-dcol" style="background:var(--pink)">
+    <div class="split-dcol" style="background:var(--pink);position:relative;">
+      <div class="action-badge pink" style="top:5px;right:5px;">!</div>
       <div class="split-num">2</div>
       <div class="split-mon">Jul</div>
     </div>
@@ -796,7 +841,7 @@ body {
 <!-- JUL 11 — MILAN REST -->
 <div class="day-entry" data-groups="g2 g3">
   <div class="date-hd" onclick="tog(this)">
-    <div class="dcol dc-aqua"><div class="d-num">11</div><div class="d-mon">Jul</div><div class="d-dow">Saturday</div></div>
+    <div class="dcol dc-aqua"><div class="action-badge aqua">!</div><div class="d-num">11</div><div class="d-mon">Jul</div><div class="d-dow">Saturday</div></div>
     <div class="dinfo"><div class="d-city">Milan — Rest Night</div><div class="d-desc">Return from China · 1 night</div><div class="hd-tags"><span class="hd-tag ht2">Abuelos</span><span class="hd-tag ht3">Otto+Juli</span></div></div>
     <div class="dtog">›</div>
   </div>
@@ -820,7 +865,7 @@ body {
 <!-- JUL 12 — MONTALCINO -->
 <div class="day-entry" data-groups="g1 g2 g3">
   <div class="date-hd" onclick="tog(this)">
-    <div class="dcol dc-green"><div class="d-num">12</div><div class="d-mon">Jul</div><div class="d-dow">Sunday</div></div>
+    <div class="vote-flag green">VOTE<br>HERE</div><div class="dcol dc-green"><div class="action-badge green">!</div><div class="d-num">12</div><div class="d-mon">Jul</div><div class="d-dow">Sunday</div></div>
     <div class="dinfo"><div class="d-city">Montalcino 🍷</div><div class="d-desc">Wine country · 3 nights · All groups reunite</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
     <div class="dtog">›</div>
   </div>
@@ -990,7 +1035,7 @@ body {
 <!-- JUL 29 — CONCERT LAKE GARDA -->
 <div class="day-entry" data-groups="g1 g2 g3">
   <div class="date-hd" onclick="tog(this)">
-    <div class="dcol dc-pink"><div class="d-num">29</div><div class="d-mon">Jul</div><div class="d-dow">Wednesday</div></div>
+    <div class="vote-flag">VOTE<br>HERE</div><div class="dcol dc-pink"><div class="action-badge pink">!</div><div class="d-num">29</div><div class="d-mon">Jul</div><div class="d-dow">Wednesday</div></div>
     <div class="dinfo"><div class="d-city">Lake Garda 🎵</div><div class="d-desc">Hotel Villa Florida · Booked ✓ · KoC concert tonight</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
     <div class="dtog">›</div>
   </div>
@@ -1086,7 +1131,7 @@ body {
 <!-- JUL 30 — LIDO 84 -->
 <div class="day-entry" data-groups="g1 g2 g3">
   <div class="date-hd" onclick="tog(this)">
-    <div class="dcol dc-orange"><div class="d-num">30</div><div class="d-mon">Jul</div><div class="d-dow">Thursday</div></div>
+    <div class="dcol dc-orange"><div class="action-badge orange">!</div><div class="d-num">30</div><div class="d-mon">Jul</div><div class="d-dow">Thursday</div></div>
     <div class="dinfo"><div class="d-city">Birthday Dinner 🎂</div><div class="d-desc">Lido 84 · Belated celebration · Lake Garda</div><div class="hd-tags"><span class="hd-tag htall">All groups · 8</span></div></div>
     <div class="dtog">›</div>
   </div>
@@ -1112,7 +1157,8 @@ body {
 
   <!-- LEFT: Mano+Taina + Abuelos → Cardiff -->
   <div class="split-card" onclick="togSplit('cardiff')">
-    <div class="split-dcol" style="background:var(--aqua)">
+    <div class="split-dcol" style="background:var(--aqua);position:relative;">
+      <div class="action-badge aqua" style="top:5px;right:5px;">!</div>
       <div class="split-num">1</div>
       <div class="split-mon">Aug</div>
     </div>
@@ -1128,7 +1174,8 @@ body {
 
   <!-- RIGHT: Otto+Juli → London -->
   <div class="split-card" onclick="togSplit('london')">
-    <div class="split-dcol" style="background:var(--orange)">
+    <div class="split-dcol" style="background:var(--orange);position:relative;">
+      <div class="action-badge orange" style="top:5px;right:5px;">!</div>
       <div class="split-num">1</div>
       <div class="split-mon">Aug</div>
     </div>
@@ -1268,152 +1315,179 @@ function tog(header){
 }
 
 
-// ── KoC CONCERT POLL ──
-const KOC_KEY = 'koc_votes_v2';
+// ── SUPABASE CONFIG ──
+const SB_URL = 'https://njzjilzdlpljzztrwfqa.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5qemppbHpkbHBsanp6dHJ3ZnFhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc2MDExMjMsImV4cCI6MjA5MzE3NzEyM30.8u8R7oiKDtxE_hWqTcpmoq1mXJ-OKzK_Rx-iMQrEj-Y';
+const SB_HEADERS = {
+  'apikey': SB_KEY,
+  'Authorization': 'Bearer ' + SB_KEY,
+  'Content-Type': 'application/json'
+};
+
+// ── DEVICE ID (just for Montalcino vote identity) ──
+function getDeviceId() {
+  let id = localStorage.getItem('device_id');
+  if(!id) { id = 'dev_' + Math.random().toString(36).substr(2,9); localStorage.setItem('device_id', id); }
+  return id;
+}
+
+// ══════════════════════════════════════
+// KoC CONCERT POLL
+// ══════════════════════════════════════
 const kocPeople = ['taina','manolo','ian','sophie','isabel','ivan','otto','juli'];
+const kocNameMap = {taina:'Taina',manolo:'Manolo',ian:'Ian',sophie:'Sophie',isabel:'Isabel',ivan:'Ivan',otto:'Otto',juli:'Julieta'};
 
-function getKocVotes() {
-  try { return JSON.parse(localStorage.getItem(KOC_KEY)) || {}; }
-  catch(e) { return {}; }
-}
-function saveKocVotes(v) {
-  try { localStorage.setItem(KOC_KEY, JSON.stringify(v)); } catch(e){}
-}
+async function kocVote(name, choice) {
+  const row = document.getElementById('kocr-' + name);
+  if(!row) return;
+  const yesBtn = row.querySelectorAll('.koc-btn')[0];
+  const noBtn  = row.querySelectorAll('.koc-btn')[1];
 
-function kocVote(name, choice) {
-  const votes = getKocVotes();
-  // toggle off if same
-  if(votes[name] === choice) {
-    delete votes[name];
-  } else {
-    votes[name] = choice;
-  }
-  saveKocVotes(votes);
-  renderKoc();
-}
+  // Read current value
+  const res = await fetch(SB_URL + '/rest/v1/koc_votes?name=eq.' + name + '&select=going', {headers: SB_HEADERS});
+  const data = await res.json();
+  const current = data[0]?.going;
 
-function renderKoc() {
-  const votes = getKocVotes();
-  kocPeople.forEach(name => {
-    const row = document.getElementById('kocr-' + name);
-    if(!row) return;
-    const yesBtn = row.querySelectorAll('.koc-btn')[0];
-    const noBtn  = row.querySelectorAll('.koc-btn')[1];
-    const vote = votes[name];
-    yesBtn.className = 'koc-btn koc-yes' + (vote==='yes' ? ' selected-yes' : '');
-    noBtn.className  = 'koc-btn koc-no'  + (vote==='no'  ? ' selected-no'  : '');
-    row.className = 'koc-name-row' + (vote==='yes' ? ' voted-yes' : vote==='no' ? ' voted-no' : '');
-    yesBtn.textContent = vote==='yes' ? '✓ Going!' : '👍 Yes';
-    noBtn.textContent  = vote==='no'  ? '✗ Nope'   : '👎 No';
+  // Toggle: if same choice, set to null (undecided). We'll use going=null for undecided.
+  // Supabase: patch the row
+  const newVal = (choice === 'yes') ? (current === true ? null : true) : (current === false ? null : false);
+
+  await fetch(SB_URL + '/rest/v1/koc_votes?name=eq.' + name, {
+    method: 'PATCH',
+    headers: { ...SB_HEADERS, 'Prefer': 'return=minimal' },
+    body: JSON.stringify({ going: newVal })
   });
 
-  // summary
-  const summary = document.getElementById('koc-summary');
-  const voted = kocPeople.filter(n => votes[n]);
-  if(voted.length === 0) { summary.style.display='none'; return; }
+  await renderKoc();
+}
 
-  const going = kocPeople.filter(n => votes[n]==='yes');
-  const notGoing = kocPeople.filter(n => votes[n]==='no');
-  const nameMap = {taina:'Taina',manolo:'Manolo',ian:'Ian',sophie:'Sophie',isabel:'Isabel',ivan:'Ivan',otto:'Otto',juli:'Julieta'};
+async function renderKoc() {
+  const res = await fetch(SB_URL + '/rest/v1/koc_votes?select=name,going', {headers: SB_HEADERS});
+  const votes = await res.json();
 
-  let html = '<div class="koc-summary-title">Concert headcount</div>';
-  if(going.length) html += '🎵 <strong>Going (' + going.length + '):</strong> ' + going.map(n=>nameMap[n]).join(', ') + '<br>';
-  if(notGoing.length) html += '🏠 <strong>Sitting out (' + notGoing.length + '):</strong> ' + notGoing.map(n=>nameMap[n]).join(', ');
-  if(going.length) html += '<br><br>💡 Book <strong>' + going.length + ' ticket' + (going.length>1?'s':'') + '</strong> at anfiteatrodelvittoriale.it';
-  summary.innerHTML = html;
+  votes.forEach(row => {
+    const el = document.getElementById('kocr-' + row.name);
+    if(!el) return;
+    const yesBtn = el.querySelectorAll('.koc-btn')[0];
+    const noBtn  = el.querySelectorAll('.koc-btn')[1];
+    const going  = row.going;
+
+    yesBtn.className = 'koc-btn koc-yes' + (going === true  ? ' selected-yes' : '');
+    noBtn.className  = 'koc-btn koc-no'  + (going === false ? ' selected-no'  : '');
+    el.className     = 'koc-name-row'    + (going === true  ? ' voted-yes' : going === false ? ' voted-no' : '');
+    yesBtn.textContent = going === true  ? '✓ Going!' : '👍 Yes';
+    noBtn.textContent  = going === false ? '✗ Nope'   : '👎 No';
+  });
+
+  const going    = votes.filter(v => v.going === true).map(v => kocNameMap[v.name]);
+  const notGoing = votes.filter(v => v.going === false).map(v => kocNameMap[v.name]);
+  const summary  = document.getElementById('koc-summary');
+  if(!summary) return;
+
+  if(going.length === 0 && notGoing.length === 0) { summary.style.display='none'; return; }
+  let h = '<div class="koc-summary-title">Concert headcount</div>';
+  if(going.length)    h += '🎵 <strong>Going (' + going.length + '):</strong> ' + going.join(', ') + '<br>';
+  if(notGoing.length) h += '🏠 <strong>Sitting out (' + notGoing.length + '):</strong> ' + notGoing.join(', ');
+  if(going.length)    h += '<br><br>💡 Book <strong>' + going.length + ' ticket' + (going.length>1?'s':'') + '</strong> at anfiteatrodelvittoriale.it';
+  summary.innerHTML = h;
   summary.style.display = 'block';
 }
 
-document.addEventListener('DOMContentLoaded', renderKoc);
+// ══════════════════════════════════════
+// MONTALCINO VOTE (shared tally)
+// ══════════════════════════════════════
+async function vote(option) {
+  const deviceId = getDeviceId();
 
-// ── VOTING ──
-const VOTE_KEY = 'montalcino_votes';
-const MY_VOTE_KEY = 'montalcino_my_vote';
+  // Check if this device already voted
+  const existing = await fetch(SB_URL + '/rest/v1/montalcino_votes?voter=eq.' + deviceId + '&select=option', {headers: SB_HEADERS});
+  const rows = await existing.json();
 
-function getVotes() {
-  try { return JSON.parse(localStorage.getItem(VOTE_KEY)) || {airbnb:0,capitani:0,si:0}; }
-  catch(e) { return {airbnb:0,capitani:0,si:0}; }
-}
-function saveVotes(v) {
-  try { localStorage.setItem(VOTE_KEY, JSON.stringify(v)); } catch(e){}
-}
-function getMyVote() {
-  try { return localStorage.getItem(MY_VOTE_KEY) || null; }
-  catch(e) { return null; }
-}
-
-function vote(option) {
-  const myVote = getMyVote();
-  const votes = getVotes();
-
-  // toggle off if same
-  if(myVote === option) {
-    votes[option] = Math.max(0, votes[option] - 1);
-    localStorage.removeItem(MY_VOTE_KEY);
-    saveVotes(votes);
-    renderVotes(null);
-    return;
+  if(rows.length > 0) {
+    if(rows[0].option === option) {
+      // Toggle off — delete vote
+      await fetch(SB_URL + '/rest/v1/montalcino_votes?voter=eq.' + deviceId, {
+        method: 'DELETE',
+        headers: { ...SB_HEADERS, 'Prefer': 'return=minimal' }
+      });
+    } else {
+      // Change vote — update
+      await fetch(SB_URL + '/rest/v1/montalcino_votes?voter=eq.' + deviceId, {
+        method: 'PATCH',
+        headers: { ...SB_HEADERS, 'Prefer': 'return=minimal' },
+        body: JSON.stringify({ option: option })
+      });
+    }
+  } else {
+    // New vote — insert
+    await fetch(SB_URL + '/rest/v1/montalcino_votes', {
+      method: 'POST',
+      headers: { ...SB_HEADERS, 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ option: option, voter: deviceId })
+    });
   }
-  // remove old vote
-  if(myVote && votes[myVote] > 0) votes[myVote]--;
-  // add new vote
-  votes[option]++;
-  try { localStorage.setItem(MY_VOTE_KEY, option); } catch(e){}
-  saveVotes(votes);
-  renderVotes(option);
+
+  await renderVotes(option);
 }
 
-function renderVotes(myVote) {
-  const votes = getVotes();
-  const total = votes.airbnb + votes.capitani + votes.si;
+async function renderVotes(lastPicked) {
+  const deviceId = getDeviceId();
+  const res = await fetch(SB_URL + '/rest/v1/montalcino_votes?select=option,voter', {headers: SB_HEADERS});
+  const rows = await res.json();
+
+  const counts = {airbnb:0, capitani:0, si:0};
+  rows.forEach(r => { if(counts[r.option] !== undefined) counts[r.option]++; });
+  const myVote = rows.find(r => r.voter === deviceId)?.option || null;
+  const total  = counts.airbnb + counts.capitani + counts.si;
+
   const options = ['airbnb','capitani','si'];
-  const labels = {airbnb:'🏡 Airbnb', capitani:'🏨 Dei Capitani', si:'🌿 Si Montalcino'};
+
+  // Update filter tabs
+  document.querySelectorAll('.fb').forEach(b => b.className='fb');
+  const activeFb = document.querySelector('.fb[onclick="filter(\'all\')"]');
+  if(activeFb) activeFb.classList.add('active-all');
 
   options.forEach(opt => {
-    const pct = total > 0 ? Math.round((votes[opt]/total)*100) : 0;
-    const bar = document.getElementById('bar-'+opt);
-    const btn = document.getElementById('btn-'+opt);
-    const cnt = document.getElementById('cnt-'+opt);
-    const card = document.getElementById('vc-'+opt);
-    const tb = document.getElementById('tb-'+opt);
-    const tc = document.getElementById('tc-'+opt);
+    const pct    = total > 0 ? Math.round((counts[opt]/total)*100) : 0;
+    const bar    = document.getElementById('bar-' + opt);
+    const btn    = document.getElementById('btn-' + opt);
+    const cnt    = document.getElementById('cnt-' + opt);
+    const card   = document.getElementById('vc-' + opt);
+    const tb     = document.getElementById('tb-' + opt);
+    const tc     = document.getElementById('tc-' + opt);
 
-    if(bar) bar.style.width = pct+'%';
-    if(tb) tb.style.width = pct+'%';
-    if(tc) tc.textContent = votes[opt];
+    if(bar) bar.style.width = pct + '%';
+    if(tb)  tb.style.width  = pct + '%';
+    if(tc)  tc.textContent  = counts[opt];
 
     if(myVote === opt) {
-      btn.textContent = '✓ Your vote';
-      btn.classList.add('voted-btn');
-      card.classList.add('voted');
+      if(btn) { btn.textContent = '✓ Your vote'; btn.classList.add('voted-btn'); }
+      if(card) card.classList.add('voted');
     } else {
-      btn.textContent = '👆 Vote for this';
-      btn.classList.remove('voted-btn');
-      card.classList.remove('voted');
+      if(btn) { btn.textContent = '👆 Vote for this'; btn.classList.remove('voted-btn'); }
+      if(card) card.classList.remove('voted');
     }
 
-    if(total > 0) {
-      cnt.textContent = votes[opt] + (votes[opt]===1?' vote':' votes') + ' (' + pct + '%)';
-    } else {
-      cnt.textContent = '';
-    }
+    if(cnt) cnt.textContent = total > 0 ? counts[opt] + (counts[opt]===1?' vote':' votes') + ' (' + pct + '%)' : '';
   });
 
-  // show tally if any votes
   const tally = document.getElementById('vote-tally');
   if(tally) tally.style.display = total > 0 ? 'block' : 'none';
 
-  // highlight winner
   if(total > 0) {
-    const maxOpt = options.reduce((a,b) => votes[a] >= votes[b] ? a : b);
+    const maxOpt = options.reduce((a,b) => counts[a] >= counts[b] ? a : b);
     options.forEach(opt => {
-      document.getElementById('vc-'+opt).classList.toggle('winner', opt === maxOpt && votes[opt] > 0);
+      const card = document.getElementById('vc-' + opt);
+      if(card) card.classList.toggle('winner', opt === maxOpt && counts[opt] > 0);
     });
   }
 }
 
-// init on load
-document.addEventListener('DOMContentLoaded', () => renderVotes(getMyVote()));
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', async () => {
+  await renderKoc();
+  await renderVotes(null);
+});
 
 function filter(group){
   document.querySelectorAll('.fb').forEach(b => b.className = 'fb');
