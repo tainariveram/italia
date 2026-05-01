@@ -1555,7 +1555,10 @@ async function renderKoc() {
   const res = await fetch(SB_URL + '/rest/v1/koc_votes?select=name,going', {headers: SB_HEADERS});
   const votes = await res.json();
 
-  votes.forEach(row => {
+  // Deduplicate rows by name before rendering buttons
+  const seenNames = {};
+  votes.forEach(v => { seenNames[v.name] = v; });
+  Object.values(seenNames).forEach(row => {
     const el = document.getElementById('kocr-' + row.name);
     if(!el) return;
     const yesBtn = el.querySelectorAll('.koc-btn')[0];
@@ -1569,8 +1572,13 @@ async function renderKoc() {
     noBtn.textContent  = going === false ? '✗ Nope'   : '👎 No';
   });
 
-  const going    = votes.filter(v => v.going === true).map(v => kocNameMap[v.name]);
-  const notGoing = votes.filter(v => v.going === false).map(v => kocNameMap[v.name]);
+  // Deduplicate — keep only one row per person (last wins)
+  const seen = {};
+  votes.forEach(v => { seen[v.name] = v; });
+  const unique = Object.values(seen);
+
+  const going    = unique.filter(v => v.going === true).map(v => kocNameMap[v.name]);
+  const notGoing = unique.filter(v => v.going === false).map(v => kocNameMap[v.name]);
   const summary  = document.getElementById('koc-summary');
   if(!summary) return;
 
