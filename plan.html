@@ -1433,24 +1433,34 @@ if(sessionStorage.getItem('unlocked')==='1'){
 <!-- JUL 11 — MILAN REST -->
 <div class="day-entry" data-groups="g2 g3">
   <div class="date-hd" onclick="tog(this)">
-    <div class="dcol dc-aqua"><div class="action-badge aqua">!</div><div class="d-num">11</div><div class="d-mon">Jul</div><div class="d-dow">Saturday</div></div>
-    <div class="dinfo"><div class="d-city" style="display:flex;align-items:center;gap:6px;"><span class="status-circle"></span>Milan — Rest Night</div><div class="d-desc">Return from China · 1 night</div><div class="hd-tags"><span class="hd-tag ht2">Abuelos</span><span class="hd-tag ht3">Otto+Juli</span></div></div>
-    <div class="dtog">›</div>
+    <div class="dcol dc-green"><div class="d-num">11</div><div class="d-mon">Jul</div><div class="d-dow">Saturday</div></div>
+    <div class="dinfo">
+      <div class="d-city" style="display:flex;align-items:center;gap:6px;"><span class="status-circle done"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L3.8 7L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Milan — Rest Night</div>
+      <div class="d-desc">iQ Hotel Milano · Booked ✓ · Return from China</div>
+      <div class="hd-tags"><span class="hd-tag ht2">Abuelos</span><span class="hd-tag ht3">Otto+Juli</span></div>
+    </div>
+    <div class="dtog"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
   </div>
   <div class="day-body">
-    <div class="slabel">Hotel — Near Centrale</div>
-    <div class="ic"><div class="ic-stripe ic-s-aqua"></div><div class="ic-body">
-      <div class="ic-row"><div class="ic-title">Nhow Milano</div><div class="bdg b-aqua">Book now</div></div>
-      <div class="tags"><span class="tag t2">Abuelos</span><span class="tag t3">Otto+Juli</span></div>
-      <div class="ic-note">5 min from Centrale station · jet-lagged arrival · easy early checkout Jul 12 · ~€180–250/night</div>
+    <div class="slabel">Hotel — Booked ✓</div>
+    <div class="ic"><div class="ic-stripe ic-s-green"></div><div class="ic-body">
+      <div class="ic-row"><div class="ic-title">iQ Hotel Milano</div><div class="bdg b-green" style="display:flex;align-items:center;gap:4px;"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#2A7A4B"/><path d="M2.5 5.2L4.2 7L7.5 3.5" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Booked</div></div>
+      <div class="tags"><span class="tag t2">Abuelos</span><span class="tag t3">Otto+Juli · 4 guests</span></div>
+      <div class="ic-note green">Via G. B. Pirelli 5, Milan · Directly opposite Centrale · Jul 11–12 · 2 rooms · $610 total · Conf: 6213.440.122 · PIN: 6774 · Check-in from 14:00 · Checkout until 11:00 · Breakfast included · Free WiFi · ⚠️ Free cancellation until Jul 9</div>
     </div>
     <div class="ll">
-      <a href="https://www.nhow-hotels.com/milan" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">Nhow Milano</div><div class="lb-sub">nhow-hotels.com · near Centrale</div></div></div><span class="lb-arr">›</span></a>
-      <a href="https://www.marriott.com/en-us/hotels/milmc-milan-marriott-hotel/overview/" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">Milan Marriott (backup)</div><div class="lb-sub">marriott.com</div></div></div><span class="lb-arr">›</span></a>
+      <a href="https://ih-hotels.com/city-hotel/milano/iq-hotel-milano/" target="_blank" class="lb"><div class="lb-l"><span class="lb-icon">🏨</span><div><div class="lb-lbl">iQ Hotel Milano</div><div class="lb-sub">Via G. B. Pirelli 5 · Conf: 6213.440.122</div></div></div><span class="lb-arr">›</span></a>
+      <a href="tel:+390284980810" class="lb"><div class="lb-l"><span class="lb-icon">📞</span><div><div class="lb-lbl">Call hotel</div><div class="lb-sub">+39 02 8498 0810</div></div></div><span class="lb-arr">›</span></a>
+    </div></div>
+    <div class="slabel">Room Breakdown</div>
+    <div class="ic"><div class="ic-stripe ic-s-aqua"></div><div class="ic-body">
+      <div class="ic-note">🛏 <strong>Room 1</strong> — Double Room · Isabel + Julieta (14) · Breakfast included · $287<br>
+      🛏 <strong>Room 2</strong> — Double Room · Otto + Ivan · Breakfast included · $287</div>
     </div></div>
   </div>
   <div class="toggle-row" onclick="tog(this)">
-    <span class="tr-label">Hotel options</span><span class="tr-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    <span class="tr-label">Hotel details</span>
+    <span class="tr-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
   </div>
 </div>
 
@@ -2103,6 +2113,7 @@ if(sessionStorage.getItem('unlocked')==='1'){
     <tbody>
       <tr><td class="budget-city">🇮🇹 Milano</td><td>$8,156</td><td>$2,718.67</td><td>$2,718.67</td><td>$2,718.67</td></tr>
       <tr><td class="budget-city">🏛 Lucca</td><td>$3,770</td><td>$3,770</td><td class="budget-zero">—</td><td class="budget-zero">—</td></tr>
+      <tr style="background:rgba(75,171,114,.04);"><td class="budget-city" style="font-size:12px;color:var(--muted);">🏨 Milan 1 night*</td><td style="font-size:12px;color:var(--muted);">$610</td><td class="budget-zero">—</td><td style="font-size:12px;color:var(--green);">$287*</td><td style="font-size:12px;color:var(--green);">$287*</td></tr>
       <tr><td class="budget-city">🍷 Montalcino</td><td>$3,758</td><td>$1,251.57</td><td>$1,251.57</td><td>$1,251.57</td></tr>
       <tr><td class="budget-city">🌸 Firenze</td><td>$8,547</td><td>$2,849</td><td>$2,849</td><td>$2,849</td></tr>
       <tr><td class="budget-city">🚤 Venezia</td><td>$2,359</td><td>$786.33</td><td>$786.33</td><td>$786.33</td></tr>
@@ -2111,15 +2122,22 @@ if(sessionStorage.getItem('unlocked')==='1'){
     </tbody>
     <tfoot>
       <tr class="budget-total-row">
-        <td>Total per family</td>
+        <td style="font-size:12px;line-height:1.4;">Total per family<br><span style="font-weight:500;font-size:11px;color:#1A9990;">(payable to Taina)</span></td>
         <td>$34,311</td>
         <td>$14,404.40</td>
         <td>$10,634.40</td>
         <td>$9,268.90</td>
       </tr>
+      <tr style="background:rgba(75,171,114,.07);border-top:1px solid var(--green-lt);">
+        <td style="font-size:12px;line-height:1.4;font-weight:700;color:var(--ink);">Milan 1 night<br><span style="font-weight:500;font-size:11px;color:var(--green);">(payable to Isabel*)</span></td>
+        <td style="font-size:13px;font-weight:700;">$610</td>
+        <td class="budget-zero" style="font-size:13px;">—</td>
+        <td style="font-size:13px;font-weight:700;color:var(--green);">$287</td>
+        <td style="font-size:13px;font-weight:700;color:var(--green);">$287</td>
+      </tr>
     </tfoot>
   </table>
-  <div class="budget-note">💡 Montalcino price is estimated based on current vote options. Cardiff is Mano+Taina + Abuelos only. Trains TBD.</div>
+  <div class="budget-note">💡 Montalcino price is estimated. Cardiff is Mano+Taina + Abuelos only. Trains TBD.<br>* Milan 1-night hotel was paid by Isabel — Abuelos and Otto+Juli owe $287 each directly to Isabel.</div>
 </div>
 
 
@@ -2258,9 +2276,9 @@ if(sessionStorage.getItem('unlocked')==='1'){
   <div class="todo-group-label">📋 Still To Book</div>
 
   <div class="todo-item">
-    <div class="todo-check pending"></div>
-    <div class="todo-text">Hotel Milan 1 night — Group 2+3 · Jul 11</div>
-    <span class="todo-badge tb-tbd">Pending</span>
+    <div class="todo-check done"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L3.8 7L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="todo-text done-text">Hotel Milan 1 night — iQ Hotel Milano · Jul 11 · Booked ✓</div>
+    <span class="todo-badge tb-done">Done</span>
   </div>
 
   <div class="todo-item">
